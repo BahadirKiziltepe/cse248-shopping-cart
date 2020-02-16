@@ -5,15 +5,35 @@ import java.util.TreeSet;
 public class User extends Account {
 	
 	private TreeSet<Order> transactionHistory; 
-	private CreditCard creditCard; // this doesn't need to be made during the constructor
+	private CreditCard savedCard; // this doesn't need to be made during the constructor
 
 	public User(String userName, String password, Name name, Address address) {
 		super(userName, password, name, address);
 		transactionHistory = new TreeSet<Order>();
-		creditCard.setCardNumber(000000000000);
-		creditCard.setExpirationDate(0000);
-		creditCard.setSecurityCode(000);
+		savedCard.setCardNumber(000000000000);
+		savedCard.setExpirationDate(0000);
+		savedCard.setSecurityCode(000);
 	}
+
+	public void registerUser(User userToAdd, StoreDataBase users) { // used for first time account registery
+		users.getAllAccounts().add(userToAdd);
+	}
+	
+	public TreeSet<Order> getTransactionHistory() {
+		return transactionHistory;
+	}
+
+	public CreditCard getSavedCard() {
+		return savedCard;
+	}
+
+	public void setSavedCard(CreditCard savedCard) {
+		this.savedCard = savedCard;
+	}
+	
+	
+	
+
 	
 	
 	
