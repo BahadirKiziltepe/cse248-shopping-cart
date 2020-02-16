@@ -7,12 +7,24 @@ public class Item {
 	private boolean taxable;
 	private int stock;
 	
-	public Item(String productName, int itemID, double price, boolean taxable, int stock) {
+	public Item(String productName,  double price, boolean taxable, int stock, StoreDataBase itemStorage) {
 		this.productName = productName;
-		this.itemID = itemID;
 		this.price = price;
 		this.taxable = taxable;
 		this.stock = stock;
+		
+		int max = 0;
+		Item[] temp = (Item[]) itemStorage.getAllItems().toArray();
+		for (int i = 0; i < temp.length; i++) {
+			if (max < temp[i].itemID) {
+				max = temp[i].itemID;
+			}
+		}
+		
+		this.itemID = max +1;
+		
+		// itemID of item being created will be +1 of highest itemID in storage
+		
 	}
 
 	public void addToStock(int amountToAdd) {

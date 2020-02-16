@@ -18,6 +18,8 @@ public class Order {
 		this.owner = owner;
 	}
 
+	// setters and getters
+	
 	public TreeSet<Item> getItemsbought() {
 		return itemsbought;
 	}

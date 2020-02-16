@@ -19,6 +19,9 @@ public class User extends Account {
 		users.getAllAccounts().add(userToAdd);
 	}
 	
+	// setters and getters
+	
+	
 	public TreeSet<Order> getTransactionHistory() {
 		return transactionHistory;
 	}

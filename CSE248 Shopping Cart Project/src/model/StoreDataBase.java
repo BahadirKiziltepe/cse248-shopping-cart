@@ -14,9 +14,33 @@ public class StoreDataBase {
 	}
 
 	
-	public void addItemToStore(Item itemToAdd) { // does NOT check for duplicates yet
-		allItems.add(itemToAdd);
+	public void addItemToStore(Item itemToAdd) { 
+		boolean canAdd = true;
+		Item[] temp = (Item[]) allItems.toArray();
+		
+		for (int i = 0; i < temp.length; i++) {
+			if (temp[i].getItemID() == itemToAdd.getItemID()) { // if item with same ID exists, item is not added
+				canAdd = false;
+			}
+		}
+		
+		if (canAdd == true) {
+			allItems.add(itemToAdd);
+		} 
+		
 	}
+	
+	public void addOrderToStore(Order orderToAdd) {
+		allOrders.add(orderToAdd);
+	}
+	
+	
+	// QUESTION: does it matter if this tree holds the subclasses of Account??
+	public void addAccountToStore(Account accountToAdd) { 
+		allAccounts.add(accountToAdd);
+	}
+	
+	
 	
 	// Getters (no setters)
 	

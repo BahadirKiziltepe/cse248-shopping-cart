@@ -10,6 +10,8 @@ public class CreditCard {
 		this.securityCode = securityCode;
 		this.expirationDate = expirationDate;
 	}
+	
+	// setters and getters
 
 	public int getCardNumber() {
 		return cardNumber;

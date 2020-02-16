@@ -14,6 +14,8 @@ public class Account {
 		this.address = address;
 	}
 	
+	// setters and getters
+	
 	public String getUserName() {
 		return userName;
 	}

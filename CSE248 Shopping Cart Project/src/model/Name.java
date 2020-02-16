@@ -12,6 +12,14 @@ public class Name {
 		this.middleName = middleName;
 	}
 	
+	public Name(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.middleName = null;
+	}
+	
+	//setters and getters
+	
 	public String getFirstName() {
 		return firstName;
 	}

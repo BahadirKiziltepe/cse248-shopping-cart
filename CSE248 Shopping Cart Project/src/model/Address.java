@@ -17,6 +17,7 @@ public class Address {
 		
 	}
 	
+	// setters and getters
 	
 	public String getStreet() {
 		return street;

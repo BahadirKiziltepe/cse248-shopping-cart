@@ -5,12 +5,14 @@ public class Software extends Item {
 	private String genre;
 	private String publisher;
 	
-	public Software(String productName, int itemID, double price, boolean taxable, int stock, String genre, String publisher) {
-		super(productName, itemID, price, taxable, stock);
+	public Software(String productName, double price, boolean taxable, int stock, StoreDataBase itemStorage, String genre, String publisher) {
+		super(productName, price, taxable, stock, itemStorage);
 		this.genre = genre;
 		this.publisher = publisher;
 	}
 
+	// setters and getters
+	
 	public String getGenre() {
 		return genre;
 	}
