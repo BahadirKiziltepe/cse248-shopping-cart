@@ -7,8 +7,8 @@ public class User extends Account {
 	private TreeSet<Order> transactionHistory; 
 	private CreditCard savedCard; // this doesn't need to be made during the constructor
 
-	public User(String userName, String password, Name name, Address address) {
-		super(userName, password, name, address);
+	public User(String userName, String password, Name name, Address address, String email) {
+		super(userName, password, name, address, email);
 		transactionHistory = new TreeSet<Order>();
 		savedCard.setCardNumber(000000000000);
 		savedCard.setExpirationDate(0000);

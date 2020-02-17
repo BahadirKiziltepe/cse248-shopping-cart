@@ -6,12 +6,14 @@ public class Account {
 	private String password;
 	private Name name;
 	private Address address;
+	private String email;
 	
-	public Account(String userName,String password,Name name, Address address) {
+	public Account(String userName,String password,Name name, Address address, String email) {
 		this.userName = userName;
 		this.password = password;
 		this.name = name;
 		this.address = address;
+		this.email = email;
 	}
 	
 	// setters and getters
@@ -39,6 +41,14 @@ public class Account {
 	}
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
