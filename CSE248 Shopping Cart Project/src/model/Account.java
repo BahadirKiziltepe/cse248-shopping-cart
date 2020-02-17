@@ -1,6 +1,6 @@
 package model;
 
-public class Account {
+public abstract class Account implements Comparable<Account>  {
 	
 	private String userName;
 	private String password;
@@ -50,6 +50,19 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public int compareTo(Account o) {
+		int num = this.getUserName().compareTo(o.getUserName());
+		if (num < 0) {
+			return -1;
+		}
+		if (num > 0) {
+			return 1;
+		}
+		return 0;
+	}
+	
 	
 	
 }

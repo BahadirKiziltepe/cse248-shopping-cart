@@ -1,11 +1,13 @@
 package model;
 
+import java.math.BigInteger;
+
 public class CreditCard {
-	private int cardNumber;
+	private String cardNumber;
 	private int securityCode;
 	private int expirationDate; // MMYY format
 	
-	public CreditCard(int cardNumber, int securityCode, int expirationDate) {
+	public CreditCard(String cardNumber, int securityCode, int expirationDate) {
 		this.cardNumber = cardNumber;
 		this.securityCode = securityCode;
 		this.expirationDate = expirationDate;
@@ -13,11 +15,11 @@ public class CreditCard {
 	
 	// setters and getters
 
-	public int getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
