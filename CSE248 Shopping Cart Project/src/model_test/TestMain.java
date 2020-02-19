@@ -1,6 +1,8 @@
-package model;
+package model_test;
 
 import java.util.TreeSet;
+
+import model.*;
 
 public class TestMain {
 
@@ -16,9 +18,26 @@ public class TestMain {
 		
 		// String userName, String password, Name name, Address address, String email
 		User brandon = new User("bdoubled","password",nameb,addb,"email.com");
+		User brandon2 = new User("bdoubled","password",nameb,addb,"email.com");
 		Admin john = new Admin("appleMan","adminpassword",namea,adda,"apple.com");
 		
+		TreeSet<Account> tree = new TreeSet<>();
+		tree.add(john);
+		tree.add(brandon);
+		tree.add(brandon2); // doesn't get added if account username is the same
+		System.out.println(tree);
 		
+		
+		///// REGISTERING USERS/ADMINS  && CALLING THEIR INFO /////
+		data.registerUser(brandon);
+		data.registerAdmin(john);
+	
+		
+		Object[] acc  =  data.returnAccountsAsArray();
+		for (int i = 0; i < acc.length; i++) {
+			System.out.println(((Account) acc[i]).getName().getFirstName());
+		}
+		///////////////////////////////////////////////////////////
 		
 	}
 

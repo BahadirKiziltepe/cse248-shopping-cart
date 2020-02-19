@@ -9,28 +9,38 @@ public class StoreDataBase {
 	
 	
 	public StoreDataBase() {
-		
-		allItems = new TreeSet<Item>();
-		allOrders = new TreeSet<Order>();
+		allAccounts = new TreeSet<>();
+		allItems = new TreeSet<>();
+		allOrders = new TreeSet<>();
 	}
 
-	
-	public void addItemToStore(Item itemToAdd) { 
+	/**
+	 * addItemToStore
+	 * @param itemToAdd Adds an item to the store. Returns true if successful, false if unsuccessful
+	 */
+	public boolean addItemToStore(Item itemToAdd) { 
 		boolean canAdd = true;
 		Item[] temp = (Item[]) allItems.toArray();
 		
 		for (int i = 0; i < temp.length; i++) {
 			if (temp[i].getItemID() == itemToAdd.getItemID()) { // if item with same ID exists, item is not added
 				canAdd = false;
+				return false;
 			}
 		}
 		
 		if (canAdd == true) {
 			allItems.add(itemToAdd);
+			return true;
 		} 
+		return false;
 		
 	}
 	
+	/**
+	 * addOrderToStore
+	 * @param orderToAdd Adds a copy of an Order to the StoreDataBase
+	 */
 	public void addOrderToStore(Order orderToAdd) {
 		allOrders.add(orderToAdd);
 	}
@@ -40,12 +50,47 @@ public class StoreDataBase {
 	// 	for now we'll use 2 tree sets (one for users and one for admin) and see from there
 	// if we can use Generics properly to fix it all into one single TreeSet
 	
+	/**
+	 *  registerUser
+	 * @param userToAdd Adds the user to the StoreDataBase account TreeSet
+	 */
 	public void registerUser(User userToAdd) { 
 		allAccounts.add(userToAdd);
 	}
+	
+	/**
+	 * registerAdmin
+	 * @param adminToAdd Adds the admin to the StoreDataBase
+	 */
 	public void registerAdmin(Admin adminToAdd) {
 		allAccounts.add(adminToAdd);
 	}
+	
+	/**
+	 * returnAccountsAsArray
+	 * @return Returns allAccounts TreeSet as an Object[] array
+	 */
+	public Object[] returnAccountsAsArray() {
+		return allAccounts.toArray();
+	}
+	
+	/**
+	 * returnItemsAsArray
+	 * @return Returns allItems TreeSet as an Object[] array
+	 */
+	public Object[] returnItemsAsArray() {
+		return allItems.toArray();
+	}
+	
+	/**
+	 * returnOrdersAsArray
+	 * @return Returns allOrders TreeSet as an Object[] array
+	 */
+	public Object[] returnOrdersAsArray() {
+		return allOrders.toArray();
+	}
+	
+	
 	
 	// Getters and setters
 	
