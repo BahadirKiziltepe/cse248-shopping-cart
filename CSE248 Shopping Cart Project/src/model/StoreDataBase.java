@@ -7,7 +7,10 @@ public class StoreDataBase {
 	private TreeSet<Item> allItems;
 	private TreeSet<Order> allOrders;
 	
-	
+	/**
+	 * Holds all user/admin accounts for the store. Also holds all items and copies of all orders made.
+	 * Only one instance of this should exist per store.
+	 */
 	public StoreDataBase() {
 		allAccounts = new TreeSet<>();
 		allItems = new TreeSet<>();
@@ -15,8 +18,8 @@ public class StoreDataBase {
 	}
 
 	/**
-	 * addItemToStore
-	 * @param itemToAdd Adds an item to the store. Returns true if successful, false if unsuccessful
+	 * Adds an item to the store. Returns true if successful, false if unsuccessful
+	 * @param itemToAdd Item being added to store
 	 */
 	public boolean addItemToStore(Item itemToAdd) { 
 		boolean canAdd = true;
@@ -38,44 +41,38 @@ public class StoreDataBase {
 	}
 	
 	/**
-	 * addOrderToStore
-	 * @param orderToAdd Adds a copy of an Order to the StoreDataBase
+	 * Adds a copy of an Order to allOrders
+	 * @param orderToAdd copy of order being made
 	 */
 	public void addOrderToStore(Order orderToAdd) {
 		allOrders.add(orderToAdd);
 	}
 	
 	
-	// QUESTION: does it matter if this tree holds the subclasses of Account?? yes it does... 
-	// 	for now we'll use 2 tree sets (one for users and one for admin) and see from there
-	// if we can use Generics properly to fix it all into one single TreeSet
-	
 	/**
-	 *  registerUser
-	 * @param userToAdd Adds the user to the StoreDataBase account TreeSet
+	 *  Adds the user to allAccounts
+	 * @param userToAdd user being registered
 	 */
 	public void registerUser(User userToAdd) { 
 		allAccounts.add(userToAdd);
 	}
 	
 	/**
-	 * registerAdmin
-	 * @param adminToAdd Adds the admin to the StoreDataBase
+	 * Adds the admin to allAccounts
+	 * @param adminToAdd admin being registered
 	 */
 	public void registerAdmin(Admin adminToAdd) {
 		allAccounts.add(adminToAdd);
 	}
 	
 	/**
-	 * returnAccountsAsArray
-	 * @return Returns allAccounts TreeSet as an Object[] array
+	 * @return allAccounts TreeSet as an Object[] array
 	 */
 	public Object[] returnAccountsAsArray() {
 		return allAccounts.toArray();
 	}
 	
 	/**
-	 * returnItemsAsArray
 	 * @return Returns allItems TreeSet as an Object[] array
 	 */
 	public Object[] returnItemsAsArray() {
@@ -83,7 +80,6 @@ public class StoreDataBase {
 	}
 	
 	/**
-	 * returnOrdersAsArray
 	 * @return Returns allOrders TreeSet as an Object[] array
 	 */
 	public Object[] returnOrdersAsArray() {
