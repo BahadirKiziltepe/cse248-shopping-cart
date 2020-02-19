@@ -11,6 +11,12 @@ public class Order {
 	private double subTotal;
 	private Account owner;
 	
+	/**
+	 * Contains all information for a placed order
+	 * @param total Total sale price after tax
+	 * @param subTotal Sale price before tax
+	 * @param owner The account that placed the order
+	 */
 	public Order( double total, double subTotal, Account owner) {
 		this.orderDate = new Date();
 		this.total = total;

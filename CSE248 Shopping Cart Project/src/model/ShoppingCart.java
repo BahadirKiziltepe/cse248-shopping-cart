@@ -5,12 +5,27 @@ import java.util.TreeSet;
 public class ShoppingCart {
 	private TreeSet<Item> itemsInCart;
 	
+	/**
+	 * Holds all items that are being considered for purchase
+	 */
 	public ShoppingCart() {
 		itemsInCart = new TreeSet<>();
 	}
 
+	/**
+	 * Adds an Item to the shopping cart
+	 * @param itemToAdd Item being added to the shopping cart
+	 */
 	public void addItemToCart(Item itemToAdd) {
 		itemsInCart.add(itemToAdd);
+	}
+	
+	/**
+	 * Returns all items from the cart as an Object[] array.
+	 * @return
+	 */
+	public Object[] returnAsArray() {
+		return itemsInCart.toArray();
 	}
 	
 	// getters and setters

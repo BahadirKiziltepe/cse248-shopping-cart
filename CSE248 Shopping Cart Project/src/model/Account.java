@@ -8,6 +8,15 @@ public abstract class Account implements Comparable<Account>  {
 	private Address address;
 	private String email;
 	
+	/**
+	 * This is the basic Account class (currently, it is an abstract class)
+	 * This is used as the skeleton for either an Admin or a User account
+	 * @param userName account username
+	 * @param password account password
+	 * @param name account holder's name
+	 * @param address account holder's address
+	 * @param email account holder's email address
+	 */
 	public Account(String userName,String password,Name name, Address address, String email) {
 		this.userName = userName;
 		this.password = password;

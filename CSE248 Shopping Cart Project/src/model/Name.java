@@ -6,12 +6,23 @@ public class Name {
 	private String lastName;
 	private String middleName;
 	
+	/**
+	 * Holds an account's name info
+	 * @param firstName First Name
+	 * @param lastName Last Name 
+	 * @param middleName Middle Name / Middle Initial
+	 */
 	public Name(String firstName, String lastName, String middleName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
 	}
 	
+	/**
+	 * Hold's an account's name info (Doesn't have a middle name
+	 * @param firstName First Name
+	 * @param lastName Last Name
+	 */
 	public Name(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;

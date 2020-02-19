@@ -7,6 +7,14 @@ public class User extends Account implements Comparable<Account> {
 	private TreeSet<Order> transactionHistory; 
 	private CreditCard savedCard; // this doesn't need to be made during the constructor
 
+	/**
+	 * Creates a User account (the most common type of account). This is a subclass of the Account class.
+	 * @param userName User's username
+	 * @param password User's password
+	 * @param name User's name
+	 * @param address User's home address
+	 * @param email User's email adress
+	 */
 	public User(String userName, String password, Name name, Address address, String email) {
 		super(userName, password, name, address, email);
 		transactionHistory = new TreeSet<Order>();

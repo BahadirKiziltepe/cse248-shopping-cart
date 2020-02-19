@@ -7,6 +7,12 @@ public class CreditCard {
 	private int securityCode;
 	private int expirationDate; // MMYY format
 	
+	/**
+	 * A credit card used by the User class for purchasing items
+	 * @param cardNumber Credit Card's main number
+	 * @param securityCode Credit card's security code
+	 * @param expirationDate Credit Card's Experation date
+	 */
 	public CreditCard(String cardNumber, int securityCode, int expirationDate) {
 		this.cardNumber = cardNumber;
 		this.securityCode = securityCode;

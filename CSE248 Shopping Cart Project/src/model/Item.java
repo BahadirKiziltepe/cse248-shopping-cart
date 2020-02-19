@@ -7,6 +7,15 @@ public class Item {
 	private boolean taxable;
 	private int stock;
 	
+	/**
+	 * Creates an instance of an item (Item is an abstract class, currently)
+	 * Upon creation, we check the StoreDataBase to make sure the new Item has a unique ItemID
+	 * @param productName Name of Item
+	 * @param price Price of Item
+	 * @param taxable If the Item can be taxed or not
+	 * @param stock How many of the Item is in stock
+	 * @param itemStorage The store's database 
+	 */
 	public Item(String productName,  double price, boolean taxable, int stock, StoreDataBase itemStorage) {
 		this.productName = productName;
 		this.price = price;
@@ -26,7 +35,11 @@ public class Item {
 		// itemID of item being created will be +1 of highest itemID in storage
 		
 	}
-
+	
+	/**
+	 * Increases the stock of an Item in the StoreDataBase
+	 * @param amountToAdd amount of an Item being added to the store for purchase
+	 */
 	public void addToStock(int amountToAdd) {
 		stock += amountToAdd;
 	}

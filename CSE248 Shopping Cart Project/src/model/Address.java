@@ -8,6 +8,14 @@ public class Address {
 	private String zipCode;
 	private String country;
 	
+	/**
+	 * Address for where the account in question lives
+	 * @param street Street they live on
+	 * @param state State they live in
+	 * @param city City/Town they live in
+	 * @param zipCode Their ZipCode
+	 * @param country Country they live in
+	 */
 	public Address(String street, String state, String city, String zipCode, String country) {
 		this.street = street;
 		this.state = state;
