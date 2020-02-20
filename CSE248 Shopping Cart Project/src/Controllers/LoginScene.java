@@ -18,6 +18,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LoginScene {
+	
+	private StoreDataBase data;
+	
+	public LoginScene(StoreDataBase data) {
+		this.data = data;
+	}
 
 	@FXML
 	private PasswordField password;
@@ -33,21 +39,27 @@ public class LoginScene {
 
 	@FXML
 	void Login(ActionEvent event) {
-		LoginCheck();
+		if (LoginCheck()) {
+			VBox root = null;
+			try {
+				root = (VBox) FXMLLoader.load(getClass().getResource("/View/MainMenu.fxml"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Scene scene = new Scene(root);
+			Main.mainStage.setScene(scene);
+		}
 	}
 
-	void LoginCheck() {
-//		for (Account account : storeDataBase.getAllAccounts()) {
-//			if(account.username.equals(username)) {
-//				if(account.password.equals(password)) {
-//					
-//				} else {
-//					warning: password username mismatch
-//				}
-//			} else {
-//				warning: account does not exist!
-//			}
-//		}
+	boolean LoginCheck() {
+		if(data.getAllAccounts().containsKey(username)) {
+			if(data.getAllAccounts().get(username).equals(password)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
 	}
 
 	@FXML

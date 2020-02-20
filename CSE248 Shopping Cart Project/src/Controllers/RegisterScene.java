@@ -17,6 +17,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegisterScene {
+	
+	private StoreDataBase data;
+	
+	public RegisterScene(StoreDataBase data) {
+		this.data = data;
+	}
 
 	@FXML
 	private TextField username;
@@ -59,7 +65,16 @@ public class RegisterScene {
 
 	@FXML
 	void CreateNewAccount(ActionEvent event) {
-
+		Name name;
+		if(middleName.equals("")) {			
+			name = new Name(firstName, lastName);
+		} else {
+			name = new Name(firstName, middleName, lastName);
+		}
+		Address address = new Address(street, state, city, zipCode, country);
+		
+		Account account = new Account(username, password, name, address, email);
+		data.registerUser(account);
 	}
 
 	@FXML
