@@ -40,6 +40,8 @@ public class StoreDataBase {
 		
 	}
 	
+	//Methods that add to the trees
+	
 	/**
 	 * Adds a copy of an Order to allOrders
 	 * @param orderToAdd copy of order being made
@@ -64,6 +66,8 @@ public class StoreDataBase {
 	public void registerAdmin(Admin adminToAdd) {
 		allAccounts.add(adminToAdd);
 	}
+	
+	//Methods that return information about the trees
 	
 	/**
 	 * @return allAccounts TreeSet as an Object[] array

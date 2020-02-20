@@ -23,10 +23,13 @@ public class Item {
 		this.stock = stock;
 		
 		int max = 0;
-		Item[] temp = (Item[]) itemStorage.getAllItems().toArray();
-		for (int i = 0; i < temp.length; i++) {
-			if (max < temp[i].itemID) {
-				max = temp[i].itemID;
+		if (itemStorage.getAllItems().size() < 1) {
+			Object[] temp = itemStorage.returnItemsAsArray();
+			Item[] temp2 = (Item[]) temp;
+			for (int i = 0; i < temp2.length; i++) {
+				if (max < temp2[i].itemID) {
+					max = temp2[i].itemID;
+				}
 			}
 		}
 		

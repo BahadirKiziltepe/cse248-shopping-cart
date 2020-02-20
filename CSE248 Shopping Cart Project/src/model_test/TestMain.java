@@ -39,6 +39,8 @@ public class TestMain {
 		}
 		///////////////////////////////////////////////////////////
 		
+		Item item = new Item("Basic Item", 59.99, true, 3, data);
+		
 	}
 
 }
