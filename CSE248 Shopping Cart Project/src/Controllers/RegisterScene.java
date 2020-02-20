@@ -1,5 +1,6 @@
 package Controllers;
 
+import model.*;
 import java.io.IOException;
 
 import application.Main;
@@ -66,15 +67,24 @@ public class RegisterScene {
 	@FXML
 	void CreateNewAccount(ActionEvent event) {
 		Name name;
-		if(middleName.equals("")) {			
-			name = new Name(firstName, lastName);
+		if(middleName.equals("")) {
+			name = new Name(firstName.toString(), lastName.toString());
 		} else {
-			name = new Name(firstName, middleName, lastName);
+			name = new Name(firstName.toString(), middleName.toString(), lastName.toString());
 		}
-		Address address = new Address(street, state, city, zipCode, country);
+		Address address = new Address(street.toString(), state.toString(), city.toString(), zipCode.toString(), country.toString());
 		
-		Account account = new Account(username, password, name, address, email);
-		data.registerUser(account);
+		User account = new User(username.toString(), password.toString(), name, address, email.toString());
+		data.registerUser(username.toString(), account);
+		
+		VBox root = null;
+		try {
+			root = (VBox) FXMLLoader.load(getClass().getResource("/View/Login.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Main.mainStage.setScene(scene);
 	}
 
 	@FXML

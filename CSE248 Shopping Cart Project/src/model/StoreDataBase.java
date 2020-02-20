@@ -1,9 +1,10 @@
 package model;
 
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class StoreDataBase {
-	private TreeSet<Account> allAccounts;
+	private TreeMap<String, Account> allAccounts;
 	private TreeSet<Item> allItems;
 	private TreeSet<Order> allOrders;
 	
@@ -12,7 +13,7 @@ public class StoreDataBase {
 	 * Only one instance of this should exist per store.
 	 */
 	public StoreDataBase() {
-		allAccounts = new TreeSet<>();
+		allAccounts = new TreeMap<>();
 		allItems = new TreeSet<>();
 		allOrders = new TreeSet<>();
 	}
@@ -55,26 +56,19 @@ public class StoreDataBase {
 	 *  Adds the user to allAccounts
 	 * @param userToAdd user being registered
 	 */
-	public void registerUser(User userToAdd) { 
-		allAccounts.add(userToAdd);
+	public void registerUser(String username, User userToAdd) { 
+		allAccounts.put(username, userToAdd);
 	}
 	
 	/**
 	 * Adds the admin to allAccounts
 	 * @param adminToAdd admin being registered
 	 */
-	public void registerAdmin(Admin adminToAdd) {
-		allAccounts.add(adminToAdd);
+	public void registerAdmin(String username, Admin adminToAdd) {
+		allAccounts.put(username, adminToAdd);
 	}
 	
 	//Methods that return information about the trees
-	
-	/**
-	 * @return allAccounts TreeSet as an Object[] array
-	 */
-	public Object[] returnAccountsAsArray() {
-		return allAccounts.toArray();
-	}
 	
 	/**
 	 * @return Returns allItems TreeSet as an Object[] array
@@ -90,16 +84,14 @@ public class StoreDataBase {
 		return allOrders.toArray();
 	}
 	
-	
-	
 	// Getters and setters
 	
-	public TreeSet<Account> getAllAccounts() {
+	public TreeMap<String, Account> getAllAccounts() {
 		return allAccounts;
 	}
 
 
-	public void setAllAccounts(TreeSet<Account> allAccounts) {
+	public void setAllAccounts(TreeMap<String, Account> allAccounts) {
 		this.allAccounts = allAccounts;
 	}
 

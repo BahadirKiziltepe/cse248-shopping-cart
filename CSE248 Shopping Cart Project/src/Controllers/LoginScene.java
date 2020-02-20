@@ -1,5 +1,6 @@
 package Controllers;
 
+import model.StoreDataBase;
 import java.io.IOException;
 
 import application.Main;
@@ -52,8 +53,8 @@ public class LoginScene {
 	}
 
 	boolean LoginCheck() {
-		if(data.getAllAccounts().containsKey(username)) {
-			if(data.getAllAccounts().get(username).equals(password)) {
+		if(data.getAllAccounts().containsKey(username.toString())) {
+			if(data.getAllAccounts().get(username.toString()).equals(password.toString())) {
 				return true;
 			} else {
 				return false;

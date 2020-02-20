@@ -1,5 +1,8 @@
 package application;
 
+import model.StoreDataBase;
+import Controllers.LoginScene;
+import Controllers.RegisterScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -14,6 +17,8 @@ public class Main extends Application {
 	public void start(Stage stg) {
 		mainStage = stg;
 		
+
+		
 		VBox root = null;
 		try {
 			root = (VBox) FXMLLoader.load(getClass().getResource("/View/Login.fxml"));
@@ -22,6 +27,8 @@ public class Main extends Application {
 		}
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("/View/application.css").toExternalForm());
+		
+		
 		mainStage.setScene(scene);
 		mainStage.show();
 	}
