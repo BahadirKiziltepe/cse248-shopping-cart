@@ -35,6 +35,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stg) {
+		readData();
 		initialize();
 	}
 
@@ -87,7 +88,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showAdminPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -132,7 +133,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showEditAccountPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -177,21 +178,33 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showAccountsForAdmin() {
-		
+
 	}
-	
+
 	public void showItemsForAdmin() {
-		
+
 	}
-	
+
 	public void showOrdersForAdmin() {
-		
+
 	}
-	
+
 	public void showWareHouseForAdmin() {
-		
+
+	}
+
+	public void saveData(StoreDataBase data) {
+		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
+	}
+
+	public void readData() {
+		try {
+			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public StoreDataBase getData() {

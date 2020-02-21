@@ -75,8 +75,10 @@ public class RegisterController {
 		Address address = new Address(street.getText(), state.getText(), city.getText(), zipCode.getText(), country.getText());
 		
 		User account = new User(username.getText(), password.getText(), name, address, email.getText());
+		
 		main.getData().registerUser(username.getText(), account);
-
+		main.saveData(main.getData());
+		
 		main.showLoginPage();
 	}
 
