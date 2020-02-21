@@ -1,9 +1,10 @@
 package model;
 
-public class Item {
+public class Item implements Comparable<Item> {
 	private String productName;
 	private int itemID;
 	private double price;
+	private String category;
 	private boolean taxable;
 	private int stock;
 	
@@ -16,14 +17,15 @@ public class Item {
 	 * @param stock How many of the Item is in stock
 	 * @param itemStorage The store's database 
 	 */
-	public Item(String productName,  double price, boolean taxable, int stock, StoreDataBase itemStorage) {
+	public Item(String productName,  double price, String category, boolean taxable, int stock) {
 		this.productName = productName;
 		this.price = price;
 		this.taxable = taxable;
 		this.stock = stock;
+		this.category = category;
 		
-		int max = 0;
-		if (itemStorage.getAllItems().size() < 1) {
+	//	int max = 0;
+		/*if (itemStorage.getAllItems().size() < 1) {
 			Object[] temp = itemStorage.returnItemsAsArray();
 			Item[] temp2 = (Item[]) temp;
 			for (int i = 0; i < temp2.length; i++) {
@@ -31,9 +33,9 @@ public class Item {
 					max = temp2[i].itemID;
 				}
 			}
-		}
+		} */
 		
-		this.itemID = max +1;
+		this.itemID = 0;
 		
 		// itemID of item being created will be +1 of highest itemID in storage
 		
@@ -89,6 +91,19 @@ public class Item {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
+	@Override
+	public int compareTo(Item other) {
+		if (this.itemID > other.itemID) {
+			return 1;
+		}
+		if (this.itemID < other.itemID) {
+			return -1;
+		}
+		return 0;
+	}
+
+	
 	
 	
 	

@@ -13,7 +13,7 @@ public class User extends Account implements Comparable<Account> {
 	 * @param password User's password
 	 * @param name User's name
 	 * @param address User's home address
-	 * @param email User's email adress
+	 * @param email User's email address
 	 */
 	public User(String userName, String password, Name name, Address address, String email) {
 		super(userName, password, name, address, email);

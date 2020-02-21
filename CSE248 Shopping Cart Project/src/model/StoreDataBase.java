@@ -1,9 +1,10 @@
 package model;
 
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class StoreDataBase {
-	private TreeSet<Account> allAccounts;
+	private TreeMap<String, Account> allAccounts;
 	private TreeSet<Item> allItems;
 	private TreeSet<Order> allOrders;
 	
@@ -12,7 +13,7 @@ public class StoreDataBase {
 	 * Only one instance of this should exist per store.
 	 */
 	public StoreDataBase() {
-		allAccounts = new TreeSet<>();
+		allAccounts = new TreeMap<>();
 		allItems = new TreeSet<>();
 		allOrders = new TreeSet<>();
 	}
@@ -21,22 +22,22 @@ public class StoreDataBase {
 	 * Adds an item to the store. Returns true if successful, false if unsuccessful
 	 * @param itemToAdd Item being added to store
 	 */
-	public boolean addItemToStore(Item itemToAdd) { 
-		boolean canAdd = true;
-		Item[] temp = (Item[]) allItems.toArray();
+	public void addItemToStore(Item itemToAdd) { 
+		Object[] temp =  allItems.toArray();
 		
 		for (int i = 0; i < temp.length; i++) {
-			if (temp[i].getItemID() == itemToAdd.getItemID()) { // if item with same ID exists, item is not added
-				canAdd = false;
-				return false;
+			if ( itemToAdd.getItemID() <=  ((Item) temp[i]).getItemID()) { 
+				itemToAdd.setItemID(((Item) temp[i]).getItemID() +1);
 			}
 		}
 		
-		if (canAdd == true) {
+		allItems.add(itemToAdd);
+		
+		/*if (canAdd == true) {
 			allItems.add(itemToAdd);
 			return true;
 		} 
-		return false;
+		return false; */
 		
 	}
 	
@@ -55,16 +56,16 @@ public class StoreDataBase {
 	 *  Adds the user to allAccounts
 	 * @param userToAdd user being registered
 	 */
-	public void registerUser(User userToAdd) { 
-		allAccounts.add(userToAdd);
+	public void registerUser(String userName, User userToAdd) { 
+		allAccounts.put(userName, userToAdd);
 	}
 	
 	/**
 	 * Adds the admin to allAccounts
 	 * @param adminToAdd admin being registered
 	 */
-	public void registerAdmin(Admin adminToAdd) {
-		allAccounts.add(adminToAdd);
+	public void registerAdmin(String adminName, Admin adminToAdd) {
+		allAccounts.put(adminName, adminToAdd);
 	}
 	
 	//Methods that return information about the trees
@@ -72,10 +73,10 @@ public class StoreDataBase {
 	/**
 	 * @return allAccounts TreeSet as an Object[] array
 	 */
-	public Object[] returnAccountsAsArray() {
+/*	public Object[] returnAccountsAsArray() {
 		return allAccounts.toArray();
 	}
-	
+*/	
 	/**
 	 * @return Returns allItems TreeSet as an Object[] array
 	 */
@@ -89,39 +90,39 @@ public class StoreDataBase {
 	public Object[] returnOrdersAsArray() {
 		return allOrders.toArray();
 	}
-	
+
 	
 	
 	// Getters and setters
 	
-	public TreeSet<Account> getAllAccounts() {
+	public TreeMap<String, Account> getAllAccounts() {
 		return allAccounts;
 	}
 
-
-	public void setAllAccounts(TreeSet<Account> allAccounts) {
+	public void setAllAccounts(TreeMap<String, Account> allAccounts) {
 		this.allAccounts = allAccounts;
 	}
-
 
 	public TreeSet<Item> getAllItems() {
 		return allItems;
 	}
 
-
 	public void setAllItems(TreeSet<Item> allItems) {
 		this.allItems = allItems;
 	}
-
 
 	public TreeSet<Order> getAllOrders() {
 		return allOrders;
 	}
 
-
 	public void setAllOrders(TreeSet<Order> allOrders) {
 		this.allOrders = allOrders;
 	}
+	
+	
+
+	
+
 	
 	
 	

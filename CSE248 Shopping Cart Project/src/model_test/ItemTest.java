@@ -9,7 +9,7 @@ class ItemTest {
 	@Test
 	public void testCreateItem() {
 		StoreDataBase storage = new StoreDataBase();
-		Item item = new Item("Basic Item", 59.99, true, 3, storage);
-		assertEquals("Basic Item","Basic Item");
+		Item item = new Item("Basic Item", 59.99, "food", true, 3);
+		//assertEquals("Basic Item","Basic Item");
 	}
 }

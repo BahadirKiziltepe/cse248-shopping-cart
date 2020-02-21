@@ -38,8 +38,7 @@ public class TestMain {
 			System.out.println(((Account) acc[i]).getName().getFirstName());
 		}
 		///////////////////////////////////////////////////////////
-		
-		Item item = new Item("Basic Item", 59.99, true, 3, data);
+	
 		
 	}
 
