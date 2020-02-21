@@ -16,6 +16,12 @@ public class StoreDataBase {
 		allAccounts = new TreeMap<>();
 		allItems = new TreeSet<>();
 		allOrders = new TreeSet<>();
+		
+		Name adminName = new Name("Admin", "Admin");
+		Address adminAddress = new Address("a", "b", "c", "123", "d");
+		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
+		
+		allAccounts.put(admin.getUserName(), admin);
 	}
 
 	/**

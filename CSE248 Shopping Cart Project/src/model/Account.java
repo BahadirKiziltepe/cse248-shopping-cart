@@ -51,7 +51,6 @@ public abstract class Account implements Comparable<Account>  {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
 	public String getEmail() {
 		return email;
 	}

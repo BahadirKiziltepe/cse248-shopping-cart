@@ -33,7 +33,7 @@ public class MainMenuController {
 
     @FXML
     void AccountView(ActionEvent event) {
-
+    	main.showAccountPage();
     }
 
     @FXML
@@ -43,7 +43,7 @@ public class MainMenuController {
 
     @FXML
     void StoreView(ActionEvent event) {
-
+    	main.showStorePage();
     }
 
 }

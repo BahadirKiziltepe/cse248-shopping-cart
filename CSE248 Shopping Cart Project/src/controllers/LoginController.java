@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import model.Admin;
 
 public class LoginController {
 
@@ -35,8 +36,13 @@ public class LoginController {
 	void Login(ActionEvent event) {
 		if (main.getData().getAllAccounts().containsKey(username.getText())) {
 			if (main.getData().getAllAccounts().get(username.getText()).getPassword().equals(password.getText())) {
-				main.setCurrentUser(main.getData().getAllAccounts().get(username.getText()));
-				main.showMainMenuPage();
+				if (main.getData().getAllAccounts().get(username.getText()).getClass() == Admin.class) {
+					main.setCurrentUser(main.getData().getAllAccounts().get(username.getText()));
+					main.showAdminPage();
+				} else {
+					main.setCurrentUser(main.getData().getAllAccounts().get(username.getText()));
+					main.showMainMenuPage();
+				}
 			}
 		}
 	}
