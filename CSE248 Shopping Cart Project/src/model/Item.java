@@ -1,6 +1,8 @@
 package model;
 
-public class Item implements Comparable<Item> {
+import java.io.Serializable;
+
+public class Item implements Comparable<Item>, Serializable {
 	private String productName;
 	private int itemID;
 	private double price;

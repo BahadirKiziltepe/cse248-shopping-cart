@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Account implements Comparable<Account>  {
+import java.io.Serializable;
+
+public abstract class Account implements Comparable<Account>, Serializable  {
 	
 	private String userName;
 	private String password;

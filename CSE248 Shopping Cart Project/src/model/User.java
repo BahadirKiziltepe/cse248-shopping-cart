@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.TreeSet;
 
-public class User extends Account implements Comparable<Account> {
+public class User extends Account implements Comparable<Account>, Serializable {
 	
 	private TreeSet<Order> transactionHistory; 
 	private CreditCard savedCard; // this doesn't need to be made during the constructor

@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.TreeSet;
 
-public class Order implements Comparable<Order> {
+public class Order implements Comparable<Order>, Serializable {
 	
 	private TreeSet<Item> itemsbought;
 	private int orderID;
