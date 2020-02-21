@@ -15,6 +15,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -50,6 +53,7 @@ public class StoreDataBase implements Serializable {
 	 * @param itemToAdd Item being added to store
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public boolean addItemToStore(Item itemToAdd) {
 		boolean canAdd = true;
 		Item[] temp = (Item[]) allItems.toArray();
@@ -71,12 +75,37 @@ public class StoreDataBase implements Serializable {
 	public void addItemToStore(Item itemToAdd) { 
 	
 		//MAKE ITEM ADDING METHOD
+=======
+	public void addItemToStore(Item itemToAdd) { // This doesn't allow Items of the same name to exist due to the key being the product name
+		
+		if (allItems.isEmpty() == false) {
+			Set setOfKeys = allItems.keySet();
+			Iterator it = setOfKeys.iterator();
+			int idValue = itemToAdd.getItemID();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				if (idValue < allItems.get(key).getItemID()) {
+					idValue = allItems.get(key).getItemID();
+				}
+			}
+			idValue++;
+			itemToAdd.setItemID(idValue);
+			allItems.put(itemToAdd.getProductName(), itemToAdd);
+		} else {
+			itemToAdd.setItemID(0);
+			allItems.put(itemToAdd.getProductName(), itemToAdd);
+		}
+>>>>>>> 8363e0ef3de5216c7a9ec2547e2f0fd3112effc9
 		
 >>>>>>> 477743188668a973078e83f69536df9e177c203c
 	}
 
+<<<<<<< HEAD
 	// Methods that add to the trees
 
+=======
+	
+>>>>>>> 8363e0ef3de5216c7a9ec2547e2f0fd3112effc9
 	/**
 	 * Adds a copy of an Order to allOrders
 	 * 
@@ -135,7 +164,13 @@ public class StoreDataBase implements Serializable {
 	}
 
 	//Saving and Loading
-	
+	/**
+	 * Loads the StoreDataBase instance from a .bin file
+	 * @param filePath Where the file is located
+	 * @param displayDebug If we'll print debug messages to the console or not
+	 * @return
+	 * @throws ClassNotFoundException
+	 */
 	public static Object readObjectFromFile(String filePath, boolean displayDebug) throws ClassNotFoundException {
 		try {
 				FileInputStream fileIn = new FileInputStream(filePath);
@@ -157,6 +192,12 @@ public class StoreDataBase implements Serializable {
 		}	
 	}
 	
+	/**
+	 * Saves the StoreDataBase instance as an Object in a .bin file
+	 * @param object The StoreDataBase instance being saved
+	 * @param fileName The name of the .bin file the data is being saved to
+	 * @param displayDebug If we'll print debug info to the console or not
+	 */
 	public static void writeObjectToFile(Object object, String fileName, boolean displayDebug) {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(fileName);
