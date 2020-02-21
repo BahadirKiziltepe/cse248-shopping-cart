@@ -25,66 +25,6 @@ public abstract class Account implements Comparable<Account>  {
 		this.email = email;
 	}
 	
-	//ShortCut Setters
-	
-	/**
-	 * Grabs the account's Name variable and adjusts the firstName
-	 * @param firstName User's Given Name
-	 */
-	public void setFirstName(String firstName) {
-        this.name.setFirstName(firstName);
-    }
-	/**
-	 * Grab this account's Name variable and adjusts the middleName
-	 * @param middleName User's Middle Name
-	 */
-    public void setMiddleName(String middleName) {
-        this.name.setMiddleName(middleName);
-    }
-    /**
-     * Grab this account's Name variable and adjusts the lastName
-     * @param lastName User's Last Name
-     */
-    public void setLastName(String lastName) {
-        this.name.setLastName(lastName);
-    }
-	/**
-	 * Grab this account's Address variable and adjusts the street
-	 * @param street User's street
-	 */
-    public void setStreet(String street) {
-        this.address.setStreet(street);
-    }
-    /**
-     * Grab this account's Address variable and adjusts the state
-     * @param state User's state
-     */
-    public void setState(String state) {
-        this.address.setState(state);
-    }
-    /**
-     * Grab this account's Address variable and adjusts the city
-     * @param city User's city
-     */
-    public void setCity(String city) {
-        this.address.setCity(city);
-    }
-    /**
-     * Grab this account's Address variable and adjusts the zipcode
-     * @param zipCode User's zipcode
-     */
-    public void setZipCode(String zipCode) {
-        this.address.setZipCode(zipCode);
-    }
-    /**
-     * Grab this account's Address variable and adjusts the country
-     * @param country User's country
-     */
-    public void setCountry(String country) {
-        this.address.setCountry(country);
-    }
-    
-	
 	// setters and getters
 	
 	public String getUserName() {

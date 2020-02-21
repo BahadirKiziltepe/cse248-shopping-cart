@@ -21,10 +21,12 @@ public class User extends Account implements Comparable<Account> {
 		savedCard = new CreditCard("0000 0000 0000", 000, 0000);
 	}
 
-	// user registeration method moved to the StoreDataBase class
+	// user registeration method moved to the StoreDataBase class **
+	
+	
+	
 	
 	// setters and getters
-	
 	
 	public TreeSet<Order> getTransactionHistory() {
 		return transactionHistory;
