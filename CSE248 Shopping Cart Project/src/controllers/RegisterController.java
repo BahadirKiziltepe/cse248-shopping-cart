@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 import model.*;
 import java.io.IOException;
@@ -17,14 +17,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class RegisterScene {
+public class RegisterController {
 	
-	private StoreDataBase data;
+	private Main main;
 	
-	public RegisterScene(StoreDataBase data) {
-		this.data = data;
+	public void setMain(Main main) {
+		this.main = main;
 	}
-
+	
 	@FXML
 	private TextField username;
 
@@ -67,24 +67,17 @@ public class RegisterScene {
 	@FXML
 	void CreateNewAccount(ActionEvent event) {
 		Name name;
-		if(middleName.equals("")) {
-			name = new Name(firstName.toString(), lastName.toString());
+		if(middleName.getText().equals("")) {
+			name = new Name(firstName.getText(), lastName.getText());
 		} else {
-			name = new Name(firstName.toString(), middleName.toString(), lastName.toString());
+			name = new Name(firstName.getText(), middleName.getText(), lastName.getText());
 		}
-		Address address = new Address(street.toString(), state.toString(), city.toString(), zipCode.toString(), country.toString());
+		Address address = new Address(street.getText(), state.getText(), city.getText(), zipCode.getText(), country.getText());
 		
-		User account = new User(username.toString(), password.toString(), name, address, email.toString());
-		data.registerUser(username.toString(), account);
-		
-		VBox root = null;
-		try {
-			root = (VBox) FXMLLoader.load(getClass().getResource("/View/Login.fxml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
-		Main.mainStage.setScene(scene);
+		User account = new User(username.getText(), password.getText(), name, address, email.getText());
+		main.getData().registerUser(username.getText(), account);
+
+		main.showLoginPage();
 	}
 
 	@FXML
@@ -100,14 +93,7 @@ public class RegisterScene {
 
 	@FXML
 	void setSceneLogin(MouseEvent event) {
-		VBox root = null;
-		try {
-			root = (VBox) FXMLLoader.load(getClass().getResource("/View/Login.fxml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
-		Main.mainStage.setScene(scene);
+		main.showLoginPage();
 	}
 
 	@FXML

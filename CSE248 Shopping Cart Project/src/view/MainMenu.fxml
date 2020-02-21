@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
+   <children>
+      <AnchorPane prefHeight="480.0" prefWidth="720.0">
+         <children>
+            <ImageView fitHeight="409.0" fitWidth="720.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Background.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="logoutBtn" layoutX="631.0" layoutY="44.0" mnemonicParsing="false" onAction="#logout" prefWidth="75.0" text="Logout">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="accountBtn" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#AccountView" prefWidth="75.0" text="Account">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="storeBtn" layoutX="107.0" layoutY="44.0" mnemonicParsing="false" onAction="#StoreView" prefWidth="75.0" text="Store">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="CartBtn" layoutX="199.0" layoutY="44.0" mnemonicParsing="false" onAction="#CartView" prefWidth="75.0" text="Cart">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

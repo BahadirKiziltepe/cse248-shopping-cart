@@ -1,29 +1,22 @@
-package Controllers;
-
-import model.StoreDataBase;
-import java.io.IOException;
+package controllers;
 
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-public class LoginScene {
-	
-	private StoreDataBase data;
-	
-	public LoginScene(StoreDataBase data) {
-		this.data = data;
+public class LoginController {
+
+	private Main main;
+
+	public void setMain(Main main) {
+		this.main = main;
 	}
 
 	@FXML
@@ -40,27 +33,12 @@ public class LoginScene {
 
 	@FXML
 	void Login(ActionEvent event) {
-		if (LoginCheck()) {
-			VBox root = null;
-			try {
-				root = (VBox) FXMLLoader.load(getClass().getResource("/View/MainMenu.fxml"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			Scene scene = new Scene(root);
-			Main.mainStage.setScene(scene);
-		}
-	}
-
-	boolean LoginCheck() {
-		if(data.getAllAccounts().containsKey(username.toString())) {
-			if(data.getAllAccounts().get(username.toString()).equals(password.toString())) {
-				return true;
-			} else {
-				return false;
+		if (main.getData().getAllAccounts().containsKey(username.getText())) {
+			if (main.getData().getAllAccounts().get(username.getText()).getPassword().equals(password.getText())) {
+				main.setCurrentUser(main.getData().getAllAccounts().get(username.getText()));
+				main.showMainMenuPage();
 			}
 		}
-		return false;
 	}
 
 	@FXML
@@ -76,14 +54,7 @@ public class LoginScene {
 
 	@FXML
 	void createNewAccount(MouseEvent event) {
-		VBox root = null;
-		try {
-			root = (VBox) FXMLLoader.load(getClass().getResource("/View/Register.fxml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
-		Main.mainStage.setScene(scene);
+		main.showRegisterPage();
 	}
 
 	@FXML
