@@ -1,11 +1,12 @@
 package model;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class StoreDataBase {
 	private TreeMap<String, Account> allAccounts;
-	private TreeSet<Item> allItems;
+	private HashMap<String, Item> allItems;
 	private TreeSet<Order> allOrders;
 	
 	/**
@@ -14,7 +15,7 @@ public class StoreDataBase {
 	 */
 	public StoreDataBase() {
 		allAccounts = new TreeMap<>();
-		allItems = new TreeSet<>();
+		allItems = new HashMap<>();
 		allOrders = new TreeSet<>();
 	}
 
@@ -23,21 +24,8 @@ public class StoreDataBase {
 	 * @param itemToAdd Item being added to store
 	 */
 	public void addItemToStore(Item itemToAdd) { 
-		Object[] temp =  allItems.toArray();
-		
-		for (int i = 0; i < temp.length; i++) {
-			if ( itemToAdd.getItemID() <=  ((Item) temp[i]).getItemID()) { 
-				itemToAdd.setItemID(((Item) temp[i]).getItemID() +1);
-			}
-		}
-		
-		allItems.add(itemToAdd);
-		
-		/*if (canAdd == true) {
-			allItems.add(itemToAdd);
-			return true;
-		} 
-		return false; */
+	
+		//MAKE ITEM ADDING METHOD
 		
 	}
 	
@@ -67,29 +55,6 @@ public class StoreDataBase {
 	public void registerAdmin(String adminName, Admin adminToAdd) {
 		allAccounts.put(adminName, adminToAdd);
 	}
-	
-	//Methods that return information about the trees
-	
-	/**
-	 * @return allAccounts TreeSet as an Object[] array
-	 */
-/*	public Object[] returnAccountsAsArray() {
-		return allAccounts.toArray();
-	}
-*/	
-	/**
-	 * @return Returns allItems TreeSet as an Object[] array
-	 */
-	public Object[] returnItemsAsArray() {
-		return allItems.toArray();
-	}
-	
-	/**
-	 * @return Returns allOrders TreeSet as an Object[] array
-	 */
-	public Object[] returnOrdersAsArray() {
-		return allOrders.toArray();
-	}
 
 	
 	
@@ -103,11 +68,11 @@ public class StoreDataBase {
 		this.allAccounts = allAccounts;
 	}
 
-	public TreeSet<Item> getAllItems() {
+	public HashMap<String, Item> getAllItems() {
 		return allItems;
 	}
 
-	public void setAllItems(TreeSet<Item> allItems) {
+	public void setAllItems(HashMap<String, Item> allItems) {
 		this.allItems = allItems;
 	}
 

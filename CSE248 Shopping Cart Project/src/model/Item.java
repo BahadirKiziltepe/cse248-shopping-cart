@@ -23,6 +23,7 @@ public class Item implements Comparable<Item> {
 		this.taxable = taxable;
 		this.stock = stock;
 		this.category = category;
+		this.itemID = 0;
 		
 	//	int max = 0;
 		/*if (itemStorage.getAllItems().size() < 1) {
@@ -35,7 +36,7 @@ public class Item implements Comparable<Item> {
 			}
 		} */
 		
-		this.itemID = 0;
+		
 		
 		// itemID of item being created will be +1 of highest itemID in storage
 		
@@ -76,6 +77,14 @@ public class Item implements Comparable<Item> {
 		this.price = price;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public boolean isTaxable() {
 		return taxable;
 	}
@@ -92,6 +101,7 @@ public class Item implements Comparable<Item> {
 		this.stock = stock;
 	}
 
+	
 	@Override
 	public int compareTo(Item other) {
 		if (this.itemID > other.itemID) {
@@ -103,8 +113,5 @@ public class Item implements Comparable<Item> {
 		return 0;
 	}
 
-	
-	
-	
 	
 }
