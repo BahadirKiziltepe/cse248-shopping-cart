@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.TreeSet;
 
-public class Order {
+public class Order implements Comparable<Order>, Serializable {
 	
 	private TreeSet<Item> itemsbought;
+	private int orderID;
 	private Date orderDate;
 	private double total;
 	private double subTotal;
@@ -64,6 +66,25 @@ public class Order {
 
 	public void setOwner(Account owner) {
 		this.owner = owner;
+	}
+
+	public int getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
+	}
+
+	@Override
+	public int compareTo(Order other) {
+		if (this.orderID > other.orderID) {
+			return 1;
+		}
+		if (this.orderID < other.orderID) {
+			return -1;
+		}
+		return 0;
 	}
 	
 	

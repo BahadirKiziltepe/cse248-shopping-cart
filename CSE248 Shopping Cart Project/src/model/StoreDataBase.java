@@ -1,11 +1,27 @@
 package model;
 
+<<<<<<< HEAD
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class StoreDataBase {
 	private TreeMap<String, Account> allAccounts;
 	private TreeSet<Item> allItems;
+=======
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+public class StoreDataBase implements Serializable {
+	private TreeMap<String, Account> allAccounts;
+	private HashMap<String, Item> allItems;
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 	private TreeSet<Order> allOrders;
 
 	/**
@@ -14,7 +30,11 @@ public class StoreDataBase {
 	 */
 	public StoreDataBase() {
 		allAccounts = new TreeMap<>();
+<<<<<<< HEAD
 		allItems = new TreeSet<>();
+=======
+		allItems = new HashMap<>();
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 		allOrders = new TreeSet<>();
 		
 		Name adminName = new Name("Admin", "Admin");
@@ -29,6 +49,7 @@ public class StoreDataBase {
 	 * 
 	 * @param itemToAdd Item being added to store
 	 */
+<<<<<<< HEAD
 	public boolean addItemToStore(Item itemToAdd) {
 		boolean canAdd = true;
 		Item[] temp = (Item[]) allItems.toArray();
@@ -46,6 +67,12 @@ public class StoreDataBase {
 		}
 		return false;
 
+=======
+	public void addItemToStore(Item itemToAdd) { 
+	
+		//MAKE ITEM ADDING METHOD
+		
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 	}
 
 	// Methods that add to the trees
@@ -64,9 +91,14 @@ public class StoreDataBase {
 	 * 
 	 * @param userToAdd user being registered
 	 */
+<<<<<<< HEAD
 	public void registerUser(String username, User userToAdd) {
 		allAccounts.put(username, userToAdd);
 
+=======
+	public void registerUser(String userName, User userToAdd) { 
+		allAccounts.put(userName, userToAdd);
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 	}
 
 	/**
@@ -74,6 +106,7 @@ public class StoreDataBase {
 	 * 
 	 * @param adminToAdd admin being registered
 	 */
+<<<<<<< HEAD
 	public void registerAdmin(String username, Admin adminToAdd) {
 		allAccounts.put(username, adminToAdd);
 	}
@@ -96,6 +129,54 @@ public class StoreDataBase {
 
 	// Getters and setters
 
+=======
+	public void registerAdmin(String adminName, Admin adminToAdd) {
+		allAccounts.put(adminName, adminToAdd);
+	}
+
+	//Saving and Loading
+	
+	public static Object readObjectFromFile(String filePath, boolean displayDebug) throws ClassNotFoundException {
+		try {
+				FileInputStream fileIn = new FileInputStream(filePath);
+				ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+				
+				Object obj = objectIn.readObject();
+				
+				if (displayDebug == true) {
+					System.out.printf("%s loaded\n", filePath);
+				}
+				objectIn.close();
+				return obj;
+				
+		} catch (IOException e) {
+			if (displayDebug == true) {
+				System.out.printf("could not load %s\n", filePath);
+			}
+			return null;
+		}	
+	}
+	
+	public static void writeObjectToFile(Object object, String fileName, boolean displayDebug) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream(fileName);
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(object);
+			objectOut.close();
+			if (displayDebug == true) {
+				System.out.printf("saved %s\n",fileName);
+			}
+		} catch (IOException e) {
+			if (displayDebug == true) {
+				System.out.printf("could not save %s\n", fileName);
+			}
+		}
+	}
+	
+	
+	// Getters and setters
+	
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 	public TreeMap<String, Account> getAllAccounts() {
 		return allAccounts;
 	}
@@ -104,11 +185,19 @@ public class StoreDataBase {
 		this.allAccounts = allAccounts;
 	}
 
+<<<<<<< HEAD
 	public TreeSet<Item> getAllItems() {
 		return allItems;
 	}
 
 	public void setAllItems(TreeSet<Item> allItems) {
+=======
+	public HashMap<String, Item> getAllItems() {
+		return allItems;
+	}
+
+	public void setAllItems(HashMap<String, Item> allItems) {
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 		this.allItems = allItems;
 	}
 
@@ -119,5 +208,16 @@ public class StoreDataBase {
 	public void setAllOrders(TreeSet<Order> allOrders) {
 		this.allOrders = allOrders;
 	}
+<<<<<<< HEAD
 
+=======
+	
+	
+
+	
+
+	
+	
+	
+>>>>>>> 477743188668a973078e83f69536df9e177c203c
 }

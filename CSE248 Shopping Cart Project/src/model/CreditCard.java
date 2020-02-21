@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class CreditCard {
+public class CreditCard implements Serializable {
 	private String cardNumber;
 	private int securityCode;
 	private int expirationDate; // MMYY format

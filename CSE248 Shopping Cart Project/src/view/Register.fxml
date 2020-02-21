@@ -78,7 +78,7 @@
             <TextField fx:id="city" layoutX="486.0" layoutY="227.0" />
             <TextField fx:id="zipCode" layoutX="486.0" layoutY="267.0" />
             <TextField fx:id="country" layoutX="486.0" layoutY="307.0" />
-            <Button fx:id="createAccount" layoutX="520.0" layoutY="372.0" minWidth="100.0" mnemonicParsing="false" onAction="#CreateNewAccount" onMouseEntered="#mouseOnButton" onMouseExited="#mouseNotOnButton" text="Create Account">
+            <Button fx:id="createAccount" layoutX="527.0" layoutY="372.0" minWidth="100.0" mnemonicParsing="false" onAction="#CreateNewAccount" onMouseEntered="#mouseOnButton" onMouseExited="#mouseNotOnButton" text="Create Account">
                <font>
                   <Font size="14.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text layoutX="426.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you already have an account?" />
+            <Text layoutX="385.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you already have an account?" />
             <Text fx:id="login" layoutX="605.0" layoutY="415.0" onMouseClicked="#setSceneLogin" onMouseEntered="#hyperEnter" onMouseExited="#hyperOut" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
             <Separator layoutX="381.0" layoutY="162.0" orientation="VERTICAL" prefHeight="200.0" />
          </children>

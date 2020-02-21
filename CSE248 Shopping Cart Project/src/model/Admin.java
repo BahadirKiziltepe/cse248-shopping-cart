@@ -1,6 +1,8 @@
 package model;
 
-public class Admin extends Account implements Comparable<Account> {
+import java.io.Serializable;
+
+public class Admin extends Account implements Comparable<Account>, Serializable {
 
 	/**
 	 * Creates an Admin account

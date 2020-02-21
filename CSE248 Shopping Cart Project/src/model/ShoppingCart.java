@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.TreeSet;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable{
 	private TreeSet<Item> itemsInCart;
 	
 	/**

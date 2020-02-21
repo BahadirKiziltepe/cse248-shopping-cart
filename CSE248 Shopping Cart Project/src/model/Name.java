@@ -1,6 +1,8 @@
 package model;
 
-public class Name {
+import java.io.Serializable;
+
+public class Name implements Serializable {
 	
 	private String firstName;
 	private String lastName;
@@ -27,6 +29,10 @@ public class Name {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = null;
+	}
+	
+	public String toString() {
+		return firstName + " " +  middleName + " " +  lastName;
 	}
 	
 	//setters and getters
