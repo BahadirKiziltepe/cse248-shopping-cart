@@ -29,15 +29,11 @@ public class TestMain {
 		
 		
 		///// REGISTERING USERS/ADMINS  && CALLING THEIR INFO /////
-		data.registerUser(brandon);
-		data.registerAdmin(john);
+		data.registerUser(brandon.getUserName(),brandon);
+		data.registerAdmin(john.getUserName(),john);
 	
 		
-		Object[] acc  =  data.returnAccountsAsArray();
-		for (int i = 0; i < acc.length; i++) {
-			System.out.println(((Account) acc[i]).getName().getFirstName());
-		}
-		///////////////////////////////////////////////////////////
+		
 	
 		
 	}
