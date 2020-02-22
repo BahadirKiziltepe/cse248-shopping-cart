@@ -29,6 +29,13 @@ public class ShoppingCart implements Serializable{
 		return itemsInCart.toArray();
 	}
 	
+	/**
+	 * Empties the cart of items
+	 */
+	public void emptyCart() {
+		itemsInCart.clear();
+	}
+	
 	// getters and setters
 	
 	public TreeSet<Item> getItemsInCart() {

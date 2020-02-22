@@ -9,7 +9,9 @@ class ItemTest {
 	@Test
 	public void testCreateItem() {
 		StoreDataBase storage = new StoreDataBase();
-		Item apple = new Item("Apple",0, 1.0, "food", false, 3);
+		Item apple = new Item("Apple",0, 9.99, "food", false, 3);
+		System.out.println(apple.calculateTax());
+		System.out.println(apple.calculateTax() + apple.getPrice());
 		
 		
 		/*
@@ -22,7 +24,7 @@ class ItemTest {
 		 */
 		
 		assertEquals("Apple", apple.getProductName());
-		assertEquals(1.0,apple.getPrice(), 0.01);
+		assertEquals(60.0,apple.getPrice(), 0.01);
 		assertEquals(false,apple.isTaxable());
 		assertEquals(3,apple.getStock());
 		assertEquals("food",apple.getCategory());
