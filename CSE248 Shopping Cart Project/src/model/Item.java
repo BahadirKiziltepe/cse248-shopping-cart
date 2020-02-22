@@ -35,6 +35,10 @@ public class Item implements Comparable<Item>, Serializable {
 		stock += amountToAdd;
 	}
 	
+	/**
+	 * Calculates the tax for an individual item
+	 * @return tax
+	 */
 	public double calculateTax() {
 		double tax = Double.parseDouble(String.format("%.2f", price * 0.0875));
 		return tax;

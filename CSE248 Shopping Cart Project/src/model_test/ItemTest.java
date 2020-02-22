@@ -12,6 +12,7 @@ class ItemTest {
 		Item apple = new Item("Apple",0, 9.99, "food", false, 3);
 		System.out.println(apple.calculateTax());
 		System.out.println(apple.calculateTax() + apple.getPrice());
+		assertEquals(0.85,apple.calculateTax(),0.05);
 		
 		
 		/*
@@ -24,7 +25,7 @@ class ItemTest {
 		 */
 		
 		assertEquals("Apple", apple.getProductName());
-		assertEquals(60.0,apple.getPrice(), 0.01);
+		assertEquals(9.99,apple.getPrice(), 0.01);
 		assertEquals(false,apple.isTaxable());
 		assertEquals(3,apple.getStock());
 		assertEquals("food",apple.getCategory());
