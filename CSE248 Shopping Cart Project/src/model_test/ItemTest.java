@@ -9,7 +9,7 @@ class ItemTest {
 	@Test
 	public void testCreateItem() {
 		StoreDataBase storage = new StoreDataBase();
-		Item apple = new Item("Apple", 1.0, "food", false, 3);
+		Item apple = new Item("Apple",0, 1.0, "food", false, 3);
 		
 		
 		/*
@@ -33,7 +33,7 @@ class ItemTest {
 	
 	@Test 
 	public void testAddToStock() {
-		Item apple = new Item("Apple", 1.0, "food", false, 3);
+		Item apple = new Item("Apple",0, 1.0, "food", false, 3);
 		assertEquals(3,apple.getStock());
 		apple.addToStock(1);
 		assertEquals(4,apple.getStock());

@@ -20,10 +20,10 @@ public class TestStoreDataBase {
 		data.registerUser(user1.getUserName(), user1);
 		data.registerUser(user2.getUserName(), user2);
 		
-		Item item = new Item("Apple",  0.50, "Food", false, 3);
-		Item item2 = new Item("Banana",  0.50, "Food", false, 3);
-		Item item3 = new Item("Orange",  0.50, "Food", false, 3);
-		Item item4 = new Item("Grape",0.50,"Food",false,3);
+		Item item = new Item("Apple",0,  0.50, "Food", false, 3);
+		Item item2 = new Item("Banana",1,  0.50, "Food", false, 3);
+		Item item3 = new Item("Orange",2,  0.50, "Food", false, 3);
+		Item item4 = new Item("Grape",3,0.50,"Food",false,3);
 		
 		Order order = new Order(60.0,59.99,user1);
 		order.addItemToOrder(item);
@@ -37,6 +37,7 @@ public class TestStoreDataBase {
 		
 		data.addOrderToStore(order);
 		data.addOrderToStore(order2);
+		data.addOrderToStore(order3);
 		
 		data.addItemToStore(item);
 		data.addItemToStore(item2);
@@ -48,15 +49,14 @@ public class TestStoreDataBase {
 		
 		try {
 			StoreDataBase data2 = (StoreDataBase) StoreDataBase.readObjectFromFile("StoreData.bin",false);
-		//	System.out.println(data2.getAllAccounts());
-		//	System.out.println(data2.getAllItems());
-		//	System.out.println(data2.getAllOrders());
+			System.out.println(data2.getAllAccounts());
+			System.out.println(data2.getAllItems());
+			System.out.println(data2.getAllOrders());
 			
-			System.out.println(data2.getFilteredOrders("bdubs"));
+			System.out.println(data2.getFilteredOrders("franklin"));
 			
 			
 			
-			/*
 			Object[] items =  data2.getAllItems().values().toArray();
 			for (int i = 0; i < items.length; i++) {
 				System.out.println( items[i].toString());
@@ -66,7 +66,7 @@ public class TestStoreDataBase {
 			for (int i = 0; i < orders.length; i++) {
 				System.out.println(orders[i].toString());
 			}
-			*/
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

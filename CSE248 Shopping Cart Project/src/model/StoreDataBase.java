@@ -183,6 +183,11 @@ public class StoreDataBase implements Serializable {
 		this.allOrders = allOrders;
 	}
 	
+	/**
+	 * Returns a filtered TreeSet<Order> based on the userName string
+	 * @param userName UserName to sort orders by
+	 * @return
+	 */
 	public TreeSet<Order> getFilteredOrders(String userName){
 		Iterator it = allOrders.iterator();
 		TreeSet<Order> filteredOrders = new TreeSet<>();

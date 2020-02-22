@@ -12,23 +12,19 @@ public class Item implements Comparable<Item>, Serializable {
 	
 	/**
 	 * Creates an instance of an item (Item is an abstract class, currently)
-	 * Upon creation, we check the StoreDataBase to make sure the new Item has a unique ItemID
 	 * @param productName Name of Item
 	 * @param price Price of Item
 	 * @param taxable If the Item can be taxed or not
 	 * @param stock How many of the Item is in stock
 	 * @param itemStorage The store's database 
 	 */
-	public Item(String productName,  double price, String category, boolean taxable, int stock) {
+	public Item(String productName, int itemID,  double price, String category, boolean taxable, int stock) {
 		this.productName = productName;
 		this.price = price;
 		this.taxable = taxable;
 		this.stock = stock;
 		this.category = category;
-		this.itemID = 0;
-		
-		// itemID of item being created will be +1 of highest itemID in storage
-		
+		this.itemID = itemID;
 	}
 	
 	/**
