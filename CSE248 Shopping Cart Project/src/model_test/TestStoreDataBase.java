@@ -49,10 +49,10 @@ public class TestStoreDataBase {
 		data.addItemToStore(item4);
 		
 		
-		StoreDataBase.writeObjectToFile(data, "StoreData.bin",false);
+		StoreDataBase.writeObjectToFile(data, "data_test\\StoreData.bin",false); 
 		
 		try {
-			StoreDataBase data2 = (StoreDataBase) StoreDataBase.readObjectFromFile("StoreData.bin",false);
+			StoreDataBase data2 = (StoreDataBase) StoreDataBase.readObjectFromFile("data_test\\StoreData.bin",false);
 			System.out.println(data2.getAllAccounts());
 			System.out.println(data2.getAllItems());
 			System.out.println(data2.getAllOrders());
