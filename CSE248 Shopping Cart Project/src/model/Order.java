@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 /**
  * A copy of any items bought, this is stored in the StoreDataBase as records of who bought what items
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class Order implements Comparable<Order>, Serializable {

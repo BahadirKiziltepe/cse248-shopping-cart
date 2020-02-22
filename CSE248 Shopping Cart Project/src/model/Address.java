@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Used to hold home address for all Accounts
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class Address implements Serializable {

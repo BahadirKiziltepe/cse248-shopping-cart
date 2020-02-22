@@ -5,7 +5,7 @@ import java.math.BigInteger;
 
 /**
  * Holds credit card infortmation for any Users
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class CreditCard implements Serializable {

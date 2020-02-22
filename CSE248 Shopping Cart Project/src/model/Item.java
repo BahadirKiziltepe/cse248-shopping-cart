@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * The skeleton for items being sold in the store
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class Item implements Comparable<Item>, Serializable {

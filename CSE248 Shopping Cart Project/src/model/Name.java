@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Data for any Account's actual name information
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class Name implements Serializable {

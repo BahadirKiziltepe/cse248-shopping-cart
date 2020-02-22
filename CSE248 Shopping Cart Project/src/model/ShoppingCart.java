@@ -5,7 +5,7 @@ import java.util.TreeSet;
 
 /**
  * This holds items that a user wants to buy
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class ShoppingCart implements Serializable{

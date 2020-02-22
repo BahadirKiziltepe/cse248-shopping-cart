@@ -15,7 +15,7 @@ import java.util.TreeSet;
 
 /**
  * holds all User/Item/Order data for the entire store
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class StoreDataBase implements Serializable {

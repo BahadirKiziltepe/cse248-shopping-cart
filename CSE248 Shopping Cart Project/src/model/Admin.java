@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Account subclass that has special privleges compared to the User type
- * @author Brandon Dabrowski
+ * @author bdabr
  *
  */
 public class Admin extends Account implements Comparable<Account>, Serializable {
