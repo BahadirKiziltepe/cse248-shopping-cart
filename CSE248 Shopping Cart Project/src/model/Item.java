@@ -9,7 +9,7 @@ public class Item implements Comparable<Item>, Serializable {
 	private String category;
 	private boolean taxable;
 	private int stock;
-	
+
 	/**
 	 * Creates an Item
 	 * @param productName Name of Item
@@ -98,7 +98,9 @@ public class Item implements Comparable<Item>, Serializable {
 
 	@Override
 	public String toString() {
-		return productName + " " + itemID;
+		return "ID:" + itemID + " Name:" + productName
+                + " Category:" + category + " Price:" + price + " Stock:"
+                + stock;
 	}
 	
 	@Override
