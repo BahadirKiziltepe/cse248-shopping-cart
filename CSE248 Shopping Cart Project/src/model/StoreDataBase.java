@@ -15,7 +15,7 @@ import java.util.TreeSet;
 
 public class StoreDataBase implements Serializable {
 	private TreeMap<String, Account> allAccounts;
-	private HashMap<String, Item> allItems;
+	private HashMap<Integer, Item> allItems;
 	private TreeSet<Order> allOrders;
 	
 	/**
@@ -40,22 +40,10 @@ public class StoreDataBase implements Serializable {
 	 */
 	public void addItemToStore(Item itemToAdd) { // This doesn't allow Items of the same name to exist due to the key being the product name
 		
-		if (allItems.isEmpty() == false) {
-			Set setOfKeys = allItems.keySet();
-			Iterator it = setOfKeys.iterator();
-			int idValue = itemToAdd.getItemID();
-			while (it.hasNext()) {
-				String key = (String) it.next();
-				if (idValue < allItems.get(key).getItemID()) {
-					idValue = allItems.get(key).getItemID();
-				}
-			}
-			idValue++;
-			itemToAdd.setItemID(idValue);
-			allItems.put(itemToAdd.getProductName(), itemToAdd);
+		if(allItems.containsKey(itemToAdd.getItemID())) {
+			allItems.get(itemToAdd.getItemID()).setStock(allItems.get(itemToAdd.getItemID()).getStock()+itemToAdd.getStock());
 		} else {
-			itemToAdd.setItemID(0);
-			allItems.put(itemToAdd.getProductName(), itemToAdd);
+			allItems.put(itemToAdd.getItemID(), itemToAdd);
 		}
 		
 	}
@@ -148,11 +136,11 @@ public class StoreDataBase implements Serializable {
 		this.allAccounts = allAccounts;
 	}
 
-	public HashMap<String, Item> getAllItems() {
+	public HashMap<Integer, Item> getAllItems() {
 		return allItems;
 	}
 
-	public void setAllItems(HashMap<String, Item> allItems) {
+	public void setAllItems(HashMap<Integer, Item> allItems) {
 		this.allItems = allItems;
 	}
 

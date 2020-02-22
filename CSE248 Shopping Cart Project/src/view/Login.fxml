@@ -19,18 +19,14 @@
                   <Image url="@../image/Login.png" />
                </image>
             </ImageView>
-            <TextField fx:id="username" layoutX="296.0" layoutY="233.0" minWidth="150.0" />
-            <PasswordField fx:id="password" layoutX="296.0" layoutY="268.0" minWidth="150.0" />
-            <Text layoutX="221.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="JUSTIFY">
+            <TextField fx:id="username" alignment="CENTER" layoutX="278.0" layoutY="227.0" minWidth="150.0" promptText="Username">
                <font>
                   <Font size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="223.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="JUSTIFY">
+               </font></TextField>
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="278.0" layoutY="266.0" minWidth="150.0" promptText="Password">
                <font>
                   <Font size="15.0" />
-               </font>
-            </Text>
+               </font></PasswordField>
             <Button fx:id="btnLogn" layoutX="334.0" layoutY="303.0" minWidth="75.0" mnemonicParsing="false" onAction="#Login" onMouseEntered="#mouseOnButton" onMouseExited="#mouseNotOnButton" text="Login" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />

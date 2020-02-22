@@ -88,8 +88,8 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text layoutX="385.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you already have an account?" />
-            <Text fx:id="login" layoutX="605.0" layoutY="415.0" onMouseClicked="#setSceneLogin" onMouseEntered="#hyperEnter" onMouseExited="#hyperOut" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
+            <Text layoutX="426.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you already have an account?" />
+            <Text fx:id="login" layoutX="605.0" layoutY="420.0" onMouseClicked="#setSceneLogin" onMouseEntered="#hyperEnter" onMouseExited="#hyperOut" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
             <Separator layoutX="381.0" layoutY="162.0" orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </AnchorPane>

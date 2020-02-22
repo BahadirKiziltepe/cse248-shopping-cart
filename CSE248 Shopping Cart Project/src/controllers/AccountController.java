@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import model.Admin;
 
 public class AccountController {
 	
@@ -70,7 +71,11 @@ public class AccountController {
 
     @FXML
     void goBack(MouseEvent event) {
-    	main.showMainMenuPage();
+    	if(main.getCurrentUser().getClass() == Admin.class) {
+    		main.showAdminPage();
+    	}else {    		
+    		main.showMainMenuPage();
+    	}
     }
 
     @FXML

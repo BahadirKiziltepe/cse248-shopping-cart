@@ -44,12 +44,12 @@ public class AdminController {
 
     @FXML
     void showAccounts(ActionEvent event) {
-
+    	main.showAccountsForAdmin();
     }
 
     @FXML
-    void showItens(ActionEvent event) {
-
+    void showItems(ActionEvent event) {
+    	main.showItemsForAdmin();
     }
 
     @FXML

@@ -1,17 +1,16 @@
 package application;
 
 import model.Account;
-import model.Item;
 import model.StoreDataBase;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Set;
 
 import controllers.AccountController;
+import controllers.AccountsControllerForAdmin;
 import controllers.AdminController;
 import controllers.CartController;
 import controllers.EditAccountController;
+import controllers.ItemsControllerForAdmin;
 import controllers.LoginController;
 import controllers.MainMenuController;
 import controllers.RegisterController;
@@ -20,7 +19,6 @@ import controllers.StoreController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart.Data;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +28,7 @@ public class Main extends Application {
 	private Stage mainStage = new Stage();
 	private BorderPane root = new BorderPane();
 
-	private Account currentUser = null;
+	private Account currentUser = null, userPickedByAdmin = null;
 	private StoreDataBase data = new StoreDataBase();
 
 	@Override
@@ -180,11 +178,33 @@ public class Main extends Application {
 	}
 
 	public void showAccountsForAdmin() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/AccountsForAdmin.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			AccountsControllerForAdmin accounts = loader.getController();
+			accounts.setMain(this);
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void showItemsForAdmin() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/ItemsForAdmin.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			ItemsControllerForAdmin items = loader.getController();
+			items.setMain(this);
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void showOrdersForAdmin() {
@@ -217,5 +237,13 @@ public class Main extends Application {
 
 	public void setCurrentUser(Account currentUser) {
 		this.currentUser = currentUser;
+	}
+	
+	public Account getUserPickedByAdmin() {
+		return userPickedByAdmin;
+	}
+
+	public void setUserPickedByAdmin(Account userPickedByAdmin) {
+		this.userPickedByAdmin = userPickedByAdmin;
 	}
 }

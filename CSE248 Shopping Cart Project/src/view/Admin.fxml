@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="480.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.AdminController">
+<VBox prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
    <children>
       <AnchorPane prefHeight="480.0" prefWidth="720.0">
          <children>
@@ -22,7 +21,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="itemsBtn" layoutX="500.0" layoutY="131.0" mnemonicParsing="false" onAction="#showItens" prefHeight="25.0" prefWidth="100.0" text="Items">
+            <Button fx:id="itemsBtn" layoutX="500.0" layoutY="131.0" mnemonicParsing="false" onAction="#showItems" prefHeight="25.0" prefWidth="100.0" text="Items">
                <font>
                   <Font size="15.0" />
                </font>
