@@ -3,6 +3,7 @@ package controllers;
 import java.util.Set;
 
 import application.Main;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +38,16 @@ public class AccountsControllerForAdmin {
 		accountViewer.setItems(accounts);
 	}
 
+	public void initialize() {
+		accountViewer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				main.setUserPickedByAdmin(main.getData().getAllAccounts().get(newValue));
+			}
+		});
+	}
+
 	@FXML
 	private ListView<String> accountViewer;
 
@@ -46,9 +57,9 @@ public class AccountsControllerForAdmin {
 	@FXML
 	private Button searchBtn;
 
-    @FXML
-    private Button backBtn;
-	
+	@FXML
+	private Button backBtn;
+
 	@FXML
 	private Button selectAccount;
 
@@ -87,15 +98,27 @@ public class AccountsControllerForAdmin {
 
 	@FXML
 	void searchUsers(ActionEvent event) {
-
+		main.setUserPickedByAdmin(null);
+		ObservableList<String> accountsToShow = FXCollections.observableArrayList();
+		if (searchBar.getText().contentEquals("")) {
+			this.accountViewer.setItems(accounts);
+		} else {
+			for (String s : accounts) {
+				if (s.toLowerCase().contains(searchBar.getText().toLowerCase())) {
+					accountsToShow.add(s);
+				}
+			}
+			this.accountViewer.setItems(accountsToShow);
+		}
 	}
 
 	@FXML
+	void viewAccount(ActionEvent event) {
+		main.showEditAccountPage();
+	}
+	
+	@FXML
 	void getSelected(MouseEvent event) {
-		accountViewer.getSelectionModel().selectedItemProperty()
-				.addListener((ObservableValue<? extends String> ov, String old_val, String new_val) -> {
-					main.setUserPickedByAdmin(main.getData().getAllAccounts().get(new_val));
-				});
 		if (main.getUserPickedByAdmin() != null) {
 			userName.setText(main.getUserPickedByAdmin().getUserName());
 			password.setText(main.getUserPickedByAdmin().getPassword());
@@ -112,14 +135,9 @@ public class AccountsControllerForAdmin {
 	}
 
 	@FXML
-	void viewAccount(ActionEvent event) {
-		main.showEditAccountPage();
+	void goBack(ActionEvent event) {
+		main.setUserPickedByAdmin(null);
+		main.showAdminPage();
 	}
-	
-
-    @FXML
-    void goBack(ActionEvent event) {
-    	main.showAdminPage();
-    }
 
 }

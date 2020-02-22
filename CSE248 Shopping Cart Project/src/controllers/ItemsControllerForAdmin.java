@@ -9,13 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.util.Callback;
 import model.Item;
 
 public class ItemsControllerForAdmin {
 
-	private ObservableList<String> items;
+	private ObservableList<Item> items;
 	private Set<Integer> keys;
 	private Main main;
 
@@ -26,13 +28,29 @@ public class ItemsControllerForAdmin {
 		keys = main.getData().getAllItems().keySet();
 
 		for (Integer i : keys) {
-			Item item = main.getData().getAllItems().get(i);
-			String itemDetails = "ID: " + item.getItemID() + "\nName: " + item.getProductName()
-			+ "\nCategory: " + item.getCategory() + "\nPrice: " + item.getPrice() + "\nStock: "
-			+ item.getStock();
-			items.add(itemDetails);
+			items.add(main.getData().getAllItems().get(i));
 		}
-		this.itemList.setItems(items);
+		itemList.setItems(items);
+
+		itemList.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+
+			@Override
+			public ListCell<Item> call(ListView<Item> p) {
+				ListCell<Item> newItem = new ListCell<Item>() {
+					@Override
+					protected void updateItem(Item item, boolean bool) {
+						super.updateItem(item, bool);
+						if(item != null) {
+							setText("ID: " + item.getItemID() + "\nName: " + item.getProductName()
+		                    + "\nCategory: " + item.getCategory() + "\nPrice: " + item.getPrice() + "\nStock: "
+		                    + item.getStock());
+						}
+					}
+				};
+
+				return newItem;
+			}
+		});
 	}
 
 	@FXML
@@ -66,7 +84,7 @@ public class ItemsControllerForAdmin {
 	private Button mainMenu;
 
 	@FXML
-	private ListView<String> itemList;
+	private ListView<Item> itemList;
 
 	@FXML
 	void addItem(ActionEvent event) {
@@ -78,11 +96,7 @@ public class ItemsControllerForAdmin {
 
 		items = FXCollections.observableArrayList();
 		for (Integer i : keys) {
-			Item item = main.getData().getAllItems().get(i);
-			String itemDetails = "ID: " + item.getItemID() + "\nName: " + item.getProductName()
-					+ "\nCategory: " + item.getCategory() + "\nPrice: " + item.getPrice() + "\nStock: "
-					+ item.getStock();
-			items.add(itemDetails);
+			items.add(main.getData().getAllItems().get(i));
 		}
 		this.itemList.setItems(items);
 	}
@@ -94,11 +108,11 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void search(ActionEvent event) {
-		ObservableList<String> itemsToShow = FXCollections.observableArrayList();
+		ObservableList<Item> itemsToShow = FXCollections.observableArrayList();
 		if(searchBar.getText().contentEquals("")) {
 			this.itemList.setItems(items);
 		} else {
-			for(String s : items) {
+			for(Item i : items) {
 				if(s.toLowerCase().contains(searchBar.getText().toLowerCase())) {
 					itemsToShow.add(s);
 				}
