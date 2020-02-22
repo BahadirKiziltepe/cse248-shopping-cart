@@ -31,7 +31,7 @@ public class ShoppingCart implements Serializable{
 	
 	/**
 	 * Returns all items from the cart as an Object[] array.
-	 * @return
+	 * @return returns items as Array of Objects
 	 */
 	public Object[] returnAsArray() {
 		return itemsInCart.toArray();

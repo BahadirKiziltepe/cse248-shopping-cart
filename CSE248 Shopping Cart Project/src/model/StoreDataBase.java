@@ -90,6 +90,7 @@ public class StoreDataBase implements Serializable {
 	
 	/**
 	 *  Adds the user to allAccounts
+	 * @param userName userName of user being added
 	 * @param userToAdd user being registered
 	 */
 	public void registerUser(String userName, User userToAdd) { 
@@ -98,6 +99,7 @@ public class StoreDataBase implements Serializable {
 	
 	/**
 	 * Adds the admin to allAccounts
+	 * @param adminName userName for Admin being added
 	 * @param adminToAdd admin being registered
 	 */
 	public void registerAdmin(String adminName, Admin adminToAdd) {
@@ -110,8 +112,8 @@ public class StoreDataBase implements Serializable {
 	 * Loads the StoreDataBase instance from a .bin file
 	 * @param filePath Where the file is located
 	 * @param displayDebug If we'll print debug messages to the console or not
-	 * @return
-	 * @throws ClassNotFoundException
+	 * @return Save data if exists
+	 * @throws ClassNotFoundException Handles data reading failures
 	 */
 	public static Object readObjectFromFile(String filePath, boolean displayDebug) throws ClassNotFoundException {
 		try {
@@ -184,9 +186,9 @@ public class StoreDataBase implements Serializable {
 	}
 	
 	/**
-	 * Returns a filtered TreeSet<Order> based on the userName string
+	 * gets a filtered TreeSet<Order> based on the userName string
 	 * @param userName UserName to sort orders by
-	 * @return
+	 * @return filteredOrders
 	 */
 	public TreeSet<Order> getFilteredOrders(String userName){
 		Iterator it = allOrders.iterator();

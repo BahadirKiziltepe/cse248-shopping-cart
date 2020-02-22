@@ -11,12 +11,13 @@ public class Item implements Comparable<Item>, Serializable {
 	private int stock;
 	
 	/**
-	 * Creates an instance of an item (Item is an abstract class, currently)
+	 * Creates an Item
 	 * @param productName Name of Item
-	 * @param price Price of Item
-	 * @param taxable If the Item can be taxed or not
-	 * @param stock How many of the Item is in stock
-	 * @param itemStorage The store's database 
+	 * @param itemID ID number of Item
+	 * @param price price of Item
+	 * @param category Category of Item
+	 * @param taxable If Item is taxable or not
+	 * @param stock How many of the item is in stock
 	 */
 	public Item(String productName, int itemID,  double price, String category, boolean taxable, int stock) {
 		this.productName = productName;
