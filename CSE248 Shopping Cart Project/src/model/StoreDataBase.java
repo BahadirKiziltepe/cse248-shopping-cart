@@ -186,7 +186,7 @@ public class StoreDataBase implements Serializable {
 	}
 	
 	/**
-	 * gets a filtered TreeSet<Order> based on the userName string
+	 * gets a filtered TreeSet based on the userName string
 	 * @param userName UserName to sort orders by
 	 * @return filteredOrders
 	 */
