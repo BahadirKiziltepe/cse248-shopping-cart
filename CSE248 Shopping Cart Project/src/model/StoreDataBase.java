@@ -191,18 +191,15 @@ public class StoreDataBase implements Serializable {
 	public TreeSet<Order> getFilteredOrders(String userName){
 		Iterator it = allOrders.iterator();
 		TreeSet<Order> filteredOrders = new TreeSet<>();
-	
-			while (it.hasNext()) {
-				Order temp = (Order) it.next();
-				String key = temp.getOwner().getUserName();
-				if (userName.equals(key)) {
-					filteredOrders.add(temp);
-				}
-			}
-			
-			return filteredOrders;
-		 
 		
+		while (it.hasNext()) {
+			Order temp = (Order) it.next();
+			String key = temp.getOwner().getUserName();
+			if (userName.equals(key)) {
+				filteredOrders.add(temp);
+			}
+		}
+		return filteredOrders;	
 	}
 	
 

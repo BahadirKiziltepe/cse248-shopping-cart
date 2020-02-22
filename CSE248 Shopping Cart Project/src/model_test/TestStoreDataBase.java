@@ -17,8 +17,12 @@ public class TestStoreDataBase {
 		Address addb = new Address("street", "state","city","zipcode","country");
 		User user1 = new User("bdubs", "password", nameb, addb, "email@email.com");
 		User user2 = new User("franklin", "password", nameb, addb, "email@email.com");
+		
+		Admin admin = new Admin("admin","password",nameb,addb, "admin@email.com");
+		
 		data.registerUser(user1.getUserName(), user1);
 		data.registerUser(user2.getUserName(), user2);
+		data.registerAdmin(admin.getUserName(), admin);
 		
 		Item item = new Item("Apple",0,  0.50, "Food", false, 3);
 		Item item2 = new Item("Banana",1,  0.50, "Food", false, 3);
