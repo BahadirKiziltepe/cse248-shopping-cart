@@ -30,7 +30,9 @@ public class Name implements Serializable {
 		this.lastName = lastName;
 		this.middleName = null;
 	}
-	
+	/**
+	 * @return gives first, middle and last name as string
+	 */
 	public String toString() {
 		return firstName + " " +  middleName + " " +  lastName;
 	}

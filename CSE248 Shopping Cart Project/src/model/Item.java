@@ -9,39 +9,23 @@ public class Item implements Comparable<Item>, Serializable {
 	private String category;
 	private boolean taxable;
 	private int stock;
-	
+
 	/**
-	 * Creates an instance of an item (Item is an abstract class, currently)
-	 * Upon creation, we check the StoreDataBase to make sure the new Item has a unique ItemID
+	 * Creates an Item
 	 * @param productName Name of Item
-	 * @param price Price of Item
-	 * @param taxable If the Item can be taxed or not
-	 * @param stock How many of the Item is in stock
-	 * @param itemStorage The store's database 
+	 * @param itemID ID number of Item
+	 * @param price price of Item
+	 * @param category Category of Item
+	 * @param taxable If Item is taxable or not
+	 * @param stock How many of the item is in stock
 	 */
-	public Item(String productName,  double price, String category, boolean taxable, int stock) {
+	public Item(String productName, int itemID,  double price, String category, boolean taxable, int stock) {
 		this.productName = productName;
 		this.price = price;
 		this.taxable = taxable;
 		this.stock = stock;
 		this.category = category;
-		this.itemID = 0;
-		
-	//	int max = 0;
-		/*if (itemStorage.getAllItems().size() < 1) {
-			Object[] temp = itemStorage.returnItemsAsArray();
-			Item[] temp2 = (Item[]) temp;
-			for (int i = 0; i < temp2.length; i++) {
-				if (max < temp2[i].itemID) {
-					max = temp2[i].itemID;
-				}
-			}
-		} */
-		
-		
-		
-		// itemID of item being created will be +1 of highest itemID in storage
-		
+		this.itemID = itemID;
 	}
 	
 	/**
@@ -50,6 +34,15 @@ public class Item implements Comparable<Item>, Serializable {
 	 */
 	public void addToStock(int amountToAdd) {
 		stock += amountToAdd;
+	}
+	
+	/**
+	 * Calculates the tax for an individual item
+	 * @return tax
+	 */
+	public double calculateTax() {
+		double tax = Double.parseDouble(String.format("%.2f", price * 0.0875));
+		return tax;
 	}
 	
 	
@@ -103,6 +96,12 @@ public class Item implements Comparable<Item>, Serializable {
 		this.stock = stock;
 	}
 
+	@Override
+	public String toString() {
+		return "ID:" + itemID + " Name:" + productName
+                + " Category:" + category + " Price:" + price + " Stock:"
+                + stock;
+	}
 	
 	@Override
 	public int compareTo(Item other) {

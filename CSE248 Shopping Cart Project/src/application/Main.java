@@ -1,9 +1,13 @@
 package application;
 
 import model.Account;
+import model.Address;
+import model.Admin;
+import model.Name;
 import model.StoreDataBase;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import controllers.AccountController;
 import controllers.AccountsControllerForAdmin;
@@ -33,7 +37,14 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stg) {
-		readData();
+		readData(data);
+		
+		Name adminName = new Name("Admin", "Admin");
+		Address adminAddress = new Address("a", "b", "c", "123", "d");
+		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
+		
+		data.getAllAccounts().put(admin.getUserName(), admin);
+		
 		initialize();
 	}
 
@@ -219,7 +230,7 @@ public class Main extends Application {
 		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
 	}
 
-	public void readData() {
+	public void readData(StoreDataBase data) {
 		try {
 			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
 		} catch (ClassNotFoundException e) {

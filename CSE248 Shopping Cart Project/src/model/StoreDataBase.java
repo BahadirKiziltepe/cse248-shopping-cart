@@ -26,26 +26,39 @@ public class StoreDataBase implements Serializable {
 		allAccounts = new TreeMap<>();
 		allItems = new HashMap<>();
 		allOrders = new TreeSet<>();
-		
-		Name adminName = new Name("Admin", "Admin");
-		Address adminAddress = new Address("a", "b", "c", "123", "d");
-		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
-		
-		allAccounts.put(admin.getUserName(), admin);
 	}
 
 	/**
-	 * Adds an item to the store. Returns true if successful, false if unsuccessful
+	 * Adds an item to the store
 	 * @param itemToAdd Item being added to store
 	 */
 	public void addItemToStore(Item itemToAdd) { // This doesn't allow Items of the same name to exist due to the key being the product name
 		
-		if(allItems.containsKey(itemToAdd.getItemID())) {
-			allItems.get(itemToAdd.getItemID()).setStock(allItems.get(itemToAdd.getItemID()).getStock()+itemToAdd.getStock());
-		} else {
-			allItems.put(itemToAdd.getItemID(), itemToAdd);
-		}
+		 if(allItems.containsKey(itemToAdd.getItemID())) {
+	            allItems.get(itemToAdd.getItemID()).setStock(allItems.get(itemToAdd.getItemID()).getStock()+itemToAdd.getStock());
+	        } else {
+	            allItems.put(itemToAdd.getItemID(), itemToAdd);
+	        }
 		
+		/* Auto Incrementation
+		if (allItems.isEmpty() == false) {
+			Set setOfKeys = allItems.keySet();
+			Iterator it = setOfKeys.iterator();
+			int idValue = itemToAdd.getItemID();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				if (idValue < allItems.get(key).getItemID()) {
+					idValue = allItems.get(key).getItemID();
+				}
+			}
+			idValue++;
+			itemToAdd.setItemID(idValue);
+			allItems.put(itemToAdd.getProductName(), itemToAdd);
+		} else {
+			itemToAdd.setItemID(0);
+			allItems.put(itemToAdd.getProductName(), itemToAdd);
+		}
+		*/
 	}
 
 	
@@ -54,12 +67,30 @@ public class StoreDataBase implements Serializable {
 	 * @param orderToAdd copy of order being made
 	 */
 	public void addOrderToStore(Order orderToAdd) {
-		allOrders.add(orderToAdd);
+		Iterator it = allOrders.iterator();
+		int idValue = orderToAdd.getOrderID();
+		if (allOrders.isEmpty() == false) {
+			while (it.hasNext()) {
+				Order temp = (Order) it.next();
+				int key = temp.getOrderID();
+				if (idValue < key) {
+					idValue = key;
+				}
+			}
+			idValue++;
+			orderToAdd.setOrderID(idValue);
+			allOrders.add(orderToAdd);
+		} else {
+			orderToAdd.setOrderID(0);
+			allOrders.add(orderToAdd);
+		}
+		
 	}
 	
 	
 	/**
 	 *  Adds the user to allAccounts
+	 * @param userName userName of user being added
 	 * @param userToAdd user being registered
 	 */
 	public void registerUser(String userName, User userToAdd) { 
@@ -68,6 +99,7 @@ public class StoreDataBase implements Serializable {
 	
 	/**
 	 * Adds the admin to allAccounts
+	 * @param adminName userName for Admin being added
 	 * @param adminToAdd admin being registered
 	 */
 	public void registerAdmin(String adminName, Admin adminToAdd) {
@@ -75,12 +107,13 @@ public class StoreDataBase implements Serializable {
 	}
 
 	//Saving and Loading
+	
 	/**
 	 * Loads the StoreDataBase instance from a .bin file
 	 * @param filePath Where the file is located
 	 * @param displayDebug If we'll print debug messages to the console or not
-	 * @return
-	 * @throws ClassNotFoundException
+	 * @return Save data if exists
+	 * @throws ClassNotFoundException Handles data reading failures
 	 */
 	public static Object readObjectFromFile(String filePath, boolean displayDebug) throws ClassNotFoundException {
 		try {
@@ -152,6 +185,24 @@ public class StoreDataBase implements Serializable {
 		this.allOrders = allOrders;
 	}
 	
+	/**
+	 * gets a filtered TreeSet based on the userName string
+	 * @param userName UserName to sort orders by
+	 * @return filteredOrders
+	 */
+	public TreeSet<Order> getFilteredOrders(String userName){
+		Iterator it = allOrders.iterator();
+		TreeSet<Order> filteredOrders = new TreeSet<>();
+		
+		while (it.hasNext()) {
+			Order temp = (Order) it.next();
+			String key = temp.getOwner().getUserName();
+			if (userName.equals(key)) {
+				filteredOrders.add(temp);
+			}
+		}
+		return filteredOrders;	
+	}
 	
 
 	

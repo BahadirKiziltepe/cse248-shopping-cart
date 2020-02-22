@@ -20,12 +20,23 @@ public class Order implements Comparable<Order>, Serializable {
 	 * @param owner The account that placed the order
 	 */
 	public Order( double total, double subTotal, Account owner) {
+		itemsbought = new TreeSet<>();
 		this.orderDate = new Date();
 		this.total = total;
 		this.subTotal = subTotal;
 		this.owner = owner;
+		this.orderID = 0;
 	}
-
+	
+	/**
+	 * Adds item to Order receipt
+	 * @param itemToAdd Item being added to receipt
+	 */
+	public void addItemToOrder(Item itemToAdd) {
+		itemsbought.add(itemToAdd);
+	}
+	
+	
 	// setters and getters
 	
 	public TreeSet<Item> getItemsbought() {
@@ -76,6 +87,11 @@ public class Order implements Comparable<Order>, Serializable {
 		this.orderID = orderID;
 	}
 
+	@Override
+	public String toString() {
+		return orderID + " " + orderDate + " " + total + " " + subTotal + " " + owner.getUserName();
+	}
+	
 	@Override
 	public int compareTo(Order other) {
 		if (this.orderID > other.orderID) {

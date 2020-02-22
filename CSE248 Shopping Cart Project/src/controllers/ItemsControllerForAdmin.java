@@ -88,13 +88,14 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void addItem(ActionEvent event) {
-		Item newItem = new Item(itemName.getText(), Double.parseDouble(itemPrice.getText()), itemCategory.getText(),
+		Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()), Double.parseDouble(itemPrice.getText()), itemCategory.getText(),
 				checkIfTaxable.isSelected(), Integer.parseInt(itemCount.getText()));
-		newItem.setItemID(Integer.parseInt(itemID.getText()));
 		main.getData().addItemToStore(newItem);
 		main.saveData(main.getData());
 
 		items = FXCollections.observableArrayList();
+		keys = main.getData().getAllItems().keySet();
+
 		for (Integer i : keys) {
 			items.add(main.getData().getAllItems().get(i));
 		}
@@ -113,8 +114,8 @@ public class ItemsControllerForAdmin {
 			this.itemList.setItems(items);
 		} else {
 			for(Item i : items) {
-				if(s.toLowerCase().contains(searchBar.getText().toLowerCase())) {
-					itemsToShow.add(s);
+				if(i.toString().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+					itemsToShow.add(i);
 				}
 			}
 			this.itemList.setItems(itemsToShow);

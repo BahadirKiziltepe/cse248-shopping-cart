@@ -22,11 +22,26 @@ public class ShoppingCart implements Serializable{
 	}
 	
 	/**
+	 * Removes item from the shopping cart
+	 * @param item Item being removed from the cart
+	 */
+	public void removeItemFromCart(Item item) {
+		itemsInCart.remove(item);
+	}
+	
+	/**
 	 * Returns all items from the cart as an Object[] array.
-	 * @return
+	 * @return returns items as Array of Objects
 	 */
 	public Object[] returnAsArray() {
 		return itemsInCart.toArray();
+	}
+	
+	/**
+	 * Empties the cart of items
+	 */
+	public void emptyCart() {
+		itemsInCart.clear();
 	}
 	
 	// getters and setters
