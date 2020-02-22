@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Abstract class for User/Admin
+ * @author Brandon Dabrowski
+ *
+ */
 public abstract class Account implements Comparable<Account>, Serializable  {
 	
 	private String userName;

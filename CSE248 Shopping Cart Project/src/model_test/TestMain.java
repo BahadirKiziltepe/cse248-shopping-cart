@@ -13,7 +13,7 @@ public class TestMain {
 		Name nameb = new Name("brandon", "dabrowksi","dante");
 		Name namea = new Name("John","Apple","Seed");
 		// String street, String state, String city, String zipCode, String country
-		Address addb = new Address("9 norton drive", "new york", "smithtown", "11787", "USA");
+		Address addb = new Address("9 mango drive", "new york", "wowtown", "45612", "USA");
 		Address adda = new Address("7 Oak Road","Florida","Saplin","78451","USA");
 		
 		// String userName, String password, Name name, Address address, String email

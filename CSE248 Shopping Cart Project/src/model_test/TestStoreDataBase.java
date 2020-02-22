@@ -17,6 +17,7 @@ public class TestStoreDataBase {
 		Address addb = new Address("street", "state","city","zipcode","country");
 		User user1 = new User("bdubs", "password", nameb, addb, "email@email.com");
 		User user2 = new User("franklin", "password", nameb, addb, "email@email.com");
+		User user3 = new User("removeTest","password",nameb,addb,"test@email");
 		
 		Admin admin = new Admin("admin","password",nameb,addb, "admin@email.com");
 		
@@ -48,6 +49,15 @@ public class TestStoreDataBase {
 		data.addItemToStore(item3);
 		data.addItemToStore(item4);
 		
+	
+		
+		Order order4 = new Order(60.0,60.0,user3);
+		data.addOrderToStore(order4);
+		order4.addItemToOrder(data.getAllItems().get(item4.getItemID()));
+		
+		data.removeItemFromStore(item4);
+		
+		
 		
 		StoreDataBase.writeObjectToFile(data, "data_test\\StoreData.bin",false); 
 		
@@ -59,6 +69,16 @@ public class TestStoreDataBase {
 			
 			System.out.println(data2.getFilteredOrders("franklin"));
 			
+			System.out.println("TESTING ITEM REMOVAL FROM STORE WITH ORDER SAVING");
+			Object[] orderTest = data2.getFilteredOrders("removeTest").toArray();
+			for (int i = 0; i < orderTest.length; i++) {
+				Order p = (Order) orderTest[i];
+				Object[] pp = p.getItemsbought().toArray();
+				for (int k = 0; k < pp.length; k++) {
+					System.out.println(pp[k].toString());
+				}
+			}
+			System.out.println("TEST OVER");
 			
 			
 			Object[] items =  data2.getAllItems().values().toArray();

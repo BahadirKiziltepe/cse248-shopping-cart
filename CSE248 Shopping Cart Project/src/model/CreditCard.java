@@ -3,6 +3,11 @@ package model;
 import java.io.Serializable;
 import java.math.BigInteger;
 
+/**
+ * Holds credit card infortmation for any Users
+ * @author Brandon Dabrowski
+ *
+ */
 public class CreditCard implements Serializable {
 	private String cardNumber;
 	private int securityCode;

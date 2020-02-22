@@ -3,6 +3,11 @@ package model;
 import java.io.Serializable;
 import java.util.TreeSet;
 
+/**
+ * A subclass of Account that can log onto the store and purchase items
+ * @author Brandon Dabrowski
+ *
+ */
 public class User extends Account implements Comparable<Account>, Serializable {
 	
 	private CreditCard savedCard; // this doesn't need to be made during the constructor

@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Used to hold home address for all Accounts
+ * @author Brandon Dabrowski
+ *
+ */
 public class Address implements Serializable {
 
 	private String street;

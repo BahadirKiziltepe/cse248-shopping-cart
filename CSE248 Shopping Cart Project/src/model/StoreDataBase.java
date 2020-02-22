@@ -13,6 +13,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+/**
+ * holds all User/Item/Order data for the entire store
+ * @author Brandon Dabrowski
+ *
+ */
 public class StoreDataBase implements Serializable {
 	private TreeMap<String, Account> allAccounts;
 	private HashMap<Integer, Item> allItems;
@@ -59,6 +64,10 @@ public class StoreDataBase implements Serializable {
 			allItems.put(itemToAdd.getProductName(), itemToAdd);
 		}
 		*/
+	}
+	
+	public void removeItemFromStore(Item item) {
+		allItems.remove(item.getItemID());
 	}
 
 	
