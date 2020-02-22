@@ -27,19 +27,6 @@ public class Item implements Comparable<Item>, Serializable {
 		this.category = category;
 		this.itemID = 0;
 		
-	//	int max = 0;
-		/*if (itemStorage.getAllItems().size() < 1) {
-			Object[] temp = itemStorage.returnItemsAsArray();
-			Item[] temp2 = (Item[]) temp;
-			for (int i = 0; i < temp2.length; i++) {
-				if (max < temp2[i].itemID) {
-					max = temp2[i].itemID;
-				}
-			}
-		} */
-		
-		
-		
 		// itemID of item being created will be +1 of highest itemID in storage
 		
 	}
@@ -103,6 +90,10 @@ public class Item implements Comparable<Item>, Serializable {
 		this.stock = stock;
 	}
 
+	@Override
+	public String toString() {
+		return productName + " " + itemID;
+	}
 	
 	@Override
 	public int compareTo(Item other) {

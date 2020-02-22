@@ -15,7 +15,7 @@ import java.util.TreeSet;
 
 public class StoreDataBase implements Serializable {
 	private TreeMap<String, Account> allAccounts;
-	private HashMap<String, Item> allItems;
+	private HashMap<Integer, Item> allItems;
 	private TreeSet<Order> allOrders;
 	
 	/**
@@ -29,11 +29,18 @@ public class StoreDataBase implements Serializable {
 	}
 
 	/**
-	 * Adds an item to the store. Returns true if successful, false if unsuccessful
+	 * Adds an item to the store
 	 * @param itemToAdd Item being added to store
 	 */
 	public void addItemToStore(Item itemToAdd) { // This doesn't allow Items of the same name to exist due to the key being the product name
 		
+		 if(allItems.containsKey(itemToAdd.getItemID())) {
+	            allItems.get(itemToAdd.getItemID()).setStock(allItems.get(itemToAdd.getItemID()).getStock()+itemToAdd.getStock());
+	        } else {
+	            allItems.put(itemToAdd.getItemID(), itemToAdd);
+	        }
+		
+		/* Auto Incrementation
 		if (allItems.isEmpty() == false) {
 			Set setOfKeys = allItems.keySet();
 			Iterator it = setOfKeys.iterator();
@@ -51,7 +58,7 @@ public class StoreDataBase implements Serializable {
 			itemToAdd.setItemID(0);
 			allItems.put(itemToAdd.getProductName(), itemToAdd);
 		}
-		
+		*/
 	}
 
 	
@@ -60,7 +67,24 @@ public class StoreDataBase implements Serializable {
 	 * @param orderToAdd copy of order being made
 	 */
 	public void addOrderToStore(Order orderToAdd) {
-		allOrders.add(orderToAdd);
+		Iterator it = allOrders.iterator();
+		int idValue = orderToAdd.getOrderID();
+		if (allOrders.isEmpty() == false) {
+			while (it.hasNext()) {
+				Order temp = (Order) it.next();
+				int key = temp.getOrderID();
+				if (idValue < key) {
+					idValue = key;
+				}
+			}
+			idValue++;
+			orderToAdd.setOrderID(idValue);
+			allOrders.add(orderToAdd);
+		} else {
+			orderToAdd.setOrderID(0);
+			allOrders.add(orderToAdd);
+		}
+		
 	}
 	
 	
@@ -81,6 +105,7 @@ public class StoreDataBase implements Serializable {
 	}
 
 	//Saving and Loading
+	
 	/**
 	 * Loads the StoreDataBase instance from a .bin file
 	 * @param filePath Where the file is located
@@ -142,11 +167,11 @@ public class StoreDataBase implements Serializable {
 		this.allAccounts = allAccounts;
 	}
 
-	public HashMap<String, Item> getAllItems() {
+	public HashMap<Integer, Item> getAllItems() {
 		return allItems;
 	}
 
-	public void setAllItems(HashMap<String, Item> allItems) {
+	public void setAllItems(HashMap<Integer, Item> allItems) {
 		this.allItems = allItems;
 	}
 
@@ -158,6 +183,22 @@ public class StoreDataBase implements Serializable {
 		this.allOrders = allOrders;
 	}
 	
+	public TreeSet<Order> getFilteredOrders(String userName){
+		Iterator it = allOrders.iterator();
+		TreeSet<Order> filteredOrders = new TreeSet<>();
+	
+			while (it.hasNext()) {
+				Order temp = (Order) it.next();
+				String key = temp.getOwner().getUserName();
+				if (userName.equals(key)) {
+					filteredOrders.add(temp);
+				}
+			}
+			
+			return filteredOrders;
+		 
+		
+	}
 	
 
 	
