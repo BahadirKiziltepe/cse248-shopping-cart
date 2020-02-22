@@ -25,7 +25,6 @@ public class User extends Account implements Comparable<Account>, Serializable {
 	
 	
 	// setters and getters
-	
 
 	public CreditCard getSavedCard() {
 		return savedCard;
