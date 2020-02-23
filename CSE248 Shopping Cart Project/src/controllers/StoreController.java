@@ -54,11 +54,11 @@ public class StoreController {
 								if (item.isTaxable()) {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
 											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + "
-											+ item.calculateTax() + "\nLess than 10 in stock...");
+											+ item.calculateTax() + "\nStock: " + item.getStock());
 								} else {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice())
-											+ "\nLess than 10 in stock...");
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + "\nStock: "
+											+ item.getStock());
 								}
 							} else {
 								if (item.isTaxable()) {
@@ -118,9 +118,12 @@ public class StoreController {
 	@FXML
 	void addToCart(ActionEvent event) {
 		if (main.getSelectedItem().getStock() > Integer.parseInt(quantity.getText())) {
-			System.out.println(((User) main.getCurrentUser()).getCart());
-			((User) main.getCurrentUser()).getCart().addItemToCart(main.getSelectedItem(), Integer.parseInt(quantity.getText()));
-			main.getSelectedItem().subtractFromStock(1);
+			((User) main.getCurrentUser()).getCart().addItemToCart(main.getSelectedItem(),
+					Integer.parseInt(quantity.getText()));
+			((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
+					.setStock(Integer.parseInt(quantity.getText()));
+			main.getSelectedItem().subtractFromStock(Integer.parseInt(quantity.getText()));
+			main.saveData(main.getData());
 		}
 	}
 

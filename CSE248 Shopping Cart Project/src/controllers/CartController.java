@@ -128,6 +128,7 @@ public class CartController {
 	void increase(ActionEvent event) {
 		if (main.getSelectedItem() != null) {
 			main.getSelectedItem().addToStock(1);
+			main.saveData(main.getData());
 			updateList();
 		}
 	}
@@ -136,6 +137,7 @@ public class CartController {
 	void remove(ActionEvent event) {
 		if (main.getSelectedItem() != null) {
 			((User) main.getCurrentUser()).getCart().removeItemFromCart(main.getSelectedItem());
+			main.saveData(main.getData());
 			updateList();
 		}
 	}

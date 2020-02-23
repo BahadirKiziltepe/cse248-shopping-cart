@@ -240,7 +240,7 @@ public class Main extends Application {
 
 	public void readData() {
 		try {
-			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", true);
+			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

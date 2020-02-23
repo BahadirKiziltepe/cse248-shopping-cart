@@ -48,7 +48,7 @@ public class Item implements Comparable<Item>, Serializable {
 	 * @param amountToRemove amount of stock to remove from store
 	 */
 	public void subtractFromStock(int amountToRemove) {
-		stock =- amountToRemove;
+		stock -= amountToRemove;
 	}
 	
 	
