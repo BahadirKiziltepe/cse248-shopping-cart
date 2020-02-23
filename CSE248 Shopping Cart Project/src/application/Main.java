@@ -37,7 +37,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stg) {
-		readData(data);
+		readData();
 		
 		Name adminName = new Name("Admin", "Admin");
 		Address adminAddress = new Address("a", "b", "c", "123", "d");
@@ -230,7 +230,7 @@ public class Main extends Application {
 		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
 	}
 
-	public void readData(StoreDataBase data) {
+	public void readData() {
 		try {
 			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
 		} catch (ClassNotFoundException e) {
