@@ -7,6 +7,7 @@ import model.Item;
 import model.Name;
 import model.StoreDataBase;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -35,21 +36,23 @@ public class Main extends Application {
 
 	private Account currentUser = null, userPickedByAdmin = null;
 	private StoreDataBase data = new StoreDataBase();
-	
+
 	private Item selectedItem = null;
-	
+
 	private boolean viewAccounts = false;
 
 	@Override
 	public void start(Stage stg) {
+		System.out.println(data);
 		readData();
-		
+		System.out.println(data);
+
 		Name adminName = new Name("Admin", "Admin");
 		Address adminAddress = new Address("a", "b", "c", "123", "d");
 		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
-		
+
 		data.getAllAccounts().put(admin.getUserName(), admin);
-		
+
 		initialize();
 	}
 
@@ -230,21 +233,21 @@ public class Main extends Application {
 	public void showWareHouseForAdmin() {
 
 	}
-	
-	public void goBack() {
-		
-	}
 
-	public void saveData(StoreDataBase data) {
-		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
+	public void goBack() {
+
 	}
 
 	public void readData() {
 		try {
-			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
+			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", true);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void saveData(StoreDataBase data) {
+		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
 	}
 
 	public StoreDataBase getData() {
@@ -258,7 +261,7 @@ public class Main extends Application {
 	public void setCurrentUser(Account currentUser) {
 		this.currentUser = currentUser;
 	}
-	
+
 	public Account getUserPickedByAdmin() {
 		return userPickedByAdmin;
 	}
@@ -282,5 +285,5 @@ public class Main extends Application {
 	public void setSelectedItem(Item selectedItem) {
 		this.selectedItem = selectedItem;
 	}
-	
+
 }

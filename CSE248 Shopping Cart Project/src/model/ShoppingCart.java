@@ -3,6 +3,11 @@ package model;
 import java.io.Serializable;
 import java.util.TreeSet;
 
+/**
+ * This holds items that a user wants to buy
+ * @author bdabr
+ *
+ */
 public class ShoppingCart implements Serializable{
 	private TreeSet<Item> itemsInCart;
 	
@@ -28,6 +33,23 @@ public class ShoppingCart implements Serializable{
 	public void removeItemFromCart(Item item) {
 		itemsInCart.remove(item);
 	}
+	
+	/**
+	 * Finds total amount of money spent after tax
+	 * @return price with tax included
+	 */
+	public double totalPriceCalculation() {
+		Object[] items =  itemsInCart.toArray();
+		double totalPrice = 0;
+		for (int i = 0; i < items.length; i++) {
+			if (((Item) items[i]).isTaxable() == true) {
+				totalPrice += ((Item) items[i]).calculateTax();
+			}
+			totalPrice += ((Item) items[i]).getPrice();
+		}
+		return  Double.parseDouble(String.format("%.2f", totalPrice));
+	}
+	
 	
 	/**
 	 * Returns all items from the cart as an Object[] array.

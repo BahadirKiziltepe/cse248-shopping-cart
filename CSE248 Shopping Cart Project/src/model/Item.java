@@ -2,7 +2,16 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * The skeleton for items being sold in the store
+ * @author bdabr
+ *
+ */
 public class Item implements Comparable<Item>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8582521697002551798L;
 	private String productName;
 	private int itemID;
 	private double price;
@@ -29,12 +38,21 @@ public class Item implements Comparable<Item>, Serializable {
 	}
 	
 	/**
-	 * Increases the stock of an Item in the StoreDataBase
+	 * Increases the stock of an Item
 	 * @param amountToAdd amount of an Item being added to the store for purchase
 	 */
 	public void addToStock(int amountToAdd) {
 		stock += amountToAdd;
 	}
+	
+	/**
+	 * Decreases the stock of an Item
+	 * @param amountToRemove amount of stock to remove from store
+	 */
+	public void subtractFromStock(int amountToRemove) {
+		stock =- amountToRemove;
+	}
+	
 	
 	/**
 	 * Calculates the tax for an individual item

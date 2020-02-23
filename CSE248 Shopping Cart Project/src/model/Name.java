@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Data for any Account's actual name information
+ * @author bdabr
+ *
+ */
 public class Name implements Serializable {
 	
 	private String firstName;

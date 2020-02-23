@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Account subclass that has special privleges compared to the User type
+ * @author bdabr
+ *
+ */
 public class Admin extends Account implements Comparable<Account>, Serializable {
 
 	/**
