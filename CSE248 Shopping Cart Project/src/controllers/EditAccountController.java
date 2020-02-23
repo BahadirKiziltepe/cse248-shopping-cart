@@ -130,7 +130,11 @@ public class EditAccountController {
 			} else {
 				main.getUserPickedByAdmin().getAddress().setCountry(country.getText());
 			}
-			main.showAccountsForAdmin();
+			if (main.isViewAccounts()) {
+				main.showAccountsForAdmin();
+			} else {
+				main.showAccountPage();
+			}
 		} else {
 			if (password.getText().equals("")) {
 				; // nop

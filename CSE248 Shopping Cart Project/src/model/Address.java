@@ -33,6 +33,11 @@ public class Address implements Serializable {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return street + city + state + zipCode + country;
+	}
+	
 	// setters and getters
 	
 	public String getStreet() {

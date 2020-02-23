@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox prefHeight="480.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.CardController">
+   <children>
+      <AnchorPane prefHeight="480.0" prefWidth="720.0">
+         <children>
+            <ImageView fitHeight="450.0" fitWidth="450.0" layoutX="14.0" layoutY="14.0">
+               <image>
+                  <Image url="@../image/card.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="cardNumber" layoutX="360.0" layoutY="252.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="sCode" layoutX="360.0" layoutY="294.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="360.0" layoutY="332.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Text layoutX="564.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="564.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security Code">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fx:id="date" layoutX="564.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="saveBtn" layoutX="566.0" layoutY="390.0" mnemonicParsing="false" onAction="#saveCard" text="Save Card">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Text fx:id="cancel" layoutX="610.0" layoutY="436.0" onMouseClicked="#cancel" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

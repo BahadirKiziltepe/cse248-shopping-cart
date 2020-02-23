@@ -13,22 +13,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
-import model.Item;
+import model.Admin;
 import model.Order;
-import model.User;
 
-public class WareHouseControllerForAdmin {
-
+public class OrderHistoryController {
+	
 	private ObservableList<Order> orders;
-
+	
 	private Main main;
 
 	public void setMain(Main main) {
 		this.main = main;
-
+		
 		updateList();
 	}
-
+	
 	public void initialize() {
 		orderList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Order>() {
 
@@ -54,9 +53,9 @@ public class WareHouseControllerForAdmin {
 							int year = cal.get(Calendar.YEAR);
 							int month = cal.get(Calendar.MONDAY) + 1;
 							int day = cal.get(Calendar.DAY_OF_MONTH);
-
-							setText("User: " + order.getOwner().getUserName() + "\nDate: " + month + "/" + day + "/"
-									+ year + "\nTotal: " + Double.toString(order.getTotal()));
+							
+							setText("Date: " + month + "/" + day + "/" + year +
+									"\nTotal: " + Double.toString(order.getTotal()));
 						}
 					}
 				};
@@ -65,48 +64,50 @@ public class WareHouseControllerForAdmin {
 			}
 		});
 	}
+	
+    @FXML
+    private ListView<Order> orderList;
 
-	@FXML
-	private Button cancelBtn;
+    @FXML
+    private Button cancelBtn;
 
-	@FXML
-	private ListView<Order> orderList;
+    @FXML
+    private Button viewBtn;
+    
+    @FXML
+    private Button mainMenu;
 
-	@FXML
-	private Button viewBtn;
-
-	@FXML
-	private Button mainMenu;
-
-	@FXML
-	void cancelOrder(ActionEvent event) {
+    @FXML
+    void cancelOrder(ActionEvent event) {
 		main.getSelectedOrder().setOwner(null);
 		main.getData().getAllOrders().remove(main.getSelectedOrder());
 		main.setSelectedOrder(null);
-		
-		updateList();
 		main.saveData(main.getData());
-	}
-
-	@FXML
-	void viewOrder(ActionEvent event) {
-		if (main.getSelectedOrder() != null) {
-			main.showOrderPage();
+		
+		if(main.getCurrentUser().getClass() == Admin.class) {
+			main.showWareHouseForAdmin();
+		} else {
+			main.showOrderHistoryPage();
 		}
-	}
+    }
 
-	@FXML
-	void mainMenu(ActionEvent event) {
-		main.showAdminPage();
-	}
-
-	public void updateList() {
-		orders = FXCollections.observableArrayList();
-
-		for (Order order : main.getData().getAllOrders()) {
-			orders.add(order);
-		}
-		orderList.setItems(orders);
+    @FXML
+    void viewOrder(ActionEvent event) {
+    	main.showOrderPage();
+    }
+    
+    @FXML
+    void mainMenu(ActionEvent event) {
+    	main.showMainMenuPage();
+    }
+    
+    public void updateList() {
+    	orders = FXCollections.observableArrayList();
+    	
+    	for(Order order : main.getData().getFilteredOrders(main.getCurrentUser().getUserName())) {
+    		orders.add(order);
+    	}
+    	orderList.setItems(orders);
 	}
 
 }

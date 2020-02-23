@@ -149,7 +149,6 @@ public class ItemsControllerForAdmin {
     		itemName.setText(main.getSelectedItem().getProductName());
     		itemCategory.setText(main.getSelectedItem().getCategory());
     		itemPrice.setText(Double.toString(main.getSelectedItem().getPrice()));
-    		itemCount.setText(Integer.toString(main.getSelectedItem().getStock()));
     	}
     }
     

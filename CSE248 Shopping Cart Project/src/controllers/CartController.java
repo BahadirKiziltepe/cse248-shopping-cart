@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 import application.Main;
 import javafx.beans.value.ChangeListener;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import model.Item;
 import model.Order;
@@ -29,6 +31,9 @@ public class CartController {
 		this.main = main;
 
 		updateList();
+
+		total.setText(Double.toString(((User) main.getCurrentUser()).getCart().totalPriceCalculation()));
+		subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
 	}
 
 	public void initialize() {
@@ -52,13 +57,12 @@ public class CartController {
 							setText(null);
 						} else {
 							if (item.isTaxable()) {
-								setText("Name: " + item.getProductName() + "\nCategory: "
-										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + "
-										+ item.calculateTax() + "\nQuantity: " + item.getStock());
-							} else {
-								setText("Name: " + item.getProductName() + "\nCategory: "
-										+ item.getCategory() + "\nPrice: $" + item.getPrice() + "\nQuantity: "
+								setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
+										+ "\nPrice: $" + item.getPrice() + " + " + item.calculateTax() + "\nQuantity: "
 										+ item.getStock());
+							} else {
+								setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
+										+ "\nPrice: $" + item.getPrice() + "\nQuantity: " + item.getStock());
 							}
 						}
 					}
@@ -68,6 +72,15 @@ public class CartController {
 			}
 		});
 	}
+
+	@FXML
+	private Text subTotal;
+
+	@FXML
+	private Text total;
+
+	@FXML
+	private Text warning;
 
 	@FXML
 	private ListView<Item> itemList;
@@ -113,15 +126,31 @@ public class CartController {
 
 	@FXML
 	void checkOut(ActionEvent event) {
-		Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(), ((User) main.getCurrentUser()).getCart().subTotalPriceCalculation(),
-				main.getCurrentUser());
-		main.getData().addOrderToStore(order);
-		
-		((User) main.getCurrentUser()).getCart().getItemsInCart().clear();
-		updateList();
-		
-		main.saveData(main.getData());
-		main.setSelectedItem(null);
+		if (!((User) main.getCurrentUser()).getSavedCard().getCardNumber().equals("000000000000")) {
+			warning.setText("");
+
+			Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(),
+					((User) main.getCurrentUser()).getCart().subTotalPriceCalculation(), main.getCurrentUser());
+
+			Set<Integer> keys = ((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();
+			TreeSet<Item> itemsBought = new TreeSet<>();
+			for (Integer i : keys) {
+				itemsBought.add(((User) main.getCurrentUser()).getCart().getItemsInCart().get(i));
+			}
+			order.setItemsbought(itemsBought);
+			main.getData().addOrderToStore(order);
+
+			((User) main.getCurrentUser()).getCart().getItemsInCart().clear();
+			updateList();
+
+			total.setText(Double.toString(((User) main.getCurrentUser()).getCart().totalPriceCalculation()));
+			subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
+
+			main.saveData(main.getData());
+			main.setSelectedItem(null);
+		} else {
+			warning.setText("Register a valid Credit Card");
+		}
 	}
 
 	@FXML
@@ -141,6 +170,9 @@ public class CartController {
 
 				main.saveData(main.getData());
 				updateList();
+
+				total.setText(Double.toString(((User) main.getCurrentUser()).getCart().totalPriceCalculation()));
+				subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
 			}
 		}
 	}
@@ -157,6 +189,9 @@ public class CartController {
 
 			main.saveData(main.getData());
 			updateList();
+
+			total.setText(Double.toString(((User) main.getCurrentUser()).getCart().totalPriceCalculation()));
+			subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
 		}
 	}
 

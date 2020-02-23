@@ -36,6 +36,7 @@ public class AdminController {
 
     @FXML
     void showAccount(ActionEvent event) {
+    	main.setUserPickedByAdmin(main.getCurrentUser());
     	main.showAccountPage();
     }
 
@@ -51,7 +52,7 @@ public class AdminController {
 
     @FXML
     void showWareHouse(ActionEvent event) {
-
+    	main.showWareHouseForAdmin();
     }
     
 }

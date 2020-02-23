@@ -10,15 +10,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
+import model.Account;
 import model.Admin;
+import model.Item;
 
 public class AccountsControllerForAdmin {
 
-	private ObservableList<String> accounts;
+	private ObservableList<Account> accounts;
 	private Set<String> keys;
 
 	private Main main;
@@ -32,19 +36,39 @@ public class AccountsControllerForAdmin {
 	}
 
 	public void initialize() {
-		accountViewer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+		accountViewer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
 
 			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if (newValue != null) {
-					main.setUserPickedByAdmin(main.getData().getAllAccounts().get(newValue));
+			public void changed(ObservableValue<? extends Account> observable, Account oldUser, Account newUser) {
+				if (newUser != null) {
+					main.setUserPickedByAdmin(newUser);
 				}
+			}
+		});
+		
+		accountViewer.setCellFactory(new Callback<ListView<Account>, ListCell<Account>>() {
+
+			@Override
+			public ListCell<Account> call(ListView<Account> p) {
+				ListCell<Account> newItem = new ListCell<Account>() {
+					@Override
+					protected void updateItem(Account account, boolean bool) {
+						super.updateItem(account, bool);
+						if (bool || account == null) {
+							setText(null);
+						} else {
+							setText(account.getUserName());
+						}
+					}
+				};
+
+				return newItem;
 			}
 		});
 	}
 
 	@FXML
-	private ListView<String> accountViewer;
+	private ListView<Account> accountViewer;
 
 	@FXML
 	private TextField searchBar;
@@ -94,13 +118,13 @@ public class AccountsControllerForAdmin {
 	@FXML
 	void searchUsers(ActionEvent event) {
 		main.setUserPickedByAdmin(null);
-		ObservableList<String> accountsToShow = FXCollections.observableArrayList();
+		ObservableList<Account> accountsToShow = FXCollections.observableArrayList();
 		if (searchBar.getText().contentEquals("")) {
 			this.accountViewer.setItems(accounts);
 		} else {
-			for (String s : accounts) {
-				if (s.toLowerCase().contains(searchBar.getText().toLowerCase())) {
-					accountsToShow.add(s);
+			for (Account a : accounts) {
+				if (a.toString().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+					accountsToShow.add(a);
 				}
 			}
 			this.accountViewer.setItems(accountsToShow);
@@ -146,7 +170,7 @@ public class AccountsControllerForAdmin {
 
 		for (String s : keys) {
 			if (main.getData().getAllAccounts().get(s).getClass() != Admin.class) {
-				accounts.add(s);
+				accounts.add(main.getData().getAllAccounts().get(s));
 			}
 		}
 		accountViewer.setItems(accounts);

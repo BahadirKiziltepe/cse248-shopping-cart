@@ -25,6 +25,13 @@ public class MainMenuController {
     @FXML
     private Button CartBtn;
     
+
+    @FXML
+    private Button cardBtn;
+    
+    @FXML
+    private Button orderHistory;
+    
     @FXML
     void logout(ActionEvent event) {
     	main.setCurrentUser(null);
@@ -40,10 +47,21 @@ public class MainMenuController {
     void CartView(ActionEvent event) {
     	main.showCartPage();
     }
+    
+
+    @FXML
+    void editCard(ActionEvent event) {
+    	main.showCardPage();
+    }
 
     @FXML
     void StoreView(ActionEvent event) {
     	main.showStorePage();
+    }
+    
+    @FXML
+    void viewOrderHistory(ActionEvent event) {
+    	main.showOrderHistoryPage();
     }
 
 }

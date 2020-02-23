@@ -26,12 +26,22 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="storeBtn" layoutX="107.0" layoutY="44.0" mnemonicParsing="false" onAction="#StoreView" prefWidth="75.0" text="Store">
+            <Button fx:id="storeBtn" layoutX="99.0" layoutY="44.0" mnemonicParsing="false" onAction="#StoreView" prefWidth="75.0" text="Store">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="CartBtn" layoutX="199.0" layoutY="44.0" mnemonicParsing="false" onAction="#CartView" prefWidth="75.0" text="Cart">
+            <Button fx:id="CartBtn" layoutX="184.0" layoutY="44.0" mnemonicParsing="false" onAction="#CartView" prefWidth="75.0" text="Cart">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="orderHistory" layoutX="417.0" layoutY="44.0" mnemonicParsing="false" onAction="#viewOrderHistory" prefHeight="31.0" prefWidth="110.0" text="Order History">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="cardBtn" layoutX="269.0" layoutY="44.0" mnemonicParsing="false" onAction="#editCard" prefHeight="31.0" prefWidth="138.0" text="Payment Method">
                <font>
                   <Font size="15.0" />
                </font>

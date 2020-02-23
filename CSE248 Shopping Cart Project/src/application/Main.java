@@ -5,26 +5,31 @@ import model.Address;
 import model.Admin;
 import model.Item;
 import model.Name;
+import model.Order;
 import model.StoreDataBase;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 
 import controllers.AccountController;
 import controllers.AccountsControllerForAdmin;
 import controllers.AdminController;
+import controllers.CardController;
 import controllers.CartController;
 import controllers.EditAccountController;
 import controllers.ItemsControllerForAdmin;
 import controllers.LoginController;
 import controllers.MainMenuController;
+import controllers.OrderController;
+import controllers.OrderHistoryController;
 import controllers.RegisterController;
 import controllers.RootController;
 import controllers.StoreController;
+import controllers.WareHouseControllerForAdmin;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
@@ -34,10 +39,11 @@ public class Main extends Application {
 	private Stage mainStage = new Stage();
 	private BorderPane root = new BorderPane();
 
-	private Account currentUser = null, userPickedByAdmin = null;
 	private StoreDataBase data = new StoreDataBase();
 
+	private Account currentUser = null, userPickedByAdmin = null;
 	private Item selectedItem = null;
+	private Order selectedOrder = null;
 
 	private boolean viewAccounts = false;
 
@@ -55,12 +61,15 @@ public class Main extends Application {
 		if (file.length() != 0) {
 			readData();
 		}
-		Name adminName = new Name("Admin", "Admin");
-		Address adminAddress = new Address("a", "b", "c", "123", "d");
-		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
 
-		data.getAllAccounts().put(admin.getUserName(), admin);
-		
+		if (!data.getAllAccounts().containsKey("admin")) {
+			Name adminName = new Name("-", "-");
+			Address adminAddress = new Address("-", "-", "-", "-", "-");
+			Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
+
+			data.getAllAccounts().put(admin.getUserName(), admin);
+		}
+
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(this.getClass().getResource("/view/Root.fxml"));
@@ -69,6 +78,7 @@ public class Main extends Application {
 			controller.setMain(this);
 			Scene scene = new Scene(root);
 			showLoginPage();
+			mainStage.getIcons().add(new Image("image\\icon.png"));
 			mainStage.setScene(scene);
 			mainStage.show();
 		} catch (Exception e) {
@@ -226,16 +236,64 @@ public class Main extends Application {
 		}
 	}
 
-	public void showOrdersForAdmin() {
+	public void showOrderPage() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/Order.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			OrderController order = loader.getController();
+			order.setMain(this);
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void showWareHouseForAdmin() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/WareHouseForAdmin.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			WareHouseControllerForAdmin wareHouse = loader.getController();
+			wareHouse.setMain(this);
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void goBack() {
+	public void showOrderHistoryPage() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/OrderHistory.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			OrderHistoryController history = loader.getController();
+			history.setMain(this);
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void showCardPage() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/Card.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			CardController card = loader.getController();
+			card.setMain(this);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void readData() {
@@ -284,6 +342,14 @@ public class Main extends Application {
 
 	public void setSelectedItem(Item selectedItem) {
 		this.selectedItem = selectedItem;
+	}
+
+	public Order getSelectedOrder() {
+		return selectedOrder;
+	}
+
+	public void setSelectedOrder(Order selectedOrder) {
+		this.selectedOrder = selectedOrder;
 	}
 
 }
