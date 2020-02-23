@@ -35,7 +35,7 @@ public class TestStoreDataBaseExtensive {
 		}
 		System.out.println(data2.getAllAccounts());
 		System.out.println(data2.getAllItems());
-	//	System.out.println(data2.getAllOrders());
+		System.out.println(data2.getAllOrders());
 		assertEquals(1000,data2.getAllAccounts().size());
 		assertEquals(1000,data2.getAllItems().size());
 		assertEquals(1000,data2.getAllOrders().size());
