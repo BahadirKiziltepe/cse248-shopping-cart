@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author bdabr
  *
  */
-public class Item implements Comparable<Item>, Serializable {
+public class Item implements Comparable<Item>, Serializable, Cloneable {
 	private static final long serialVersionUID = -6314180200310286463L;
 	
 	private String productName;
@@ -48,7 +48,7 @@ public class Item implements Comparable<Item>, Serializable {
 	 * @param amountToRemove amount of stock to remove from store
 	 */
 	public void subtractFromStock(int amountToRemove) {
-		stock =- amountToRemove;
+		stock -= amountToRemove;
 	}
 	
 	
@@ -129,6 +129,24 @@ public class Item implements Comparable<Item>, Serializable {
 		}
 		return 0;
 	}
+	
+	 @Override
+	    protected Object clone(){
+	        Item item = null;
+	        try {
+	            item = (Item)super.clone();
+	        } catch (CloneNotSupportedException e) {
+	            e.printStackTrace();
+	        }
+	        item.productName = new String(this.productName);
+	        item.price = this.price;
+	        item.category = new String(this.category);
+	        item.taxable = this.taxable;
+	        item.stock = this.stock;
+	        item.itemID = this.itemID;
+	        return (Object)item;
+	    }
+	
 
 	
 }
