@@ -38,7 +38,7 @@ public class ShoppingCart implements Serializable{
 	 * @param item Item being removed from the cart
 	 */
 	public void removeItemFromCart(Item item) {
-		itemsInCart.remove(item);
+		itemsInCart.remove(item.getItemID());
 	}
 	
 	/**
