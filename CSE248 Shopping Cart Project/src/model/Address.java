@@ -66,4 +66,9 @@ public class Address implements Serializable {
 		this.country = country;
 	}
 	
+	@Override
+    public String toString() {
+        return street + city + state + zipCode + country;
+    }
+	
 }

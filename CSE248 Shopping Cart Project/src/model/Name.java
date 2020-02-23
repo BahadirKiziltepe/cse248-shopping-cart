@@ -39,9 +39,14 @@ public class Name implements Serializable {
 	/**
 	 * @return gives first, middle and last name as string
 	 */
-	public String toString() {
-		return firstName + " " +  middleName + " " +  lastName;
-	}
+	@Override
+    public String toString() {
+        if (middleName.equals("")) {
+            return firstName + " " + lastName;
+        } else {
+            return firstName + " " + middleName + " " + lastName;
+        }
+    }
 	
 	//setters and getters
 	
@@ -63,6 +68,8 @@ public class Name implements Serializable {
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
+  
+	
 	
 		
 }

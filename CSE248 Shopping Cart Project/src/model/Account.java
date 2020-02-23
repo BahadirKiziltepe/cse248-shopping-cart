@@ -81,6 +81,11 @@ public abstract class Account implements Comparable<Account>, Serializable  {
 		return 0;
 	}
 	
+    @Override
+    public String toString() {
+       return "Username:" + userName + " Password:" + password + " E-mail:" + email + " Name:" + name.toString() + " Address:" + address.toString();
+    }
+	
 	
 	
 }
