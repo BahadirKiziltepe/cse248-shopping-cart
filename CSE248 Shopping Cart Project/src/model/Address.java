@@ -8,10 +8,15 @@ import java.io.Serializable;
  *
  */
 public class Address implements Serializable {
+<<<<<<< HEAD
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6641690755885873190L;
+=======
+	  private static final long serialVersionUID = -6641690755885873190L;
+	
+>>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private String street;
 	private String state;
 	private String city;

@@ -7,11 +7,17 @@ import java.io.Serializable;
  * @author bdabr
  *
  */
+<<<<<<< HEAD
 public class Item implements Comparable<Item>, Serializable {	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6314180200310286463L;
+=======
+public class Item implements Comparable<Item>, Serializable {
+	private static final long serialVersionUID = -6314180200310286463L;
+	
+>>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private String productName;
 	private int itemID;
 	private double price;

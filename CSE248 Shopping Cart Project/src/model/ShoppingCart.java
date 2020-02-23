@@ -10,10 +10,15 @@ import java.util.TreeSet;
  *
  */
 public class ShoppingCart implements Serializable{
+<<<<<<< HEAD
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5266471585635469192L;
+=======
+	private static final long serialVersionUID = -5266471585635469192L;
+	
+>>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private TreeMap<Integer,Item> itemsInCart;
 	
 	/**
