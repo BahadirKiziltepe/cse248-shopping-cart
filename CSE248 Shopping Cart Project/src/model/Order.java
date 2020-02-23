@@ -10,15 +10,8 @@ import java.util.TreeSet;
  *
  */
 public class Order implements Comparable<Order>, Serializable {
-<<<<<<< HEAD
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1423574175558137158L;
-=======
 	private static final long serialVersionUID = -1423574175558137158L;
 	
->>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private TreeSet<Item> itemsbought;
 	private int orderID;
 	private Date orderDate;

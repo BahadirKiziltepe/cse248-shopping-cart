@@ -18,17 +18,9 @@ import java.util.TreeSet;
  * @author bdabr
  *
  */
-<<<<<<< HEAD
-public class StoreDataBase implements Serializable {	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7245546982264124437L;
-=======
 public class StoreDataBase implements Serializable {
 	 private static final long serialVersionUID = 7245546982264124437L;
 	
->>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private TreeMap<String, Account> allAccounts;
 	private HashMap<Integer, Item> allItems;
 	private TreeSet<Order> allOrders;
@@ -149,7 +141,6 @@ public class StoreDataBase implements Serializable {
 				
 		} catch (IOException e) {
 			if (displayDebug == true) {
-				e.printStackTrace();
 				System.out.printf("could not load %s\n", filePath);
 			}
 			return null;

@@ -8,15 +8,8 @@ import java.io.Serializable;
  *
  */
 public abstract class Account implements Comparable<Account>, Serializable  {
-<<<<<<< HEAD
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4251085793863071469L;
-=======
 	  private static final long serialVersionUID = 4251085793863071469L;
 	
->>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private String userName;
 	private String password;
 	private Name name;
@@ -67,6 +60,7 @@ public abstract class Account implements Comparable<Account>, Serializable  {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
 	public String getEmail() {
 		return email;
 	}

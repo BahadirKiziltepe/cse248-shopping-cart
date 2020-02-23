@@ -9,15 +9,8 @@ import java.math.BigInteger;
  *
  */
 public class CreditCard implements Serializable {
-<<<<<<< HEAD
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8546611258156737115L;
-=======
 	private static final long serialVersionUID = -8546611258156737115L;
 	
->>>>>>> 4d48e3ea3182cda8bb96449ebf446dd65130e50d
 	private String cardNumber;
 	private int securityCode;
 	private int expirationDate; // MMYY format
