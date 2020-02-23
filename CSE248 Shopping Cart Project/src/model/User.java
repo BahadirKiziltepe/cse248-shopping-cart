@@ -9,6 +9,7 @@ import java.util.TreeSet;
  *
  */
 public class User extends Account implements Comparable<Account>, Serializable {
+	private static final long serialVersionUID = 7348872539078319860L;
 	
 	private CreditCard savedCard; // this doesn't need to be made during the constructor
 	private ShoppingCart cart;

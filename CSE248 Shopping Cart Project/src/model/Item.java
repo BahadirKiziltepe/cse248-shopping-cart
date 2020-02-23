@@ -8,6 +8,8 @@ import java.io.Serializable;
  *
  */
 public class Item implements Comparable<Item>, Serializable {
+    private static final long serialVersionUID = -8582521697002551798L;
+	
 	private String productName;
 	private int itemID;
 	private double price;
