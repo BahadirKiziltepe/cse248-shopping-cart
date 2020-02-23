@@ -39,6 +39,8 @@ public class TestShoppingCart {
 		sc.addItemToCart(item, 1);
 		sc.addItemToCart(item2, 1);
 		System.out.println("total price: " + sc.totalPriceCalculation());
+		System.out.println("subtotal price: " + sc.subTotalPriceCalculation());
+		assertEquals(120,sc.subTotalPriceCalculation(),0.0000001);
 		assertEquals(130.50,sc.totalPriceCalculation(),0.001);
 		
 	}
