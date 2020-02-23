@@ -18,33 +18,33 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="addBtn" layoutX="217.0" layoutY="340.0" mnemonicParsing="false" onAction="#addItem" text="Add Item">
+            <Button fx:id="addBtn" layoutX="170.0" layoutY="340.0" mnemonicParsing="false" onAction="#addItem" text="Add Item">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <CheckBox fx:id="checkIfTaxable" layoutX="119.0" layoutY="348.0" mnemonicParsing="false" text="Taxable" />
-            <TextField fx:id="itemID" alignment="CENTER" layoutX="99.0" layoutY="95.0" prefHeight="30.0" prefWidth="200.0" promptText="Item ID">
+            <CheckBox fx:id="checkIfTaxable" layoutX="72.0" layoutY="348.0" mnemonicParsing="false" text="Taxable" />
+            <TextField fx:id="itemID" alignment="CENTER" layoutX="52.0" layoutY="95.0" prefHeight="30.0" prefWidth="200.0" promptText="Item ID">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="itemName" alignment="CENTER" layoutX="99.0" layoutY="145.0" prefHeight="30.0" prefWidth="200.0" promptText="Item Name">
+            <TextField fx:id="itemName" alignment="CENTER" layoutX="52.0" layoutY="145.0" prefHeight="30.0" prefWidth="200.0" promptText="Item Name">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="itemCategory" alignment="CENTER" layoutX="99.0" layoutY="195.0" prefHeight="30.0" prefWidth="200.0" promptText="Item Category">
+            <TextField fx:id="itemCategory" alignment="CENTER" layoutX="52.0" layoutY="195.0" prefHeight="30.0" prefWidth="200.0" promptText="Item Category">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="itemPrice" alignment="CENTER" layoutX="99.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" promptText="Item Price">
+            <TextField fx:id="itemPrice" alignment="CENTER" layoutX="52.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" promptText="Item Price">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="itemCount" layoutX="99.0" layoutY="292.0" prefWidth="200.0" promptText="Item Count">
+            <TextField fx:id="itemCount" alignment="CENTER" layoutX="52.0" layoutY="292.0" prefWidth="200.0" promptText="Item Count">
                <font>
                   <Font size="15.0" />
                </font>
@@ -54,7 +54,17 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <ListView fx:id="itemList" layoutX="393.0" layoutY="32.0" prefHeight="400.0" prefWidth="300.0" />
+            <ListView fx:id="itemList" layoutX="393.0" layoutY="32.0" onMouseClicked="#updateInfo" prefHeight="400.0" prefWidth="300.0" />
+            <Button fx:id="deleteBtn" layoutX="278.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteItem" text="Delete Item">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="orderBtn" layoutX="280.0" layoutY="386.0" mnemonicParsing="false" onAction="#orderItem" text="Order Item">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

@@ -36,6 +36,8 @@ public class AccountsControllerForAdmin {
 		}
 
 		accountViewer.setItems(accounts);
+		
+		main.setViewAccounts(true);
 	}
 
 	public void initialize() {

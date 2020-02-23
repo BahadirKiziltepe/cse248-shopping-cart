@@ -40,8 +40,26 @@ public class StoreController {
 					@Override
 					protected void updateItem(Item item, boolean bool) {
 						super.updateItem(item, bool);
-						if(item != null) {
-							setText(item.getProductName());
+						if (bool || item == null) {
+							setText(null);
+						} else {
+							if (item.getStock() <= 10) {
+								if (item.isTaxable()) {
+									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + " + item.calculateTax() + "\nLess than 10 in stock...");
+								} else {
+									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + "\nLess than 10 in stock...");
+								}
+							} else {
+								if (item.isTaxable()) {
+									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + " + item.calculateTax());
+								} else {
+									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()));
+								}
+							}
 						}
 					}
 				};
@@ -60,8 +78,35 @@ public class StoreController {
 	@FXML
 	private ListView<Item> itemList;
 
-	@FXML
-	void SearchItems(ActionEvent event) {
+    @FXML
+    private Button add;
 
-	}
+    @FXML
+    private TextField quantity;
+
+    @FXML
+    private Button cartBtn;
+
+    @FXML
+    private Button mainMenuBtn;
+
+    @FXML
+    void SearchItems(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addToCart(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void goToMainMenu(ActionEvent event) {
+    	main.showMainMenuPage();
+    }
+
+    @FXML
+    void viewCart(ActionEvent event) {
+    	main.showCartPage();
+    }
 }

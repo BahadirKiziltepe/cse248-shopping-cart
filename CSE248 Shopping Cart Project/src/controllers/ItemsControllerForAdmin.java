@@ -3,6 +3,8 @@ package controllers;
 import java.util.Set;
 
 import application.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import model.Item;
 
@@ -24,13 +27,17 @@ public class ItemsControllerForAdmin {
 	public void setMain(Main main) {
 		this.main = main;
 
-		items = FXCollections.observableArrayList();
-		keys = main.getData().getAllItems().keySet();
+		updateList();
+	}
 
-		for (Integer i : keys) {
-			items.add(main.getData().getAllItems().get(i));
-		}
-		itemList.setItems(items);
+	public void initialize() {
+		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Item> observable, Item oldItem, Item newItem) {
+				main.setSelectedItem(newItem);
+			}
+		});
 
 		itemList.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
 
@@ -40,10 +47,18 @@ public class ItemsControllerForAdmin {
 					@Override
 					protected void updateItem(Item item, boolean bool) {
 						super.updateItem(item, bool);
-						if(item != null) {
-							setText("ID: " + item.getItemID() + "\nName: " + item.getProductName()
-		                    + "\nCategory: " + item.getCategory() + "\nPrice: " + item.getPrice() + "\nStock: "
-		                    + item.getStock());
+						if (bool || item == null) {
+							setText(null);
+						} else {
+							if (item.isTaxable()) {
+								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
+										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + " + item.calculateTax() + "\nStock: "
+										+ item.getStock());
+							} else {
+								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
+										+ item.getCategory() + "\nPrice: $" + item.getPrice() + "\nStock: "
+										+ item.getStock());
+							}
 						}
 					}
 				};
@@ -61,6 +76,12 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	private Button addBtn;
+
+	@FXML
+	private Button deleteBtn;
+
+	@FXML
+	private Button orderBtn;
 
 	@FXML
 	private TextField itemID;
@@ -88,19 +109,43 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void addItem(ActionEvent event) {
-		Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()), Double.parseDouble(itemPrice.getText()), itemCategory.getText(),
-				checkIfTaxable.isSelected(), Integer.parseInt(itemCount.getText()));
+		Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()),
+				Double.parseDouble(itemPrice.getText()), itemCategory.getText(), checkIfTaxable.isSelected(),
+				Integer.parseInt(itemCount.getText()));
 		main.getData().addItemToStore(newItem);
+		updateList();
+
 		main.saveData(main.getData());
 
-		items = FXCollections.observableArrayList();
-		keys = main.getData().getAllItems().keySet();
-
-		for (Integer i : keys) {
-			items.add(main.getData().getAllItems().get(i));
-		}
-		this.itemList.setItems(items);
 	}
+
+	@FXML
+	void deleteItem(ActionEvent event) {
+		if (main.getSelectedItem() != null) {
+			main.getData().getAllItems().remove(main.getSelectedItem().getItemID());
+			main.saveData(main.getData());
+
+			updateList();
+			main.setSelectedItem(null);
+		}
+	}
+
+	@FXML
+	void orderItem(ActionEvent event) {
+
+	}
+	
+
+    @FXML
+    void updateInfo(MouseEvent event) {
+    	if(main.getSelectedItem() != null) {
+    		itemID.setText(Integer.toString(main.getSelectedItem().getItemID()));
+    		itemName.setText(main.getSelectedItem().getProductName());
+    		itemCategory.setText(main.getSelectedItem().getCategory());
+    		itemPrice.setText(Double.toString(main.getSelectedItem().getPrice()));
+    		itemCount.setText(Integer.toString(main.getSelectedItem().getStock()));
+    	}
+    }
 
 	@FXML
 	void goToMainMenu(ActionEvent event) {
@@ -110,16 +155,27 @@ public class ItemsControllerForAdmin {
 	@FXML
 	void search(ActionEvent event) {
 		ObservableList<Item> itemsToShow = FXCollections.observableArrayList();
-		if(searchBar.getText().contentEquals("")) {
-			this.itemList.setItems(items);
+		if (searchBar.getText().contentEquals("")) {
+			itemList.setItems(items);
 		} else {
-			for(Item i : items) {
-				if(i.toString().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+			for (Item i : items) {
+				if (i.toString().toLowerCase().contains(searchBar.getText().toLowerCase())) {
 					itemsToShow.add(i);
 				}
 			}
-			this.itemList.setItems(itemsToShow);
+			itemList.setItems(itemsToShow);
 		}
+	}
+
+	public void updateList() {
+		items = FXCollections.observableArrayList();
+		keys = main.getData().getAllItems().keySet();
+
+		for (Integer i : keys) {
+			items.add(main.getData().getAllItems().get(i));
+		}
+
+		itemList.setItems(items);
 	}
 
 }

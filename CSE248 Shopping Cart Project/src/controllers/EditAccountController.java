@@ -58,8 +58,12 @@ public class EditAccountController {
 	@FXML
 	void cancelChanges(MouseEvent event) {
 		if (main.getCurrentUser().getClass() == Admin.class) {
-			main.showAccountsForAdmin();
-		}else {
+			if (main.isViewAccounts()) {
+				main.showAccountsForAdmin();
+			} else {
+				main.showAccountPage();
+			}
+		} else {
 			main.showAccountPage();
 		}
 	}

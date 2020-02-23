@@ -28,6 +28,8 @@ public class AccountController {
 		this.city.setText(main.getCurrentUser().getAddress().getCity());
 		this.zipCode.setText(main.getCurrentUser().getAddress().getZipCode());
 		this.country.setText(main.getCurrentUser().getAddress().getCountry());
+		
+		main.setViewAccounts(false);
 	}
 	
     @FXML

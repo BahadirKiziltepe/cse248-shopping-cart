@@ -3,6 +3,7 @@ package application;
 import model.Account;
 import model.Address;
 import model.Admin;
+import model.Item;
 import model.Name;
 import model.StoreDataBase;
 
@@ -34,6 +35,10 @@ public class Main extends Application {
 
 	private Account currentUser = null, userPickedByAdmin = null;
 	private StoreDataBase data = new StoreDataBase();
+	
+	private Item selectedItem = null;
+	
+	private boolean viewAccounts = false;
 
 	@Override
 	public void start(Stage stg) {
@@ -225,6 +230,10 @@ public class Main extends Application {
 	public void showWareHouseForAdmin() {
 
 	}
+	
+	public void goBack() {
+		
+	}
 
 	public void saveData(StoreDataBase data) {
 		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
@@ -257,4 +266,21 @@ public class Main extends Application {
 	public void setUserPickedByAdmin(Account userPickedByAdmin) {
 		this.userPickedByAdmin = userPickedByAdmin;
 	}
+
+	public boolean isViewAccounts() {
+		return viewAccounts;
+	}
+
+	public void setViewAccounts(boolean viewAccounts) {
+		this.viewAccounts = viewAccounts;
+	}
+
+	public Item getSelectedItem() {
+		return selectedItem;
+	}
+
+	public void setSelectedItem(Item selectedItem) {
+		this.selectedItem = selectedItem;
+	}
+	
 }
