@@ -41,6 +41,14 @@ public class Order implements Comparable<Order>, Serializable {
 		itemsbought.add(itemToAdd);
 	}
 	
+	/**
+	 * Removes item from Order receipt
+	 * @param itemToRemove item being removed
+	 */
+	public void removeItemFromOrder(Item itemToRemove) {
+		itemsbought.remove(itemToRemove);
+	}
+	
 	
 	
 	// setters and getters
