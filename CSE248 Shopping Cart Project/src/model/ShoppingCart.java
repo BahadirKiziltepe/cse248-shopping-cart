@@ -52,9 +52,9 @@ public class ShoppingCart implements Serializable{
 		double totalPrice = 0;
 		for (int i = 0; i < items.length; i++) {
 			if (((Item) items[i]).isTaxable() == true) {
-				totalPrice += ((Item) items[i]).calculateTax();
+				totalPrice += ((Item) items[i]).calculateTax() *((Item) items[i]).getStock();
 			}
-			totalPrice += ((Item) items[i]).getPrice();
+			totalPrice += ((Item) items[i]).getPrice() * ((Item) items[i]).getStock();
 		}
 		return  Double.parseDouble(String.format("%.2f", totalPrice));
 	}
@@ -67,7 +67,7 @@ public class ShoppingCart implements Serializable{
 		Object[] items =  itemsInCart.values().toArray();
 		double subTotalPrice = 0;
 		for (int i = 0; i < items.length; i++) {
-			subTotalPrice += ((Item) items[i]).getPrice();
+			subTotalPrice += ((Item) items[i]).getPrice() * ((Item) items[i]).getStock();
 		}
 		return  Double.parseDouble(String.format("%.2f", subTotalPrice));
 	}
