@@ -141,6 +141,7 @@ public class StoreDataBase implements Serializable {
 				
 		} catch (IOException e) {
 			if (displayDebug == true) {
+				e.printStackTrace();
 				System.out.printf("could not load %s\n", filePath);
 			}
 			return null;

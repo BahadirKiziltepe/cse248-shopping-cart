@@ -10,6 +10,11 @@ import java.io.Serializable;
 public class Admin extends Account implements Comparable<Account>, Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4977953296203922926L;
+
+	/**
 	 * Creates an Admin account
 	 * @param userName Admin username
 	 * @param password Admin password

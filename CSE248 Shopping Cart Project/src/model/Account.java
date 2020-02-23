@@ -9,6 +9,10 @@ import java.io.Serializable;
  */
 public abstract class Account implements Comparable<Account>, Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4251085793863071469L;
 	private String userName;
 	private String password;
 	private Name name;

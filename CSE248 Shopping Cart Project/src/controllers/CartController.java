@@ -21,6 +21,7 @@ import model.User;
 public class CartController {
 
 	private ObservableList<Item> items;
+	private Set<Integer> keys;
 
 	private Main main;
 
@@ -112,7 +113,8 @@ public class CartController {
 
 	@FXML
 	void checkOut(ActionEvent event) {
-		Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(), 0, main.getCurrentUser());
+		Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(), 0,
+				main.getCurrentUser());
 		main.setSelectedItem(null);
 	}
 
@@ -146,9 +148,10 @@ public class CartController {
 
 	public void updateList() {
 		items = FXCollections.observableArrayList();
+		keys = 	((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();
 
-		for (Item i : ((User) main.getCurrentUser()).getCart().getItemsInCart()) {
-			items.add(main.getData().getAllItems().get(i.getItemID()));
+		for (Integer i : keys) {
+			items.add(main.getData().getAllItems().get(i));
 		}
 
 		itemList.setItems(items);

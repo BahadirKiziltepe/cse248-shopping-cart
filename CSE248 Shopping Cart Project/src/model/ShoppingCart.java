@@ -10,6 +10,10 @@ import java.util.TreeSet;
  *
  */
 public class ShoppingCart implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5011097389102676966L;
 	private TreeMap<Integer,Item> itemsInCart;
 	
 	/**
@@ -38,7 +42,7 @@ public class ShoppingCart implements Serializable{
 	 * @param item Item being removed from the cart
 	 */
 	public void removeItemFromCart(Item item) {
-		itemsInCart.remove(item);
+		itemsInCart.remove(item.getItemID());
 	}
 	
 	/**

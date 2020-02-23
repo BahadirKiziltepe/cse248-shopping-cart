@@ -117,9 +117,9 @@ public class StoreController {
 
 	@FXML
 	void addToCart(ActionEvent event) {
-		if (main.getSelectedItem().getStock() > 0) {
+		if (main.getSelectedItem().getStock() > Integer.parseInt(quantity.getText())) {
 			System.out.println(((User) main.getCurrentUser()).getCart());
-			((User) main.getCurrentUser()).getCart().addItemToCart(main.getSelectedItem());
+			((User) main.getCurrentUser()).getCart().addItemToCart(main.getSelectedItem(), Integer.parseInt(quantity.getText()));
 			main.getSelectedItem().subtractFromStock(1);
 		}
 	}
