@@ -3,6 +3,8 @@ package controllers;
 import java.util.Set;
 
 import application.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import model.Item;
+import model.User;
 
 public class StoreController {
 
@@ -24,13 +27,17 @@ public class StoreController {
 	public void setMain(Main main) {
 		this.main = main;
 
-		items = FXCollections.observableArrayList();
-		keys = main.getData().getAllItems().keySet();
+		updateList();
+	}
 
-		for (Integer i : keys) {
-			items.add(main.getData().getAllItems().get(i));
-		}
-		itemList.setItems(items);
+	public void initialize() {
+		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Item> observable, Item oldItem, Item newItem) {
+				main.setSelectedItem(newItem);
+			}
+		});
 
 		itemList.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
 
@@ -46,15 +53,18 @@ public class StoreController {
 							if (item.getStock() <= 10) {
 								if (item.isTaxable()) {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + " + item.calculateTax() + "\nLess than 10 in stock...");
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + "
+											+ item.calculateTax() + "\nLess than 10 in stock...");
 								} else {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + "\nLess than 10 in stock...");
+											+ "\nPrice: $" + String.format("%2f", item.getPrice())
+											+ "\nLess than 10 in stock...");
 								}
 							} else {
 								if (item.isTaxable()) {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + " + item.calculateTax());
+											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + "
+											+ item.calculateTax());
 								} else {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
 											+ "\nPrice: $" + String.format("%2f", item.getPrice()));
@@ -78,35 +88,62 @@ public class StoreController {
 	@FXML
 	private ListView<Item> itemList;
 
-    @FXML
-    private Button add;
+	@FXML
+	private Button add;
 
-    @FXML
-    private TextField quantity;
+	@FXML
+	private TextField quantity;
 
-    @FXML
-    private Button cartBtn;
+	@FXML
+	private Button cartBtn;
 
-    @FXML
-    private Button mainMenuBtn;
+	@FXML
+	private Button mainMenuBtn;
 
-    @FXML
-    void SearchItems(ActionEvent event) {
+	@FXML
+	void SearchItems(ActionEvent event) {
+		ObservableList<Item> itemsToShow = FXCollections.observableArrayList();
+		if (searchBar.getText().contentEquals("")) {
+			itemList.setItems(items);
+		} else {
+			for (Item i : items) {
+				if (i.toString().toLowerCase().contains(searchBar.getText().toLowerCase())) {
+					itemsToShow.add(i);
+				}
+			}
+			itemList.setItems(itemsToShow);
+		}
+	}
 
-    }
+	@FXML
+	void addToCart(ActionEvent event) {
+		if (main.getSelectedItem().getStock() > 0) {
+			System.out.println(((User) main.getCurrentUser()).getCart());
+			((User) main.getCurrentUser()).getCart().addItemToCart(main.getSelectedItem());
+			main.getSelectedItem().subtractFromStock(1);
+		}
+	}
 
-    @FXML
-    void addToCart(ActionEvent event) {
-    	
-    }
+	@FXML
+	void goToMainMenu(ActionEvent event) {
+		main.showMainMenuPage();
+		main.setSelectedItem(null);
+	}
 
-    @FXML
-    void goToMainMenu(ActionEvent event) {
-    	main.showMainMenuPage();
-    }
+	@FXML
+	void viewCart(ActionEvent event) {
+		main.showCartPage();
+		main.setSelectedItem(null);
+	}
 
-    @FXML
-    void viewCart(ActionEvent event) {
-    	main.showCartPage();
-    }
+	public void updateList() {
+		items = FXCollections.observableArrayList();
+		keys = main.getData().getAllItems().keySet();
+
+		for (Integer i : keys) {
+			items.add(main.getData().getAllItems().get(i));
+		}
+
+		itemList.setItems(items);
+	}
 }

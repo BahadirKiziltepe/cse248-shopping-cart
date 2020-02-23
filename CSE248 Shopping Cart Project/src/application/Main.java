@@ -43,9 +43,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stg) {
-		System.out.println(data);
 		readData();
-		System.out.println(data);
 
 		Name adminName = new Name("Admin", "Admin");
 		Address adminAddress = new Address("a", "b", "c", "123", "d");
@@ -240,7 +238,7 @@ public class Main extends Application {
 
 	public void readData() {
 		try {
-			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", true);
+			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

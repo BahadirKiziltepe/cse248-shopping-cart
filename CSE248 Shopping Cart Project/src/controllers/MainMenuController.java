@@ -38,7 +38,7 @@ public class MainMenuController {
 
     @FXML
     void CartView(ActionEvent event) {
-
+    	main.showCartPage();
     }
 
     @FXML

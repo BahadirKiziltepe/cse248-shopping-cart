@@ -26,17 +26,8 @@ public class AccountsControllerForAdmin {
 	public void setMain(Main main) {
 		this.main = main;
 
-		accounts = FXCollections.observableArrayList();
-		keys = main.getData().getAllAccounts().keySet();
+		updateList();
 
-		for (String s : keys) {
-			if (main.getData().getAllAccounts().get(s).getClass() != Admin.class) {
-				accounts.add(s);
-			}
-		}
-
-		accountViewer.setItems(accounts);
-		
 		main.setViewAccounts(true);
 	}
 
@@ -45,7 +36,9 @@ public class AccountsControllerForAdmin {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				main.setUserPickedByAdmin(main.getData().getAllAccounts().get(newValue));
+				if (newValue != null) {
+					main.setUserPickedByAdmin(main.getData().getAllAccounts().get(newValue));
+				}
 			}
 		});
 	}
@@ -118,7 +111,18 @@ public class AccountsControllerForAdmin {
 	void viewAccount(ActionEvent event) {
 		main.showEditAccountPage();
 	}
-	
+
+	@FXML
+	void deleteAccount(ActionEvent event) {
+		if (main.getUserPickedByAdmin() != null) {
+			main.getData().getAllAccounts().remove(main.getUserPickedByAdmin().getUserName());
+			main.saveData(main.getData());
+
+			updateList();
+			main.setUserPickedByAdmin(null);
+		}
+	}
+
 	@FXML
 	void getSelected(MouseEvent event) {
 		if (main.getUserPickedByAdmin() != null) {
@@ -134,6 +138,18 @@ public class AccountsControllerForAdmin {
 			zipcode.setText(main.getUserPickedByAdmin().getAddress().getZipCode());
 			country.setText(main.getUserPickedByAdmin().getAddress().getCountry());
 		}
+	}
+
+	public void updateList() {
+		accounts = FXCollections.observableArrayList();
+		keys = main.getData().getAllAccounts().keySet();
+
+		for (String s : keys) {
+			if (main.getData().getAllAccounts().get(s).getClass() != Admin.class) {
+				accounts.add(s);
+			}
+		}
+		accountViewer.setItems(accounts);
 	}
 
 	@FXML

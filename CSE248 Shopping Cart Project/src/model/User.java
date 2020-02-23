@@ -45,5 +45,12 @@ public class User extends Account implements Comparable<Account>, Serializable {
 		this.savedCard = savedCard;
 	}
 
+	public ShoppingCart getCart() {
+		return cart;
+	}
+
+	public void setCart(ShoppingCart cart) {
+		this.cart = cart;
+	}
 	
 }

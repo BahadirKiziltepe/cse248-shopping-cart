@@ -82,7 +82,7 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text fx:id="cancel" layoutX="605.0" layoutY="415.0" onMouseClicked="#cancelChanges" onMouseEntered="#hyperEnter" onMouseExited="#hyperOut" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" />
+            <Text fx:id="cancel" layoutX="605.0" layoutY="426.0" onMouseClicked="#cancelChanges" onMouseEntered="#hyperEnter" onMouseExited="#hyperOut" strokeType="OUTSIDE" strokeWidth="0.0" text="Cancel" />
             <Separator layoutX="381.0" layoutY="162.0" orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </AnchorPane>

@@ -20,9 +20,6 @@ public class AdminController {
     private Button itemsBtn;
 
     @FXML
-    private Button ordersBtn;
-
-    @FXML
     private Button wareHouseBtn;
 
     @FXML
@@ -50,11 +47,6 @@ public class AdminController {
     @FXML
     void showItems(ActionEvent event) {
     	main.showItemsForAdmin();
-    }
-
-    @FXML
-    void showOrders(ActionEvent event) {
-
     }
 
     @FXML

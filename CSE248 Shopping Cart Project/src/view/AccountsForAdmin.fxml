@@ -23,7 +23,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="selectAccount" layoutX="245.0" layoutY="417.0" mnemonicParsing="false" onAction="#viewAccount" text="Select Account">
+            <Button fx:id="selectAccount" layoutX="245.0" layoutY="398.0" mnemonicParsing="false" onAction="#viewAccount" text="Select Account">
                <font>
                   <Font size="15.0" />
                </font>
@@ -84,6 +84,11 @@
                </font>
             </Text>
             <Button fx:id="backBtn" layoutX="68.0" layoutY="417.0" mnemonicParsing="false" onAction="#goBack" text="Main Menu">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteBtn" layoutX="243.0" layoutY="436.0" mnemonicParsing="false" onAction="#deleteAccount" text="Delete Account">
                <font>
                   <Font size="15.0" />
                </font>

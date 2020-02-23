@@ -65,6 +65,11 @@
                   <Font size="15.0" />
                </font>
             </Button>
+            <Button fx:id="clearBtn" layoutX="170.0" layoutY="386.0" mnemonicParsing="false" onAction="#Clear" prefHeight="31.0" prefWidth="82.0" text="Clear">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

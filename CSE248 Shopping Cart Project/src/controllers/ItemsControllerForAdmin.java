@@ -82,6 +82,9 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	private Button orderBtn;
+	
+    @FXML
+    private Button clearBtn;
 
 	@FXML
 	private TextField itemID;
@@ -132,7 +135,10 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void orderItem(ActionEvent event) {
-
+		main.getData().getAllItems().get(Integer.parseInt(itemID.getText())).addToStock(Integer.parseInt(itemCount.getText()));
+		main.saveData(main.getData());
+		
+		updateList();
 	}
 	
 
@@ -146,10 +152,21 @@ public class ItemsControllerForAdmin {
     		itemCount.setText(Integer.toString(main.getSelectedItem().getStock()));
     	}
     }
+    
+    @FXML
+    void Clear(ActionEvent event) {
+		itemID.setText("");
+		itemName.setText("");
+		itemCategory.setText("");
+		itemPrice.setText("");
+		itemCount.setText("");
+		checkIfTaxable.setSelected(false);
+    }
 
 	@FXML
 	void goToMainMenu(ActionEvent event) {
 		main.showAdminPage();
+		main.setSelectedItem(null);
 	}
 
 	@FXML
