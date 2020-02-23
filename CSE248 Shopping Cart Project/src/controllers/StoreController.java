@@ -117,13 +117,15 @@ public class StoreController {
 
 	@FXML
 	void addToCart(ActionEvent event) {
-		if (main.getSelectedItem().getStock() > Integer.parseInt(quantity.getText())) {
-			((User) main.getCurrentUser()).getCart().addItemToCart(main.getSelectedItem(),
-					Integer.parseInt(quantity.getText()));
-			((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
-					.setStock(Integer.parseInt(quantity.getText()));
+		if (main.getSelectedItem().getStock() >= Integer.parseInt(quantity.getText())) {
+			Item newItem = new Item(main.getSelectedItem());
+			newItem.setStock(Integer.parseInt(quantity.getText()));
+			((User) main.getCurrentUser()).getCart().addItemToCart(newItem);
+			
 			main.getSelectedItem().subtractFromStock(Integer.parseInt(quantity.getText()));
+			
 			main.saveData(main.getData());
+			updateList();
 		}
 	}
 

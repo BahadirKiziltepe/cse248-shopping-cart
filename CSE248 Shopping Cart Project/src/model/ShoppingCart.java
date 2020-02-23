@@ -12,7 +12,7 @@ import java.util.TreeSet;
 public class ShoppingCart implements Serializable{
 	private static final long serialVersionUID = -5266471585635469192L;
 	
-	private TreeMap<Integer,Item> itemsInCart;
+	private TreeMap<Integer, Item> itemsInCart;
 	
 	/**
 	 * Holds all items that are being considered for purchase
@@ -26,9 +26,9 @@ public class ShoppingCart implements Serializable{
 	 * @param itemToAdd Item being added to the shopping cart
 	 * @param quantity amount being added
 	 */
-	public void addItemToCart(Item itemToAdd, int quantity) {
+	public void addItemToCart(Item itemToAdd) {
 		if (itemsInCart.containsKey(itemToAdd.getItemID())) {
-			itemsInCart.get(itemToAdd.getItemID()).addToStock(quantity);
+			itemsInCart.get(itemToAdd.getItemID()).addToStock(itemToAdd.getStock());
 		} else {
 			itemsInCart.put(itemToAdd.getItemID(), itemToAdd);
 		}

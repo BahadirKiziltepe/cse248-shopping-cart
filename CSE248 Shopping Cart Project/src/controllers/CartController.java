@@ -52,11 +52,11 @@ public class CartController {
 							setText(null);
 						} else {
 							if (item.isTaxable()) {
-								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
+								setText("Name: " + item.getProductName() + "\nCategory: "
 										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + "
 										+ item.calculateTax() + "\nQuantity: " + item.getStock());
 							} else {
-								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
+								setText("Name: " + item.getProductName() + "\nCategory: "
 										+ item.getCategory() + "\nPrice: $" + item.getPrice() + "\nQuantity: "
 										+ item.getStock());
 							}
@@ -113,8 +113,14 @@ public class CartController {
 
 	@FXML
 	void checkOut(ActionEvent event) {
-		Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(), 0,
+		Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(), ((User) main.getCurrentUser()).getCart().subTotalPriceCalculation(),
 				main.getCurrentUser());
+		main.getData().addOrderToStore(order);
+		
+		((User) main.getCurrentUser()).getCart().getItemsInCart().clear();
+		updateList();
+		
+		main.saveData(main.getData());
 		main.setSelectedItem(null);
 	}
 
@@ -127,16 +133,28 @@ public class CartController {
 	@FXML
 	void increase(ActionEvent event) {
 		if (main.getSelectedItem() != null) {
-			main.getSelectedItem().addToStock(1);
-			main.saveData(main.getData());
-			updateList();
+			if (main.getData().getAllItems().get(main.getSelectedItem().getItemID()).getStock() >= Integer
+					.parseInt(quantity.getText())) {
+				main.getSelectedItem().addToStock(Integer.parseInt(quantity.getText()));
+				main.getData().getAllItems().get(main.getSelectedItem().getItemID())
+						.subtractFromStock(Integer.parseInt(quantity.getText()));
+
+				main.saveData(main.getData());
+				updateList();
+			}
 		}
 	}
 
 	@FXML
 	void remove(ActionEvent event) {
 		if (main.getSelectedItem() != null) {
-			((User) main.getCurrentUser()).getCart().removeItemFromCart(main.getSelectedItem());
+
+			if (((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
+					.getStock() >= Integer.parseInt(quantity.getText())) {
+				((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
+						.subtractFromStock(Integer.parseInt(quantity.getText()));
+			}
+
 			main.saveData(main.getData());
 			updateList();
 		}
@@ -150,10 +168,10 @@ public class CartController {
 
 	public void updateList() {
 		items = FXCollections.observableArrayList();
-		keys = 	((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();
+		keys = ((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();
 
 		for (Integer i : keys) {
-			items.add(main.getData().getAllItems().get(i));
+			items.add(((User) main.getCurrentUser()).getCart().getItemsInCart().get(i));
 		}
 
 		itemList.setItems(items);
