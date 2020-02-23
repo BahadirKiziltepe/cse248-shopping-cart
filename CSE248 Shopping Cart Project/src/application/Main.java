@@ -43,16 +43,6 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stg) {
-		System.out.println(data);
-		readData();
-		System.out.println(data);
-
-		Name adminName = new Name("Admin", "Admin");
-		Address adminAddress = new Address("a", "b", "c", "123", "d");
-		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
-
-		data.getAllAccounts().put(admin.getUserName(), admin);
-
 		initialize();
 	}
 
@@ -61,6 +51,16 @@ public class Main extends Application {
 	}
 
 	public void initialize() {
+		File file = new File("data\\StoreDataBase.bin");
+		if (file.length() != 0) {
+			readData();
+		}
+		Name adminName = new Name("Admin", "Admin");
+		Address adminAddress = new Address("a", "b", "c", "123", "d");
+		Account admin = new Admin("admin", "111", adminName, adminAddress, "@");
+
+		data.getAllAccounts().put(admin.getUserName(), admin);
+		
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(this.getClass().getResource("/view/Root.fxml"));

@@ -18,9 +18,11 @@ import java.util.TreeSet;
  * @author bdabr
  *
  */
-public class StoreDataBase implements Serializable {
-    private static final long serialVersionUID = 6100796155779035592L;
-	
+public class StoreDataBase implements Serializable {	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7245546982264124437L;
 	private TreeMap<String, Account> allAccounts;
 	private HashMap<Integer, Item> allItems;
 	private TreeSet<Order> allOrders;

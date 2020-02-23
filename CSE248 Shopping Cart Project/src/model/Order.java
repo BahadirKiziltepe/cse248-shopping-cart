@@ -10,7 +10,6 @@ import java.util.TreeSet;
  *
  */
 public class Order implements Comparable<Order>, Serializable {
-	
 	/**
 	 * 
 	 */
