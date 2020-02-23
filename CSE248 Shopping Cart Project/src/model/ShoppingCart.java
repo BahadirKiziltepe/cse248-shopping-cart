@@ -22,6 +22,7 @@ public class ShoppingCart implements Serializable{
 	/**
 	 * Adds an Item to the shopping cart
 	 * @param itemToAdd Item being added to the shopping cart
+	 * @param quantity amount being added
 	 */
 	public void addItemToCart(Item itemToAdd, int quantity) {
 		if (itemsInCart.containsKey(itemToAdd.getItemID())) {
