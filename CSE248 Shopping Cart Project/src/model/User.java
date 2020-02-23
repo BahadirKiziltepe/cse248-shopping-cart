@@ -11,6 +11,7 @@ import java.util.TreeSet;
 public class User extends Account implements Comparable<Account>, Serializable {
 	
 	private CreditCard savedCard; // this doesn't need to be made during the constructor
+	private ShoppingCart cart;
 
 	/**
 	 * Creates a User account (the most common type of account). This is a subclass of the Account class.
@@ -23,6 +24,7 @@ public class User extends Account implements Comparable<Account>, Serializable {
 	public User(String userName, String password, Name name, Address address, String email) {
 		super(userName, password, name, address, email);
 		savedCard = new CreditCard("0000 0000 0000", 000, 0000);
+		cart = new ShoppingCart();
 	}
 
 	// user registeration method moved to the StoreDataBase class **
