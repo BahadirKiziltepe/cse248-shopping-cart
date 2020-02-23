@@ -35,6 +35,7 @@ public class TestStoreDataBase {
 		order.addItemToOrder(item2);
 		
 		
+		
 		Order order2 = new Order(60.0,59.99,user1);
 		order2.addItemToOrder(item3);
 		
