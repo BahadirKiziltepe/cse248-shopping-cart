@@ -8,6 +8,7 @@ import java.io.Serializable;
  *
  */
 public class Name implements Serializable {
+	private static final long serialVersionUID = -2832120278545466662L;
 	
 	private String firstName;
 	private String lastName;
