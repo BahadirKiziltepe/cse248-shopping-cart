@@ -36,7 +36,7 @@ public class LoginController {
 	void Login(ActionEvent event) {
 		if(username.getText().equals("")) {
 			if(password.getText().equals((main.getData().getAllAccounts().get("admin").getPassword()))){
-				
+				main.showRegisterPage();
 			}
 		}
 		
