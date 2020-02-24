@@ -20,6 +20,12 @@ import model.Item;
 import model.Order;
 import model.User;
 
+/**
+ * user's shopping cart
+ * 
+ * @author bahad
+ *
+ */
 public class CartController {
 
 	private ObservableList<Item> items;
@@ -27,6 +33,11 @@ public class CartController {
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 
@@ -36,6 +47,9 @@ public class CartController {
 		subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
 	}
 
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
 
@@ -109,6 +123,11 @@ public class CartController {
 	@FXML
 	private Button checkOut;
 
+	/**
+	 * searches through the list based on the given search key.
+	 * 
+	 * @param event use this to search an item in your shopping cart.
+	 */
 	@FXML
 	void SearchItems(ActionEvent event) {
 		ObservableList<Item> itemsToShow = FXCollections.observableArrayList();
@@ -124,6 +143,11 @@ public class CartController {
 		}
 	}
 
+	/**
+	 * checks out the items that are in the shopping cart
+	 * 
+	 * @param event use this to buy the selected items.
+	 */
 	@FXML
 	void checkOut(ActionEvent event) {
 		if (((User) main.getCurrentUser()).getSavedCard() != null) {
@@ -155,12 +179,23 @@ public class CartController {
 		}
 	}
 
+	/**
+	 * Goes back to the main menu.
+	 * 
+	 * @param event use to go to the main menu.
+	 */
 	@FXML
 	void goToMainMenu(ActionEvent event) {
 		main.showMainMenuPage();
 		main.setSelectedItem(null);
 	}
 
+	/**
+	 * increases the quantity of a selected item that is in the shopping cart.
+	 * 
+	 * @param event use this if you need to buy more of a selected item if store
+	 *              carries it.
+	 */
 	@FXML
 	void increase(ActionEvent event) {
 		if (!main.checkIfInteger(quantity.getText())) {
@@ -183,6 +218,13 @@ public class CartController {
 		}
 	}
 
+	/**
+	 * decreases the quantity of a selected item that is in the shopping cart, if 0,
+	 * removes it.
+	 * 
+	 * @param event use this if you need to decrease the quantity of a selected item
+	 *              or to remove it from your shopping cart.
+	 */
 	@FXML
 	void remove(ActionEvent event) {
 		if (!main.checkIfInteger(quantity.getText())) {
@@ -211,12 +253,20 @@ public class CartController {
 		}
 	}
 
+	/**
+	 * takes you to the store page.
+	 * 
+	 * @param event use this to view store.
+	 */
 	@FXML
 	void viewStore(ActionEvent event) {
 		main.showStorePage();
 		main.setSelectedItem(null);
 	}
 
+	/**
+	 * updates the list.
+	 */
 	public void updateList() {
 		items = FXCollections.observableArrayList();
 		keys = ((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();

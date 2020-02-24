@@ -11,10 +11,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.Admin;
 
+/**
+ * Allows editing account informations.
+ * 
+ * @author bahad
+ *
+ */
 public class EditAccountController {
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 	}
@@ -55,6 +66,11 @@ public class EditAccountController {
 	@FXML
 	private Text cancel;
 
+	/**
+	 * cancels the changes
+	 * 
+	 * @param event use this if you do not want to save changes.
+	 */
 	@FXML
 	void cancelChanges(MouseEvent event) {
 		if (main.getCurrentUser().getClass() == Admin.class) {
@@ -68,6 +84,12 @@ public class EditAccountController {
 		}
 	}
 
+	/**
+	 * changes the selected account's informations based on given keys. admin can
+	 * change an accounts information in this page as well
+	 * 
+	 * @param event use this to edit an account.
+	 */
 	@FXML
 	void changeAccount(ActionEvent event) {
 		if (main.getCurrentUser().getClass() == Admin.class) {

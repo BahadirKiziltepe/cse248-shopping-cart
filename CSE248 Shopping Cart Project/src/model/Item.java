@@ -124,6 +124,11 @@ public class Item implements Comparable<Item>, Serializable {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
+	@Override
+    public String toString() {
+        return itemID + productName + category + price + stock;
+    }
 
 	@Override
 	public int compareTo(Item other) {

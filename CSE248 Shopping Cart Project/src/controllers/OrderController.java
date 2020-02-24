@@ -20,30 +20,44 @@ import model.Admin;
 import model.Item;
 import model.User;
 
+/**
+ * shows you the orders made
+ * 
+ * @author bahad
+ *
+ */
 public class OrderController {
-	
+
 	private ObservableList<Item> items;
-	
+
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
-		
+
 		updateList();
-		
+
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(main.getSelectedOrder().getOrderDate());
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONDAY) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-		
+
 		owner.setText(main.getSelectedOrder().getOwner().getUserName());
 		date.setText(month + "/" + day + "/" + year);
 		total.setText(Double.toString(main.getSelectedOrder().getTotal()));
 		subTotal.setText(Double.toString(main.getSelectedOrder().getSubTotal()));
 
 	}
-	
+
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
 
@@ -66,8 +80,8 @@ public class OrderController {
 						} else {
 							if (item.isTaxable()) {
 								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
-										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + " + item.calculateTax() + "\nStock: "
-										+ item.getStock());
+										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + "
+										+ item.calculateTax() + "\nStock: " + item.getStock());
 							} else {
 								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
 										+ item.getCategory() + "\nPrice: $" + item.getPrice() + "\nStock: "
@@ -82,52 +96,64 @@ public class OrderController {
 		});
 	}
 
-	
-    @FXML
-    private ListView<Item> itemList;
+	@FXML
+	private ListView<Item> itemList;
 
-    @FXML
-    private Button backBtn;
+	@FXML
+	private Button backBtn;
 
-    @FXML
-    private Text owner;
+	@FXML
+	private Text owner;
 
-    @FXML
-    private Text date;
+	@FXML
+	private Text date;
 
-    @FXML
-    private Text total;
-    
-    @FXML
-    private Text subTotal;
+	@FXML
+	private Text total;
 
-    @FXML
-    private Button cancelBtn;
+	@FXML
+	private Text subTotal;
 
-    @FXML
-    void cancelOrder(ActionEvent event) {
+	@FXML
+	private Button cancelBtn;
+
+	/**
+	 * cancels an ongoing order.
+	 * 
+	 * @param event use this to cancel an order that you placed.
+	 */
+	@FXML
+	void cancelOrder(ActionEvent event) {
 		main.getSelectedOrder().setOwner(null);
 		main.getData().getAllOrders().remove(main.getSelectedOrder());
 		main.setSelectedOrder(null);
 		main.saveData(main.getData());
-		
-		if(main.getCurrentUser().getClass() == Admin.class) {
+
+		if (main.getCurrentUser().getClass() == Admin.class) {
 			main.showWareHouseForAdmin();
 		} else {
 			main.showOrderHistoryPage();
 		}
-    }
+	}
 
-    @FXML
-    void goBack(ActionEvent event) {
-    	if(main.getCurrentUser().getClass() == Admin.class) {
-    		main.showWareHouseForAdmin();
-    	} else {
-    		main.showOrderHistoryPage();
-    	}
-    	main.setSelectedOrder(null);
-    }
-    
+	/**
+	 * Goes back to the previous scene.
+	 * 
+	 * @param event use to go to the previous scene.
+	 */
+	@FXML
+	void goBack(ActionEvent event) {
+		if (main.getCurrentUser().getClass() == Admin.class) {
+			main.showWareHouseForAdmin();
+		} else {
+			main.showOrderHistoryPage();
+		}
+		main.setSelectedOrder(null);
+	}
+
+	/**
+	 * updates the list
+	 */
 	public void updateList() {
 		items = FXCollections.observableArrayList();
 

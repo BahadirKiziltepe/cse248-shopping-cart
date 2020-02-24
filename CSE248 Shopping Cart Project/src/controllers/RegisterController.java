@@ -17,10 +17,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * register a new user
+ * 
+ * @author bahad
+ *
+ */
 public class RegisterController {
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 	}
@@ -64,6 +75,11 @@ public class RegisterController {
 	@FXML
 	private Text login;
 
+	/**
+	 * creates a new account as user.
+	 * 
+	 * @param event use this to create a user.
+	 */
 	@FXML
 	void CreateNewAccount(ActionEvent event) {
 		if (!(username.getText().equals("") || password.getText().equals("") || email.getText().equals("")
@@ -101,6 +117,12 @@ public class RegisterController {
 		createAccount.setUnderline(false);
 	}
 
+	/**
+	 * takes you to the login scene.
+	 * 
+	 * @param event use this to go back to the login page without saving
+	 *              ingormations.
+	 */
 	@FXML
 	void setSceneLogin(MouseEvent event) {
 		main.showLoginPage();

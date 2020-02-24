@@ -18,18 +18,32 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import model.Item;
 
+/**
+ * Allows you to remove/add/order items
+ * 
+ * @author bahad
+ *
+ */
 public class ItemsControllerForAdmin {
 
 	private ObservableList<Item> items;
 	private Set<Integer> keys;
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 
 		updateList();
 	}
 
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
 
@@ -110,6 +124,11 @@ public class ItemsControllerForAdmin {
 	@FXML
 	private ListView<Item> itemList;
 
+	/**
+	 * adds item to the store, if existing item, increases the stock.
+	 * 
+	 * @param event use this to add an item to the store or increase its stock.
+	 */
 	@FXML
 	void addItem(ActionEvent event) {
 		if (!(itemID.getText().equals("") && itemCount.getText().equals("")) && (itemName.getText().equals("")
@@ -130,6 +149,11 @@ public class ItemsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * deletes item from store.
+	 * 
+	 * @param event use this to delete an item.
+	 */
 	@FXML
 	void deleteItem(ActionEvent event) {
 		if (main.getSelectedItem() != null) {
@@ -141,6 +165,11 @@ public class ItemsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * orders an existing item.
+	 * 
+	 * @param event use this to order an item.
+	 */
 	@FXML
 	void orderItem(ActionEvent event) {
 		if (!main.checkIfInteger(itemCount.getText())) {
@@ -157,6 +186,11 @@ public class ItemsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * fills the fields automatically based on the selected item.
+	 * 
+	 * @param event use this to fill the fields automatically.
+	 */
 	@FXML
 	void updateInfo(MouseEvent event) {
 		if (main.getSelectedItem() != null) {
@@ -167,6 +201,11 @@ public class ItemsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * clears the fields.
+	 * 
+	 * @param event use this to clear the fields.
+	 */
 	@FXML
 	void Clear(ActionEvent event) {
 		itemID.setText("");
@@ -177,12 +216,22 @@ public class ItemsControllerForAdmin {
 		checkIfTaxable.setSelected(false);
 	}
 
+	/**
+	 * Goes back to the main menu.
+	 * 
+	 * @param event use to go to the main menu.
+	 */
 	@FXML
 	void goToMainMenu(ActionEvent event) {
 		main.showAdminPage();
 		main.setSelectedItem(null);
 	}
 
+	/**
+	 * searches through the list based on the given search key.
+	 * 
+	 * @param event use this to search an item in the store.
+	 */
 	@FXML
 	void search(ActionEvent event) {
 		ObservableList<Item> itemsToShow = FXCollections.observableArrayList();
@@ -198,6 +247,9 @@ public class ItemsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * updates the list.
+	 */
 	public void updateList() {
 		items = FXCollections.observableArrayList();
 		keys = main.getData().getAllItems().keySet();

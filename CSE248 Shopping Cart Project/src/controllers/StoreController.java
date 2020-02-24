@@ -17,6 +17,11 @@ import javafx.util.Callback;
 import model.Item;
 import model.User;
 
+/**
+ * view store page
+ * @author bahad
+ *
+ */
 public class StoreController {
 
 	private ObservableList<Item> items;
@@ -24,12 +29,19 @@ public class StoreController {
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 
 		updateList();
 	}
 
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
 
@@ -100,6 +112,11 @@ public class StoreController {
 	@FXML
 	private Button mainMenuBtn;
 
+	/**
+	 * Searches the list based on the given search key.
+	 * 
+	 * @param event use this to find items in the list.
+	 */
 	@FXML
 	void SearchItems(ActionEvent event) {
 		ObservableList<Item> itemsToShow = FXCollections.observableArrayList();
@@ -115,6 +132,10 @@ public class StoreController {
 		}
 	}
 
+	/**
+	 * adds the selected item to user's shopping cart.
+	 * @param event use this to add n item to your shopping cart.
+	 */
 	@FXML
 	void addToCart(ActionEvent event) {
 		if(!main.checkIfInteger(quantity.getText())) {
@@ -133,18 +154,31 @@ public class StoreController {
 		}
 	}
 
+	/**
+	 * Goes back to the main menu.
+	 * 
+	 * @param event use to go to the main menu.
+	 */
 	@FXML
 	void goToMainMenu(ActionEvent event) {
 		main.showMainMenuPage();
 		main.setSelectedItem(null);
 	}
 
+	/**
+	 * it takes you to your shopping car.
+	 * 
+	 * @param event use this to view your shopping cart.
+	 */
 	@FXML
 	void viewCart(ActionEvent event) {
 		main.showCartPage();
 		main.setSelectedItem(null);
 	}
 
+	/**
+	 * updates the list.
+	 */
 	public void updateList() {
 		items = FXCollections.observableArrayList();
 		keys = main.getData().getAllItems().keySet();

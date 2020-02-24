@@ -16,18 +16,32 @@ import javafx.util.Callback;
 import model.Admin;
 import model.Order;
 
+/**
+ * view order history
+ * 
+ * @author bahad
+ *
+ */
 public class OrderHistoryController {
 
 	private ObservableList<Order> orders;
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 
 		updateList();
 	}
 
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		orderList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Order>() {
 
@@ -77,6 +91,11 @@ public class OrderHistoryController {
 	@FXML
 	private Button mainMenu;
 
+	/**
+	 * cancels the changes
+	 * 
+	 * @param event use this if you do not want to save changes.
+	 */
 	@FXML
 	void cancelOrder(ActionEvent event) {
 		if (main.getSelectedOrder() != null) {
@@ -93,6 +112,11 @@ public class OrderHistoryController {
 		}
 	}
 
+	/**
+	 * takes you to selected order.
+	 * 
+	 * @param event use this to view the selected order.
+	 */
 	@FXML
 	void viewOrder(ActionEvent event) {
 		if (main.getSelectedOrder() != null) {
@@ -100,12 +124,20 @@ public class OrderHistoryController {
 		}
 	}
 
+	/**
+	 * Goes back to the main menu.
+	 * 
+	 * @param event use to go to the main menu.
+	 */
 	@FXML
 	void mainMenu(ActionEvent event) {
 		main.showMainMenuPage();
-    	main.setSelectedOrder(null);
+		main.setSelectedOrder(null);
 	}
 
+	/**
+	 * updates the list.
+	 */
 	public void updateList() {
 		orders = FXCollections.observableArrayList();
 

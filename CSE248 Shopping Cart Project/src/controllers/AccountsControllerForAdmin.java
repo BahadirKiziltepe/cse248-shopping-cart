@@ -20,6 +20,12 @@ import model.Account;
 import model.Admin;
 import model.Item;
 
+/**
+ * This is the page for admin to view users and their informations.
+ * 
+ * @author bahad
+ *
+ */
 public class AccountsControllerForAdmin {
 
 	private ObservableList<Account> accounts;
@@ -27,6 +33,11 @@ public class AccountsControllerForAdmin {
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 
@@ -35,6 +46,9 @@ public class AccountsControllerForAdmin {
 		main.setViewAccounts(true);
 	}
 
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		accountViewer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
 
@@ -45,7 +59,7 @@ public class AccountsControllerForAdmin {
 				}
 			}
 		});
-		
+
 		accountViewer.setCellFactory(new Callback<ListView<Account>, ListCell<Account>>() {
 
 			@Override
@@ -115,6 +129,11 @@ public class AccountsControllerForAdmin {
 	@FXML
 	private Text country;
 
+	/**
+	 * Searches the list based on the given search key.
+	 * 
+	 * @param event use this to find users in the list.
+	 */
 	@FXML
 	void searchUsers(ActionEvent event) {
 		main.setUserPickedByAdmin(null);
@@ -131,11 +150,21 @@ public class AccountsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * takes you to edit account page.
+	 * 
+	 * @param event use this to edit the selected user's informations.
+	 */
 	@FXML
 	void viewAccount(ActionEvent event) {
 		main.showEditAccountPage();
 	}
 
+	/**
+	 * deletes the selected user.
+	 * 
+	 * @param event use this to delete a user.
+	 */
 	@FXML
 	void deleteAccount(ActionEvent event) {
 		if (main.getUserPickedByAdmin() != null) {
@@ -147,6 +176,11 @@ public class AccountsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * updates shown informations based on the selected user.
+	 * 
+	 * @param event use this to view the selected user's information
+	 */
 	@FXML
 	void getSelected(MouseEvent event) {
 		if (main.getUserPickedByAdmin() != null) {
@@ -164,6 +198,9 @@ public class AccountsControllerForAdmin {
 		}
 	}
 
+	/**
+	 * updates the list view.
+	 */
 	public void updateList() {
 		accounts = FXCollections.observableArrayList();
 		keys = main.getData().getAllAccounts().keySet();
@@ -176,6 +213,11 @@ public class AccountsControllerForAdmin {
 		accountViewer.setItems(accounts);
 	}
 
+	/**
+	 * Goes back to the previous scene.
+	 * 
+	 * @param event use to go to the previous scene.
+	 */
 	@FXML
 	void goBack(ActionEvent event) {
 		main.setUserPickedByAdmin(null);

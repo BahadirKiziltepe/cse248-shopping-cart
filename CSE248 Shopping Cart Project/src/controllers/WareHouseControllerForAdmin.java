@@ -17,18 +17,30 @@ import model.Item;
 import model.Order;
 import model.User;
 
+/**
+ * admin can view all of the orders that made.
+ * @author bahad
+ *
+ */
 public class WareHouseControllerForAdmin {
 
 	private ObservableList<Order> orders;
 
 	private Main main;
 
+	/**
+	 * It sets up main.
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 
 		updateList();
 	}
 
+	/**
+	 * Initializes the list view
+	 */
 	public void initialize() {
 		orderList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Order>() {
 
@@ -78,6 +90,11 @@ public class WareHouseControllerForAdmin {
 	@FXML
 	private Button mainMenu;
 
+	/**
+	 * cancels an ongoing order.
+	 * 
+	 * @param event use this to cancel an order that you placed.
+	 */
 	@FXML
 	void cancelOrder(ActionEvent event) {
 		if (main.getSelectedOrder() != null) {
@@ -90,6 +107,11 @@ public class WareHouseControllerForAdmin {
 		}
 	}
 
+	/**
+	 * takes you to selected order.
+	 * 
+	 * @param event use this to view the selected order.
+	 */
 	@FXML
 	void viewOrder(ActionEvent event) {
 		if (main.getSelectedOrder() != null) {
@@ -97,11 +119,19 @@ public class WareHouseControllerForAdmin {
 		}
 	}
 
+	/**
+	 * Goes back to the main menu.
+	 * 
+	 * @param event use to go to the main menu.
+	 */
 	@FXML
 	void mainMenu(ActionEvent event) {
 		main.showAdminPage();
 	}
 
+	/**
+	 * updates the list.
+	 */
 	public void updateList() {
 		orders = FXCollections.observableArrayList();
 

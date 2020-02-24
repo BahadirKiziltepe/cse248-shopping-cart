@@ -13,53 +13,69 @@ import model.Address;
 import model.Admin;
 import model.Name;
 
+/**
+ * registers a new admin
+ * 
+ * @author bahad
+ *
+ */
 public class RegisterAdminController {
-	
+
 	private Main main;
-	
+
+	/**
+	 * It sets up main.
+	 * 
+	 * @param main this is the main.
+	 */
 	public void setMain(Main main) {
 		this.main = main;
 	}
-	
-    @FXML
-    private TextField username;
 
-    @FXML
-    private TextField password;
+	@FXML
+	private TextField username;
 
-    @FXML
-    private TextField email;
+	@FXML
+	private TextField password;
 
-    @FXML
-    private TextField firstName;
+	@FXML
+	private TextField email;
 
-    @FXML
-    private TextField middleName;
+	@FXML
+	private TextField firstName;
 
-    @FXML
-    private TextField lastName;
+	@FXML
+	private TextField middleName;
 
-    @FXML
-    private TextField street;
+	@FXML
+	private TextField lastName;
 
-    @FXML
-    private TextField state;
+	@FXML
+	private TextField street;
 
-    @FXML
-    private TextField city;
+	@FXML
+	private TextField state;
 
-    @FXML
-    private TextField zipCode;
+	@FXML
+	private TextField city;
 
-    @FXML
-    private TextField country;
+	@FXML
+	private TextField zipCode;
 
-    @FXML
-    private Button createAccount;
+	@FXML
+	private TextField country;
 
-    @FXML
-    private Text login;
+	@FXML
+	private Button createAccount;
 
+	@FXML
+	private Text login;
+
+	/**
+	 * creates a new account as admin.
+	 * 
+	 * @param event use this to create an admin.
+	 */
 	@FXML
 	void CreateNewAccount(ActionEvent event) {
 		if (!(username.getText().equals("") || password.getText().equals("") || email.getText().equals("")
@@ -97,6 +113,12 @@ public class RegisterAdminController {
 		createAccount.setUnderline(false);
 	}
 
+	/**
+	 * takes you to the login scene.
+	 * 
+	 * @param event use this to go back to the login page without saving
+	 *              ingormations.
+	 */
 	@FXML
 	void setSceneLogin(MouseEvent event) {
 		main.showLoginPage();
