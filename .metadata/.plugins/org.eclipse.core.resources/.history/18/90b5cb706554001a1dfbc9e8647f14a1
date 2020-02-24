@@ -1,0 +1,18 @@
+package View;
+
+import application.App;
+import javafx.scene.layout.BorderPane;
+
+public class RootController {
+	private App app;
+	private BorderPane rootLayout;
+
+	public RootController() {
+
+	}
+
+	public void setApp(App app) { // gives controller access to databases
+		this.app = app;
+		this.rootLayout = app.getRootLayout();
+	}
+}

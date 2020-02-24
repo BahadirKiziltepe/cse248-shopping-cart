@@ -1,0 +1,95 @@
+package controllers;
+
+import application.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.util.Callback;
+import model.Item;
+import model.Order;
+
+public class WareHouseControllerForAdmin {
+	
+	private ObservableList<Order> orders;
+	
+	private Main main;
+
+	public void setMain(Main main) {
+		this.main = main;
+		
+		updateList();
+	}
+	
+	public void initialize() {
+		itemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Item> observable, Item oldItem, Item newItem) {
+				main.setSelectedItem(newItem);
+			}
+		});
+
+		itemList.setCellFactory(new Callback<ListView<Item>, ListCell<Item>>() {
+
+			@Override
+			public ListCell<Item> call(ListView<Item> p) {
+				ListCell<Item> newItem = new ListCell<Item>() {
+					@Override
+					protected void updateItem(Item item, boolean bool) {
+						super.updateItem(item, bool);
+						if (bool || item == null) {
+							setText(null);
+						} else {
+							if (item.isTaxable()) {
+								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
+										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + " + item.calculateTax() + "\nStock: "
+										+ item.getStock());
+							} else {
+								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
+										+ item.getCategory() + "\nPrice: $" + item.getPrice() + "\nStock: "
+										+ item.getStock());
+							}
+						}
+					}
+				};
+
+				return newItem;
+			}
+		});
+	}
+	
+    @FXML
+    private Button cancelBtn;
+
+    @FXML
+    private ListView<Order> orderList;
+
+    @FXML
+    private Button viewBtn;
+
+    @FXML
+    void cancelOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewOrder(ActionEvent event) {
+
+    }
+    
+    public void updateList() {
+    	orders = FXCollections.observableArrayList();
+    	
+    	for(Order order : main.getData().getAllOrders()) {
+    		orders.add(order);
+    	}
+    	orderList.setItems(orders);
+	}
+
+}

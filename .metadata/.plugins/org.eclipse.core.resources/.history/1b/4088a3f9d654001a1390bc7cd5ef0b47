@@ -1,0 +1,89 @@
+package controllers;
+
+import application.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+
+public class AccountController {
+	
+	private Main main;
+	
+	public void setMain(Main main) {
+		this.main = main;
+		
+		this.username.setText(main.getCurrentUser().getName().getFirstName());
+	}
+	
+    @FXML
+    private Button editAccount;
+
+    @FXML
+    private Text back;
+    
+    @FXML
+    private Text username;
+
+    @FXML
+    private Text password;
+
+    @FXML
+    private Text email;
+
+    @FXML
+    private Text firstName;
+
+    @FXML
+    private Text middleName;
+
+    @FXML
+    private Text lastName;
+
+    @FXML
+    private Text street;
+
+    @FXML
+    private Text state;
+
+    @FXML
+    private Text city;
+
+    @FXML
+    private Text zipCode;
+
+    @FXML
+    private Text country;
+
+    @FXML
+    void cancelChanges(MouseEvent event) {
+
+    }
+
+    @FXML
+    void changeAccount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void hyperEnter(MouseEvent event) {
+
+    }
+
+    @FXML
+    void hyperOut(MouseEvent event) {
+
+    }
+
+    @FXML
+    void mouseNotOnButton(MouseEvent event) {
+
+    }
+
+    @FXML
+    void mouseOnButton(MouseEvent event) {
+
+    }
+
+}
