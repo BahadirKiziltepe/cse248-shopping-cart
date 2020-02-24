@@ -24,7 +24,6 @@ public class User extends Account implements Comparable<Account>, Serializable {
 	 */
 	public User(String userName, String password, Name name, Address address, String email) {
 		super(userName, password, name, address, email);
-		savedCard = new CreditCard("000000000000", 000, 0000);
 		cart = new ShoppingCart();
 	}
 
