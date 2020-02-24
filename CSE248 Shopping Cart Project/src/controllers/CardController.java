@@ -16,6 +16,12 @@ public class CardController {
 
 	public void setMain(Main main) {
 		this.main = main;
+		
+		if (((User) main.getCurrentUser()).getSavedCard() != null) {
+			cardNumber.setText(((User) main.getCurrentUser()).getSavedCard().getCardNumber());
+			sCode.setText(Integer.toString(((User) main.getCurrentUser()).getSavedCard().getSecurityCode()));
+			date.setText(Integer.toString(((User) main.getCurrentUser()).getSavedCard().getExpirationDate()));
+		}
 	}
 
 	@FXML
@@ -40,7 +46,7 @@ public class CardController {
 
 	@FXML
 	void saveCard(ActionEvent event) {
-		if (!(cardNumber.getText().equals("") && sCode.getText().equals("") && date.getText().equals(""))) {
+		if (!(cardNumber.getText().equals("") || sCode.getText().equals("") || date.getText().equals(""))) {
 			CreditCard card = new CreditCard(cardNumber.getText(), Integer.parseInt(sCode.getText()),
 					Integer.parseInt(date.getText()));
 			((User) main.getCurrentUser()).setSavedCard(card);

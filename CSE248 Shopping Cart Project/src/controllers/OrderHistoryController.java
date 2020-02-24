@@ -103,6 +103,7 @@ public class OrderHistoryController {
 	@FXML
 	void mainMenu(ActionEvent event) {
 		main.showMainMenuPage();
+    	main.setSelectedOrder(null);
 	}
 
 	public void updateList() {

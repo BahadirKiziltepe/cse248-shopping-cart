@@ -126,28 +126,30 @@ public class CartController {
 
 	@FXML
 	void checkOut(ActionEvent event) {
-		if (!((User) main.getCurrentUser()).getSavedCard().getCardNumber().equals("000000000000")) {
-			warning.setText("");
+		if (((User) main.getCurrentUser()).getSavedCard() != null) {
+			if (((User) main.getCurrentUser()).getCart().getItemsInCart().size() > 0) {
+				warning.setText("");
 
-			Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(),
-					((User) main.getCurrentUser()).getCart().subTotalPriceCalculation(), main.getCurrentUser());
+				Order order = new Order(((User) main.getCurrentUser()).getCart().totalPriceCalculation(),
+						((User) main.getCurrentUser()).getCart().subTotalPriceCalculation(), main.getCurrentUser());
 
-			Set<Integer> keys = ((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();
-			TreeSet<Item> itemsBought = new TreeSet<>();
-			for (Integer i : keys) {
-				itemsBought.add(((User) main.getCurrentUser()).getCart().getItemsInCart().get(i));
+				Set<Integer> keys = ((User) main.getCurrentUser()).getCart().getItemsInCart().keySet();
+				TreeSet<Item> itemsBought = new TreeSet<>();
+				for (Integer i : keys) {
+					itemsBought.add(((User) main.getCurrentUser()).getCart().getItemsInCart().get(i));
+				}
+				order.setItemsbought(itemsBought);
+				main.getData().addOrderToStore(order);
+
+				((User) main.getCurrentUser()).getCart().getItemsInCart().clear();
+				updateList();
+
+				total.setText(Double.toString(((User) main.getCurrentUser()).getCart().totalPriceCalculation()));
+				subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
+
+				main.saveData(main.getData());
+				main.setSelectedItem(null);
 			}
-			order.setItemsbought(itemsBought);
-			main.getData().addOrderToStore(order);
-
-			((User) main.getCurrentUser()).getCart().getItemsInCart().clear();
-			updateList();
-
-			total.setText(Double.toString(((User) main.getCurrentUser()).getCart().totalPriceCalculation()));
-			subTotal.setText(Double.toString(((User) main.getCurrentUser()).getCart().subTotalPriceCalculation()));
-
-			main.saveData(main.getData());
-			main.setSelectedItem(null);
 		} else {
 			warning.setText("Register a valid Credit Card");
 		}
@@ -193,10 +195,9 @@ public class CartController {
 					.getStock() >= Integer.parseInt(quantity.getText())) {
 				((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
 						.subtractFromStock(Integer.parseInt(quantity.getText()));
+				main.getData().getAllItems().get(main.getSelectedItem().getItemID())
+						.addToStock(Integer.parseInt(quantity.getText()));
 			}
-
-			main.getData().getAllItems().get(main.getSelectedItem().getItemID())
-					.addToStock(Integer.parseInt(quantity.getText()));
 
 			if (main.getSelectedItem().getStock() == 0) {
 				((User) main.getCurrentUser()).getCart().getItemsInCart().remove(main.getSelectedItem().getItemID());

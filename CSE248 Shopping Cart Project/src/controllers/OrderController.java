@@ -123,6 +123,7 @@ public class OrderController {
     	} else {
     		main.showOrderHistoryPage();
     	}
+    	main.setSelectedOrder(null);
     }
     
 	public void updateList() {
