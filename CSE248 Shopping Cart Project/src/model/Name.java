@@ -42,9 +42,9 @@ public class Name implements Serializable {
 	@Override
     public String toString() {
         if (middleName.equals("")) {
-            return firstName + " " + lastName;
+            return firstName + lastName;
         } else {
-            return firstName + " " + middleName + " " + lastName;
+            return firstName + middleName + lastName;
         }
     }
 	
