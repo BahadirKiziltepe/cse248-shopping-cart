@@ -102,7 +102,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public void showAdminRegisterPage() {
+	public void showRegisterAdminPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(this.getClass().getResource("/view/RegisterAdmin.fxml"));
