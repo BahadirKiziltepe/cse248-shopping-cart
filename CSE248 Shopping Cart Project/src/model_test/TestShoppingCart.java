@@ -14,8 +14,8 @@ public class TestShoppingCart {
 		Item item2 = new Item("Grape", 1, 60.0, "Food", true, 5);
 		
 		ShoppingCart sc = new ShoppingCart();
-		sc.addItemToCart(item, 1);
-		sc.addItemToCart(item2, 1);
+		sc.addItemToCart(item);
+		sc.addItemToCart(item2);
 		System.out.println(sc.getItemsInCart());
 		sc.emptyCart();
 		System.out.println(sc.getItemsInCart());
@@ -23,8 +23,8 @@ public class TestShoppingCart {
 		
 		
 		
-		sc.addItemToCart(item, 1);
-		sc.addItemToCart(item2, 1);
+		sc.addItemToCart(item);
+		sc.addItemToCart(item2);
 		sc.removeItemFromCart(item);
 		System.out.println(sc.getItemsInCart());
 		
@@ -36,8 +36,8 @@ public class TestShoppingCart {
 		Item item2 = new Item("Grape", 1, 60.0, "Food", true, 5);
 		
 		ShoppingCart sc = new ShoppingCart();
-		sc.addItemToCart(item, 1);
-		sc.addItemToCart(item2, 1);
+		sc.addItemToCart(item);
+		sc.addItemToCart(item2);
 		System.out.println("total price: " + sc.totalPriceCalculation());
 		System.out.println("subtotal price: " + sc.subTotalPriceCalculation());
 		assertEquals(420,sc.subTotalPriceCalculation(),0.0000001);
