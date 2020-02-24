@@ -55,7 +55,7 @@ public class Main extends Application {
 	private boolean viewAccounts = false;
 
 	/**
-	 * starts the project
+	 * starts the project.
 	 */
 	@Override
 	public void start(Stage stg) {
@@ -63,16 +63,16 @@ public class Main extends Application {
 	}
 
 	/**
-	 * launches the project
+	 * launches the project.
 	 * 
-	 * @param args
+	 * @param args sets up the whole project.
 	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	/**
-	 * initializes the project
+	 * initializes the project.
 	 */
 	public void initialize() {
 		File file = new File("data\\StoreDataBase.bin");
@@ -105,7 +105,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the login page
+	 * takes you to the login page.
 	 */
 	public void showLoginPage() {
 		try {
@@ -123,7 +123,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the register admin page
+	 * takes you to the register admin page.
 	 */
 	public void showRegisterAdminPage() {
 		try {
@@ -141,7 +141,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the register user page
+	 * takes you to the register user page.
 	 */
 	public void showRegisterPage() {
 		try {
@@ -159,7 +159,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the admin's main menu
+	 * takes you to the admin's main menu.
 	 */
 	public void showAdminPage() {
 		try {
@@ -177,7 +177,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the user's main menu
+	 * takes you to the user's main menu.
 	 */
 	public void showMainMenuPage() {
 		try {
@@ -195,7 +195,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the account detail's page
+	 * takes you to the account detail's page.
 	 */
 	public void showAccountPage() {
 		try {
@@ -213,7 +213,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the account editing page
+	 * takes you to the account editing page.
 	 */
 	public void showEditAccountPage() {
 		try {
@@ -231,7 +231,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the store page
+	 * takes you to the store page.
 	 */
 	public void showStorePage() {
 		try {
@@ -249,7 +249,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the shopping cart
+	 * takes you to the shopping cart.
 	 */
 	public void showCartPage() {
 		try {
@@ -267,7 +267,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the accounts list if you are admin
+	 * takes you to the accounts list if you are admin.
 	 */
 	public void showAccountsForAdmin() {
 		try {
@@ -285,7 +285,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the items list if you are admin
+	 * takes you to the items list if you are admin.
 	 */
 	public void showItemsForAdmin() {
 		try {
@@ -303,7 +303,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the order information's page
+	 * takes you to the order information's page.
 	 */
 	public void showOrderPage() {
 		try {
@@ -321,7 +321,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the warehouse
+	 * takes you to the warehouse.
 	 */
 	public void showWareHouseForAdmin() {
 		try {
@@ -339,7 +339,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the order history
+	 * takes you to the order history.
 	 */
 	public void showOrderHistoryPage() {
 		try {
@@ -357,7 +357,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * takes you to the credit card information page
+	 * takes you to the credit card information page.
 	 */
 	public void showCardPage() {
 		try {
@@ -375,7 +375,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * reads the saved data
+	 * reads the saved data.
 	 */
 	public void readData() {
 		try {
@@ -386,14 +386,19 @@ public class Main extends Application {
 	}
 
 	/**
-	 * saves the existing data
+	 * saves the existing data.
+	 * 
+	 * @param data use this to save the given data.
 	 */
 	public void saveData(StoreDataBase data) {
 		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
 	}
 
 	/**
-	 * checks if an input is integer
+	 * checks if an input is integer.
+	 * 
+	 * @param text use this to see if given text is an integer.
+	 * @return it tells true or false based on the given parameter.
 	 */
 	public boolean checkIfInteger(String text) {
 		try {
@@ -406,6 +411,9 @@ public class Main extends Application {
 
 	/**
 	 * checks if an input is double
+	 * 
+	 * @param text use this to see if given text is a double.
+	 * @return it tells true or false based on the given parameter.
 	 */
 	public boolean checkIfDouble(String text) {
 		try {
@@ -415,8 +423,8 @@ public class Main extends Application {
 			return false;
 		}
 	}
-	
-	//getters and setters
+
+	// getters and setters
 
 	public StoreDataBase getData() {
 		return data;
