@@ -22,6 +22,7 @@ import controllers.LoginController;
 import controllers.MainMenuController;
 import controllers.OrderController;
 import controllers.OrderHistoryController;
+import controllers.RegisterAdminController;
 import controllers.RegisterController;
 import controllers.RootController;
 import controllers.StoreController;
@@ -95,6 +96,21 @@ public class Main extends Application {
 			root.setCenter(loginBox);
 			LoginController login = loader.getController();
 			login.setMain(this);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showAdminRegisterPage() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(this.getClass().getResource("/view/RegisterAdmin.fxml"));
+			VBox loginBox = new VBox();
+			loginBox = (VBox) loader.load();
+			root.setCenter(loginBox);
+			RegisterAdminController register = loader.getController();
+			register.setMain(this);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -304,9 +320,18 @@ public class Main extends Application {
 		}
 	}
 
-	public boolean checkIfInt(String text) {
+	public boolean checkIfInteger(String text) {
 		try {
 			Integer.parseInt(text);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public boolean checkIfDouble(String text) {
+		try {
+			Double.parseDouble(text);
 			return true;
 		} catch (NumberFormatException e) {
 			return false;

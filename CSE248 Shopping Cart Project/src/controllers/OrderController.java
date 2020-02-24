@@ -40,6 +40,8 @@ public class OrderController {
 		owner.setText(main.getSelectedOrder().getOwner().getUserName());
 		date.setText(month + "/" + day + "/" + year);
 		total.setText(Double.toString(main.getSelectedOrder().getTotal()));
+		subTotal.setText(Double.toString(main.getSelectedOrder().getSubTotal()));
+
 	}
 	
 	public void initialize() {

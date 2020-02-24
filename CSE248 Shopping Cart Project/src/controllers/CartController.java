@@ -163,7 +163,7 @@ public class CartController {
 
 	@FXML
 	void increase(ActionEvent event) {
-		if (!main.checkIfInt(quantity.getText())) {
+		if (!main.checkIfInteger(quantity.getText())) {
 			quantity.setText("1");
 		}
 
@@ -185,7 +185,7 @@ public class CartController {
 
 	@FXML
 	void remove(ActionEvent event) {
-		if (!main.checkIfInt(quantity.getText())) {
+		if (!main.checkIfInteger(quantity.getText())) {
 			quantity.setText("1");
 		}
 

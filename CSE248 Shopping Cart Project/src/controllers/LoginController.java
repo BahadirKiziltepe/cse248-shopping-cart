@@ -34,6 +34,12 @@ public class LoginController {
 
 	@FXML
 	void Login(ActionEvent event) {
+		if(username.getText().equals("")) {
+			if(password.getText().equals((main.getData().getAllAccounts().get("admin").getPassword()))){
+				
+			}
+		}
+		
 		if (main.getData().getAllAccounts().containsKey(username.getText())) {
 			if (main.getData().getAllAccounts().get(username.getText()).getPassword().equals(password.getText())) {
 				main.setCurrentUser(main.getData().getAllAccounts().get(username.getText()));

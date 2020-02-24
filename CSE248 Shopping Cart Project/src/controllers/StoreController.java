@@ -117,7 +117,7 @@ public class StoreController {
 
 	@FXML
 	void addToCart(ActionEvent event) {
-		if(!main.checkIfInt(quantity.getText())) {
+		if(!main.checkIfInteger(quantity.getText())) {
 			quantity.setText("1");
 		}
 		

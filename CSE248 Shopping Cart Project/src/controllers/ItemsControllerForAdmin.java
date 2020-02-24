@@ -117,13 +117,16 @@ public class ItemsControllerForAdmin {
 			orderItem(event);
 		} else if (!(itemID.getText().equals("") || itemName.getText().equals("") || itemCategory.getText().equals("")
 				|| itemPrice.getText().equals("") || itemCount.getText().equals(""))) {
-			Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()),
-					Double.parseDouble(itemPrice.getText()), itemCategory.getText(), checkIfTaxable.isSelected(),
-					Integer.parseInt(itemCount.getText()));
-			main.getData().addItemToStore(newItem);
-			updateList();
+			if (main.checkIfInteger(itemID.getText()) && main.checkIfInteger(itemCount.getText())
+					&& main.checkIfDouble(itemPrice.getText())) {
+				Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()),
+						Double.parseDouble(itemPrice.getText()), itemCategory.getText(), checkIfTaxable.isSelected(),
+						Integer.parseInt(itemCount.getText()));
+				main.getData().addItemToStore(newItem);
+				updateList();
 
-			main.saveData(main.getData());
+				main.saveData(main.getData());
+			}
 		}
 	}
 
@@ -140,15 +143,17 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void orderItem(ActionEvent event) {
-		if (!main.checkIfInt(itemCount.getText())) {
+		if (!main.checkIfInteger(itemCount.getText())) {
 			itemCount.setText("1");
 		}
-		if (!itemID.getText().equals("")) {
-			main.getData().getAllItems().get(Integer.parseInt(itemID.getText()))
-					.addToStock(Integer.parseInt(itemCount.getText()));
-			main.saveData(main.getData());
+		if (main.checkIfInteger(itemID.getText())) {
+			if (main.getData().getAllItems().containsKey(Integer.parseInt(itemID.getText()))) {
+				main.getData().getAllItems().get(Integer.parseInt(itemID.getText()))
+						.addToStock(Integer.parseInt(itemCount.getText()));
+				main.saveData(main.getData());
 
-			updateList();
+				updateList();
+			}
 		}
 	}
 
