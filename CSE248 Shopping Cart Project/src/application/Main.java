@@ -35,6 +35,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * Main Project
+ * 
+ * @author bahad
+ *
+ */
 public class Main extends Application {
 
 	private Stage mainStage = new Stage();
@@ -48,15 +54,26 @@ public class Main extends Application {
 
 	private boolean viewAccounts = false;
 
+	/**
+	 * starts the project
+	 */
 	@Override
 	public void start(Stage stg) {
 		initialize();
 	}
 
+	/**
+	 * launches the project
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/**
+	 * initializes the project
+	 */
 	public void initialize() {
 		File file = new File("data\\StoreDataBase.bin");
 		if (file.length() != 0) {
@@ -87,6 +104,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the login page
+	 */
 	public void showLoginPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -101,7 +121,10 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * takes you to the register admin page
+	 */
 	public void showRegisterAdminPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -117,6 +140,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the register user page
+	 */
 	public void showRegisterPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -132,6 +158,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the admin's main menu
+	 */
 	public void showAdminPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -147,6 +176,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the user's main menu
+	 */
 	public void showMainMenuPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -162,6 +194,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the account detail's page
+	 */
 	public void showAccountPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -177,6 +212,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the account editing page
+	 */
 	public void showEditAccountPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -192,6 +230,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the store page
+	 */
 	public void showStorePage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -207,6 +248,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the shopping cart
+	 */
 	public void showCartPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -222,6 +266,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the accounts list if you are admin
+	 */
 	public void showAccountsForAdmin() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -237,6 +284,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the items list if you are admin
+	 */
 	public void showItemsForAdmin() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -252,6 +302,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the order information's page
+	 */
 	public void showOrderPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -267,6 +320,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the warehouse
+	 */
 	public void showWareHouseForAdmin() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -282,6 +338,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the order history
+	 */
 	public void showOrderHistoryPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -297,6 +356,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * takes you to the credit card information page
+	 */
 	public void showCardPage() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -312,6 +374,9 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * reads the saved data
+	 */
 	public void readData() {
 		try {
 			data = (StoreDataBase) StoreDataBase.readObjectFromFile("data\\StoreDataBase.bin", false);
@@ -320,6 +385,16 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * saves the existing data
+	 */
+	public void saveData(StoreDataBase data) {
+		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
+	}
+
+	/**
+	 * checks if an input is integer
+	 */
 	public boolean checkIfInteger(String text) {
 		try {
 			Integer.parseInt(text);
@@ -328,7 +403,10 @@ public class Main extends Application {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * checks if an input is double
+	 */
 	public boolean checkIfDouble(String text) {
 		try {
 			Double.parseDouble(text);
@@ -337,10 +415,8 @@ public class Main extends Application {
 			return false;
 		}
 	}
-
-	public void saveData(StoreDataBase data) {
-		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
-	}
+	
+	//getters and setters
 
 	public StoreDataBase getData() {
 		return data;
