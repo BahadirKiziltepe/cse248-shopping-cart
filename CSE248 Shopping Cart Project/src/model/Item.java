@@ -126,12 +126,6 @@ public class Item implements Comparable<Item>, Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "ID:" + itemID + " Name:" + productName + " Category:" + category + " Price:" + price + " Stock:"
-				+ stock;
-	}
-
-	@Override
 	public int compareTo(Item other) {
 		if (this.itemID > other.itemID) {
 			return 1;

@@ -43,16 +43,18 @@ public class Name implements Serializable {
 	/**
 	 * @return gives first, middle and last name as string
 	 */
-	public String toString() {
-		if (middleName.equals("")) {
-			return firstName + " " + lastName;
-		} else {
-			return firstName + " " + middleName + " " + lastName;
-		}
-	}
 
-	// setters and getters
-
+	@Override
+    public String toString() {
+        if (middleName.equals("")) {
+            return firstName + lastName;
+        } else {
+            return firstName + middleName + lastName;
+        }
+    }
+	
+	//setters and getters
+	
 	public String getFirstName() {
 		return firstName;
 	}
