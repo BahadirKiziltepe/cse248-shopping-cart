@@ -84,8 +84,7 @@ public abstract class Account implements Comparable<Account>, Serializable  {
 			return 1;
 		}
 		return 0;
-	}
-	
+	}	
 	
 	
 }
