@@ -113,10 +113,10 @@ public class ItemsControllerForAdmin {
 	@FXML
 	void addItem(ActionEvent event) {
 		if (!(itemID.getText().equals("") && itemCount.getText().equals("")) && (itemName.getText().equals("")
-				&& itemCategory.getText().equals("") && itemPrice.getText().equals(""))) {
+				|| itemCategory.getText().equals("") || itemPrice.getText().equals(""))) {
 			orderItem(event);
-		} else if (!(itemID.getText().equals("") && itemName.getText().equals("") && itemCategory.getText().equals("")
-				&& itemPrice.getText().equals("") && itemCount.getText().equals(""))) {
+		} else if (!(itemID.getText().equals("") || itemName.getText().equals("") || itemCategory.getText().equals("")
+				|| itemPrice.getText().equals("") || itemCount.getText().equals(""))) {
 			Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()),
 					Double.parseDouble(itemPrice.getText()), itemCategory.getText(), checkIfTaxable.isSelected(),
 					Integer.parseInt(itemCount.getText()));
