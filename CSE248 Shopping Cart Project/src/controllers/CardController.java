@@ -25,7 +25,7 @@ public class CardController {
 	private TextField sCode;
 
 	@FXML
-	private Text date;
+	private TextField date;
 
 	@FXML
 	private Button saveBtn;
