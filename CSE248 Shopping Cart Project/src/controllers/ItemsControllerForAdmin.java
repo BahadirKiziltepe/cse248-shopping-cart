@@ -52,8 +52,8 @@ public class ItemsControllerForAdmin {
 						} else {
 							if (item.isTaxable()) {
 								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
-										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + " + item.calculateTax() + "\nStock: "
-										+ item.getStock());
+										+ item.getCategory() + "\nPrice: $" + item.getPrice() + " + "
+										+ item.calculateTax() + "\nStock: " + item.getStock());
 							} else {
 								setText("ID: " + item.getItemID() + "\nName: " + item.getProductName() + "\nCategory: "
 										+ item.getCategory() + "\nPrice: $" + item.getPrice() + "\nStock: "
@@ -82,9 +82,9 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	private Button orderBtn;
-	
-    @FXML
-    private Button clearBtn;
+
+	@FXML
+	private Button clearBtn;
 
 	@FXML
 	private TextField itemID;
@@ -112,14 +112,19 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void addItem(ActionEvent event) {
-		Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()),
-				Double.parseDouble(itemPrice.getText()), itemCategory.getText(), checkIfTaxable.isSelected(),
-				Integer.parseInt(itemCount.getText()));
-		main.getData().addItemToStore(newItem);
-		updateList();
+		if (!(itemID.getText().equals("") && itemCount.getText().equals("")) && (itemName.getText().equals("")
+				&& itemCategory.getText().equals("") && itemPrice.getText().equals(""))) {
+			orderItem(event);
+		} else if (!(itemID.getText().equals("") && itemName.getText().equals("") && itemCategory.getText().equals("")
+				&& itemPrice.getText().equals("") && itemCount.getText().equals(""))) {
+			Item newItem = new Item(itemName.getText(), Integer.parseInt(itemID.getText()),
+					Double.parseDouble(itemPrice.getText()), itemCategory.getText(), checkIfTaxable.isSelected(),
+					Integer.parseInt(itemCount.getText()));
+			main.getData().addItemToStore(newItem);
+			updateList();
 
-		main.saveData(main.getData());
-
+			main.saveData(main.getData());
+		}
 	}
 
 	@FXML
@@ -135,32 +140,37 @@ public class ItemsControllerForAdmin {
 
 	@FXML
 	void orderItem(ActionEvent event) {
-		main.getData().getAllItems().get(Integer.parseInt(itemID.getText())).addToStock(Integer.parseInt(itemCount.getText()));
-		main.saveData(main.getData());
-		
-		updateList();
-	}
-	
+		if (!main.checkIfInt(itemCount.getText())) {
+			itemCount.setText("1");
+		}
+		if (!itemID.getText().equals("")) {
+			main.getData().getAllItems().get(Integer.parseInt(itemID.getText()))
+					.addToStock(Integer.parseInt(itemCount.getText()));
+			main.saveData(main.getData());
 
-    @FXML
-    void updateInfo(MouseEvent event) {
-    	if(main.getSelectedItem() != null) {
-    		itemID.setText(Integer.toString(main.getSelectedItem().getItemID()));
-    		itemName.setText(main.getSelectedItem().getProductName());
-    		itemCategory.setText(main.getSelectedItem().getCategory());
-    		itemPrice.setText(Double.toString(main.getSelectedItem().getPrice()));
-    	}
-    }
-    
-    @FXML
-    void Clear(ActionEvent event) {
+			updateList();
+		}
+	}
+
+	@FXML
+	void updateInfo(MouseEvent event) {
+		if (main.getSelectedItem() != null) {
+			itemID.setText(Integer.toString(main.getSelectedItem().getItemID()));
+			itemName.setText(main.getSelectedItem().getProductName());
+			itemCategory.setText(main.getSelectedItem().getCategory());
+			itemPrice.setText(Double.toString(main.getSelectedItem().getPrice()));
+		}
+	}
+
+	@FXML
+	void Clear(ActionEvent event) {
 		itemID.setText("");
 		itemName.setText("");
 		itemCategory.setText("");
 		itemPrice.setText("");
 		itemCount.setText("");
 		checkIfTaxable.setSelected(false);
-    }
+	}
 
 	@FXML
 	void goToMainMenu(ActionEvent event) {

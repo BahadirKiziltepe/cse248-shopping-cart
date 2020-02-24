@@ -53,21 +53,21 @@ public class StoreController {
 							if (item.getStock() <= 10) {
 								if (item.isTaxable()) {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + "
+											+ "\nPrice: $" + String.format("%.2f", item.getPrice()) + " + "
 											+ item.calculateTax() + "\nStock: " + item.getStock());
 								} else {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + "\nStock: "
+											+ "\nPrice: $" + String.format("%.2f", item.getPrice()) + "\nStock: "
 											+ item.getStock());
 								}
 							} else {
 								if (item.isTaxable()) {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()) + " + "
+											+ "\nPrice: $" + String.format("%.2f", item.getPrice()) + " + "
 											+ item.calculateTax());
 								} else {
 									setText("Name: " + item.getProductName() + "\nCategory: " + item.getCategory()
-											+ "\nPrice: $" + String.format("%2f", item.getPrice()));
+											+ "\nPrice: $" + String.format("%.2f", item.getPrice()));
 								}
 							}
 						}
@@ -117,6 +117,10 @@ public class StoreController {
 
 	@FXML
 	void addToCart(ActionEvent event) {
+		if(!main.checkIfInt(quantity.getText())) {
+			quantity.setText("1");
+		}
+		
 		if (main.getSelectedItem().getStock() >= Integer.parseInt(quantity.getText())) {
 			Item newItem = new Item(main.getSelectedItem());
 			newItem.setStock(Integer.parseInt(quantity.getText()));

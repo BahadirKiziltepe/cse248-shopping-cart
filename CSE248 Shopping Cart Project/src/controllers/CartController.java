@@ -161,6 +161,10 @@ public class CartController {
 
 	@FXML
 	void increase(ActionEvent event) {
+		if (!main.checkIfInt(quantity.getText())) {
+			quantity.setText("1");
+		}
+
 		if (main.getSelectedItem() != null) {
 			if (main.getData().getAllItems().get(main.getSelectedItem().getItemID()).getStock() >= Integer
 					.parseInt(quantity.getText())) {
@@ -179,12 +183,23 @@ public class CartController {
 
 	@FXML
 	void remove(ActionEvent event) {
+		if (!main.checkIfInt(quantity.getText())) {
+			quantity.setText("1");
+		}
+
 		if (main.getSelectedItem() != null) {
 
 			if (((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
 					.getStock() >= Integer.parseInt(quantity.getText())) {
 				((User) main.getCurrentUser()).getCart().getItemsInCart().get(main.getSelectedItem().getItemID())
 						.subtractFromStock(Integer.parseInt(quantity.getText()));
+			}
+
+			main.getData().getAllItems().get(main.getSelectedItem().getItemID())
+					.addToStock(Integer.parseInt(quantity.getText()));
+
+			if (main.getSelectedItem().getStock() == 0) {
+				((User) main.getCurrentUser()).getCart().getItemsInCart().remove(main.getSelectedItem().getItemID());
 			}
 
 			main.saveData(main.getData());
