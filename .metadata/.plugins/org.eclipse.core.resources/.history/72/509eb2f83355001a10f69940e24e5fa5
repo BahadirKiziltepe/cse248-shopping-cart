@@ -1,0 +1,88 @@
+package controllers;
+
+import java.util.Set;
+
+import application.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+
+public class AccountsControllerForAdmin {
+
+	private ObservableList<String> accounts;
+	private Set<String> keys;
+	
+	private Main main;
+
+	public void setMain(Main main) {
+		this.main = main;
+		
+		accounts = FXCollections.observableArrayList();
+		keys = main.getData().getAllAccounts().keySet();
+		
+		for(String s : keys) {
+			accounts.add(s);
+		}
+	}
+
+	@FXML
+	private ListView<String> accountViewer;
+
+	@FXML
+	private TextField searchBar;
+
+	@FXML
+	private Button searchBtn;
+
+	@FXML
+	private Button selectAccount;
+
+	@FXML
+	private Text userName;
+
+	@FXML
+	private Text password;
+
+	@FXML
+	private Text email;
+
+	@FXML
+	private Text firstName;
+
+	@FXML
+	private Text middleName;
+
+	@FXML
+	private Text LastName;
+
+	@FXML
+	private Text street;
+
+	@FXML
+	private Text state;
+
+	@FXML
+	private Text city;
+
+	@FXML
+	private Text zipcode;
+
+	@FXML
+	private Text country;
+
+	@FXML
+	void searchUsers(ActionEvent event) {
+
+	}
+
+	@FXML
+	void viewAccount(ActionEvent event) {
+
+	}
+
+}

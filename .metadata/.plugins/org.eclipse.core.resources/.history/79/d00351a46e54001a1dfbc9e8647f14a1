@@ -1,0 +1,13 @@
+package resource;
+
+import application.Main;
+
+public class MainMenuController {
+
+	private Main main;
+	
+	public void setMain(Main main) {
+		this.main = main;
+	}
+
+}

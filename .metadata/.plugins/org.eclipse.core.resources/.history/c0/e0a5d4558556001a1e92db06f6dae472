@@ -1,0 +1,32 @@
+package controllers;
+
+import application.Main;
+
+public class OrderHistoryController {
+	
+	private Main main;
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+	
+    @FXML
+    private ListView<?> orderList;
+
+    @FXML
+    private Button cancelBtn;
+
+    @FXML
+    private Button viewBtn;
+
+    @FXML
+    void cancelOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewOrder(ActionEvent event) {
+
+    }
+
+}

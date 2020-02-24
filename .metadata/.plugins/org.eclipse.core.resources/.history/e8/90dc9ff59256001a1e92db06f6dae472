@@ -1,0 +1,38 @@
+package controllers;
+
+import application.Main;
+
+public class CardController {
+	
+	private Main main;
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+	
+    @FXML
+    private TextField cardNumber;
+
+    @FXML
+    private TextField sCode;
+
+    @FXML
+    private Text date;
+
+    @FXML
+    private Button saveBtn;
+
+    @FXML
+    private Text cancel;
+
+    @FXML
+    void cancel(MouseEvent event) {
+
+    }
+
+    @FXML
+    void saveCard(ActionEvent event) {
+
+    }
+
+}

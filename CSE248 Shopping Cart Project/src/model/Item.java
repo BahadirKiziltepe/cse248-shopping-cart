@@ -65,6 +65,16 @@ public class Item implements Comparable<Item>, Serializable {
 		return tax;
 	}
 
+	// clone
+	public Item(Item item) {
+		this.itemID = item.getItemID();
+		this.productName = item.getProductName();
+		this.price = item.getPrice();
+		this.category = item.getCategory();
+		this.taxable = item.isTaxable();
+		this.stock = item.getStock();
+	}
+
 	// Setters/getters
 
 	public String getProductName() {
@@ -114,11 +124,11 @@ public class Item implements Comparable<Item>, Serializable {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-
+	
 	@Override
-	public String toString() {
-		return itemID + productName + category + price + stock;
-	}
+    public String toString() {
+        return itemID + productName + category + price + stock;
+    }
 
 	@Override
 	public int compareTo(Item other) {
@@ -129,16 +139,6 @@ public class Item implements Comparable<Item>, Serializable {
 			return -1;
 		}
 		return 0;
-	}
-
-	// clone
-	public Item(Item item) {
-		this.itemID = item.getItemID();
-		this.productName = item.getProductName();
-		this.price = item.getPrice();
-		this.category = item.getCategory();
-		this.taxable = item.isTaxable();
-		this.stock = item.getStock();
 	}
 
 }

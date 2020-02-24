@@ -1,0 +1,60 @@
+package controllers;
+
+import application.Main;
+
+public class OrderController {
+	
+	private Main main;
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+	
+    @FXML
+    private ListView<?> itemList;
+
+    @FXML
+    private Button increase;
+
+    @FXML
+    private TextField quantity;
+
+    @FXML
+    private Button remove;
+
+    @FXML
+    private Button backBtn;
+
+    @FXML
+    private Text owner;
+
+    @FXML
+    private Text date;
+
+    @FXML
+    private Text total;
+
+    @FXML
+    private Button cancelBtn;
+
+    @FXML
+    void cancelOrder(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+
+    }
+
+    @FXML
+    void increase(ActionEvent event) {
+
+    }
+
+    @FXML
+    void remove(ActionEvent event) {
+
+    }
+
+}

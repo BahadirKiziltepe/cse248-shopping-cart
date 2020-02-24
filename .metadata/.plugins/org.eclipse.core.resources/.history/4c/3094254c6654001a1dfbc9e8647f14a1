@@ -1,0 +1,15 @@
+package View;
+
+import application.Main;
+
+public class RootController {
+	private Main main;
+
+	public RootController() {
+
+	}
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+}

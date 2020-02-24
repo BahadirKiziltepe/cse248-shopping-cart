@@ -1,0 +1,12 @@
+package application;
+
+import javafx.scene.layout.BorderPane;
+
+public class RootController {
+	private App app;
+    private BorderPane rootLayout;
+    
+    public RootController() {
+
+    }
+}
