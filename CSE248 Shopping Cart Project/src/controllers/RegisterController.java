@@ -18,13 +18,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegisterController {
-	
+
 	private Main main;
-	
+
 	public void setMain(Main main) {
 		this.main = main;
 	}
-	
+
 	@FXML
 	private TextField username;
 
@@ -66,20 +66,26 @@ public class RegisterController {
 
 	@FXML
 	void CreateNewAccount(ActionEvent event) {
-		Name name;
-		if(middleName.getText().equals("")) {
-			name = new Name(firstName.getText(), lastName.getText());
-		} else {
-			name = new Name(firstName.getText(), middleName.getText(), lastName.getText());
+		if (!(username.getText().equals("") && password.getText().equals("") && email.getText().equals("")
+				&& firstName.getText().equals("") && lastName.getText().equals("") && street.getText().equals("")
+				&& state.getText().equals("") && city.getText().equals("") && zipCode.getText().equals("")
+				&& country.getText().equals(""))) {
+			Name name;
+			if (middleName.getText().equals("")) {
+				name = new Name(firstName.getText(), lastName.getText());
+			} else {
+				name = new Name(firstName.getText(), middleName.getText(), lastName.getText());
+			}
+			Address address = new Address(street.getText(), state.getText(), city.getText(), zipCode.getText(),
+					country.getText());
+
+			User account = new User(username.getText(), password.getText(), name, address, email.getText());
+
+			main.getData().registerUser(username.getText(), account);
+			main.saveData(main.getData());
+
+			main.showLoginPage();
 		}
-		Address address = new Address(street.getText(), state.getText(), city.getText(), zipCode.getText(), country.getText());
-		
-		User account = new User(username.getText(), password.getText(), name, address, email.getText());
-		
-		main.getData().registerUser(username.getText(), account);
-		main.saveData(main.getData());
-		
-		main.showLoginPage();
 	}
 
 	@FXML

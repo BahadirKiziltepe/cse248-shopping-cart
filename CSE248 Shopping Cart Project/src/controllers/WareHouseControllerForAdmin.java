@@ -80,12 +80,14 @@ public class WareHouseControllerForAdmin {
 
 	@FXML
 	void cancelOrder(ActionEvent event) {
-		main.getSelectedOrder().setOwner(null);
-		main.getData().getAllOrders().remove(main.getSelectedOrder());
-		main.setSelectedOrder(null);
-		
-		updateList();
-		main.saveData(main.getData());
+		if (main.getSelectedOrder() != null) {
+			main.getSelectedOrder().setOwner(null);
+			main.getData().getAllOrders().remove(main.getSelectedOrder());
+			main.setSelectedOrder(null);
+
+			updateList();
+			main.saveData(main.getData());
+		}
 	}
 
 	@FXML

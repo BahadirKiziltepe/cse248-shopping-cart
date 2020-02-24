@@ -304,6 +304,15 @@ public class Main extends Application {
 		}
 	}
 
+	public boolean checkIfInt(String text) {
+		try {
+			Integer.parseInt(text);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
 	public void saveData(StoreDataBase data) {
 		StoreDataBase.writeObjectToFile(data, "data\\StoreDataBase.bin", false);
 	}

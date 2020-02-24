@@ -37,7 +37,7 @@ public class Name implements Serializable {
 	public Name(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.middleName = null;
+		this.middleName = "";
 	}
 
 	/**

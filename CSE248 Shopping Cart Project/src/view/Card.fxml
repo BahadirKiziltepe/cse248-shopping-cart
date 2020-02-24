@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox prefHeight="480.0" prefWidth="720.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.CardController">
+<VBox prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
    <children>
       <AnchorPane prefHeight="480.0" prefWidth="720.0">
          <children>
@@ -19,17 +18,17 @@
                   <Image url="@../image/card.png" />
                </image>
             </ImageView>
-            <TextField fx:id="cardNumber" layoutX="360.0" layoutY="252.0">
+            <TextField fx:id="cardNumber" layoutX="360.0" layoutY="252.0" promptText="000000000000">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="sCode" layoutX="360.0" layoutY="294.0">
+            <TextField fx:id="sCode" layoutX="360.0" layoutY="294.0" promptText="000">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField layoutX="360.0" layoutY="332.0">
+            <TextField fx:id="date" layoutX="360.0" layoutY="332.0" promptText="MMYY">
                <font>
                   <Font size="15.0" />
                </font>
@@ -44,7 +43,7 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text fx:id="date" layoutX="564.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
+            <Text layoutX="564.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Date">
                <font>
                   <Font size="15.0" />
                </font>
